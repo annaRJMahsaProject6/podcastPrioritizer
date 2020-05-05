@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SearchAhead from './SearchAhead';
+import SearchAhead from './components/SearchAhead';
 
 class App extends Component {
   render() {
