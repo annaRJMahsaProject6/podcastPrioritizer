@@ -1,40 +1,30 @@
 import React, { Component } from "react";
-import axios from "axios";
+
 
 class Podcast extends Component {
   constructor() {
     super();
     this.state = {
-        podcastList: [],
-        userInput: ""
+        podcastInput: ""
     }
   }
+  handleChange=(event)=>{
+    this.setState({
+      podcastInput:event.target.value
+    })
+    
 
-  componentDidMount() {
-    axios({
-    url: "https://listen-api.listennotes.com/api/v2/search",
-    method: "GET",
-    headers: { "X-ListenAPI-Key": "0be4947c18024c2d8a5bb0dcb11eb2ac" },
-    dataResponse: "jsonp",
-    params: {
-        q: "dogs",
-        type: "podcast",
-    },
-    }).then((response) => {
-    console.log(response);
-        this.setState({
-            podcastList: response.data.results
-        })
-    });
   }
-
   render() {
+      // user podcast selection form
       return(
-        <div></div>
+        <form>
+          <label htmlFor="podcast"></label>
+          <input className="input-search" type="text" id="podcast" value={this.state.podcastInput} onChange={this.handleChange}/>
+          <button type="submit" onClick={(event)=>{this.props.submitForm(event, this.state.podcastInput)}}></button>
+        </form>
       )
   }
-
-
 }
 
 export default Podcast;
