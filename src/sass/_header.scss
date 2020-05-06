@@ -1,3 +1,46 @@
-h1 {
-    color: pink;
+header {
+    height: 100vh;
+    background-image: url("../assets/bg3.jpg");
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    h1 {
+        font-size: 6.5rem;
+        position: absolute;
+        font-family: 'Judson', serif;
+        top: 20%;
+        left: -10%;
+        // justify-content: center;
+        color: #333333;
+        border: .4rem solid #333333;
+        padding: 4rem 3rem;
+        // text-shadow: 4px 4px #e6e6d8, 6px 7px #c6a39a;
+        // -webkit-text-stroke-width: 2px;
+        // -webkit-text-stroke-color: #EDF2EF;
+        line-height: 0.86;
+        font-weight: 700;
+        z-index: 1;
+    }
+
+    .whiteBlock {
+        height: 90vh;
+        background-color: #FFFEF2;
+        width: 28%;
+        position: absolute;
+        top: 0;
+        left: 20%;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .heroText {
+      line-height: 1.5;
+      padding: 2rem;
+      font-family: 'Lato', sans-serif;
+    }
 }
