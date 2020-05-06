@@ -4,7 +4,7 @@ import axios from 'axios'
 import Map from './components/Map';
 import Header from './components/Header';
 import Podcast from './components/Podcast'
-
+import PodcastDisplay from './components/PodcastDisplay';
 
 class App extends Component {
   constructor(){
@@ -70,14 +70,14 @@ class App extends Component {
               unit:'k',
           }
       }).then((result)=>{
-           console.log(result.data.route)
-           this.setState({
+          console.log(result.data.route)
+          this.setState({
               formatedCycleTime:result.data.route.formattedTime,
               cycleTime:result.data.route.time
           })
           })
   }
-  handlePodcasSubmit=(event, podcastInput)=>{
+  handlePodcastSubmit=(event, podcastInput)=>{
     event.preventDefault();
     axios({
       url: "https://listen-api.listennotes.com/api/v2/search",
@@ -102,10 +102,13 @@ class App extends Component {
       <div className="App">
         <Header /> 
         <Map submitForm={this.handleAddressSubmit} />
-        <Podcast  submitForm={this.handlePodcasSubmit}
+        <Podcast  submitForm={this.handlePodcastSubmit}
       />
       <section className="route-map">
         <img src={this.state.staticMapUrl} alt="Route on map"/>
+      </section>
+      <section>
+        <PodcastDisplay podcastList={this.state.podcastList}/>
       </section>
       </div>  
     );
