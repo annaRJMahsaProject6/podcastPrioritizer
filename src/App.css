@@ -316,11 +316,6 @@ header .heroText {
   font-size: 2rem;
 }
 
-label {
-  font-size: 1.6rem;
-  position: relative;
-}
-
 .suggestions {
   width: 30rem;
   margin: 0 auto;

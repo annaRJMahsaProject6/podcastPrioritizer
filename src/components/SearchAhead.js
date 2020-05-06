@@ -142,7 +142,7 @@ class SearchAhead extends Component{
             <h2>Where To Go?</h2>
             <form action="submit" className="search-form wrapper">
                 <div className="inputContainer">
-                    <label htmlFor="fromaddress">From</label>
+                    <label htmlFor="fromaddress">Starting Location</label>
                     <input 
                         type="text"
                         name="fromaddress"
@@ -157,7 +157,7 @@ class SearchAhead extends Component{
                 </ul>
                 </div>
                 <div className="inputContainer">
-                    <label htmlFor="toaddress">To</label>
+                    <label htmlFor="toaddress">Destination</label>
                     <input 
                         type="text"
                         name="toaddress"
