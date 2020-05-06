@@ -32,7 +32,7 @@ class App extends Component {
                   size:'400,400',
                   countryCode:'CA',
                   routeColor:'F97068',
-                  width:5,
+                  routeWidth: 5,
               }
               }).then((result)=>{
               this.setState({
