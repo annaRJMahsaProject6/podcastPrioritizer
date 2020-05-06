@@ -9,8 +9,8 @@ class Map extends Component{
         this.state = {
             userInputFrom:'',
             userInputTo:'',
-            htmlFrom:'<li>Address</li>',
-            htmlTo:'<li>Address</li>',
+            htmlFrom:'',
+            htmlTo:'',
         }
     }
     getAddressFromApi = (query)=>{
@@ -34,7 +34,7 @@ class Map extends Component{
                 if(text !== 'Address'){
                     this.setState({
                         userInputFrom:text,
-                        htmlFrom:`<li>Address</li>`
+                        htmlFrom:``
                     })
                 }
             }
@@ -45,7 +45,7 @@ class Map extends Component{
                 if(text !== 'Address'){
                     this.setState({
                         userInputTo:text,
-                        htmlTo:`<li>Address</li>`
+                        htmlTo:``
                     })
                 }
             }
@@ -67,13 +67,13 @@ class Map extends Component{
                         })
                     }
                     this.setState({
-                        htmlFrom: dynamicHtml ? dynamicHtml : '<li>Address</li>'
+                        htmlFrom: dynamicHtml ? dynamicHtml : ''
                     })
                 })
             } else {
                 this.setState({
                     userInputFrom:'',
-                    htmlFrom: `<li>Address</li>`
+                    htmlFrom: ``
                 })
             }
         }
@@ -92,59 +92,73 @@ class Map extends Component{
                                 })
                             }
                             this.setState({
-                                htmlTo: dynamicHtml ? dynamicHtml : '<li>Address</li>'
+                                htmlTo: dynamicHtml ? dynamicHtml : ''
                             })
                         })
             } else {
                 this.setState({
                     userInputTo: '',
-                    htmlTo: `<li>Address</li>`
+                    htmlTo: ''
                 })
             }
         }
     }
     render(){
         return(
-        <div>
-            <form action="" 
-                className="search-form"
-                >
-                <label htmlFor="fromaddress">From</label>
-                <input 
-                    type="text"
-                    id="fromaddress"
-                    className="input-search from-input"
-                    value={this.state.userInputFrom}
-                    onKeyUp={this.handleUserInput}
-                    onChange={this.handleUserInput}
-                />
-                <ul className="suggestions from-address"
-                    onClick={this.handleUlClick}
-                >
-                    {ReactHtmlParser(this.state.htmlFrom)}
-                </ul>
-                <label htmlFor="toaddress">To</label>
-                <input 
-                    type="text"
-                    id="toaddress"
-                    className="input-search to-input"
-                    value={this.state.userInputTo}
-                    onKeyUp={this.handleUserInput}
-                    onChange={this.handleUserInput}
-                />
-                <ul className="suggestions to-address"
-                    onClick={this.handleUlClick}
-                >
-                    {ReactHtmlParser(this.state.htmlTo)}
-                </ul>
-                <button 
-                    type="submit"
-                    onClick={(event)=>{this.props.submitForm(event, this.state.userInputFrom, this.state.userInputFrom)}}
-                >
-                    Submit
+            <section className="whereTo">
+                <h2>Where To Go?</h2>
+                <form action="submit" className="search-form wrapper" autoComplete="off">
+                    <div className="inputContainer">
+                        <label htmlFor="fromaddress">Starting Location</label>
+                        <input
+                            type="text"
+                            name="fromaddress"
+                            className="address-search from-input"
+                            placeholder="1 Canada's Wonderland Drive, Vaughan, ON L6A 1S6"
+                            value={this.state.userInputFrom}
+                            onKeyUp={this.handleUserInput}
+                            onChange={this.handleUserInput}
+                        />
+                        {
+                        this.state.htmlFrom
+                        ?   <ul
+                                className="suggestions from-address"
+                                onClick={this.handleUlClick}
+                            >
+                                {ReactHtmlParser(this.state.htmlFrom)}
+                            </ul>
+                        :   ''
+                        }
+                    </div>
+                    <div className="inputContainer">
+                        <label htmlFor="toaddress">Destination</label>
+                        <input
+                            type="text"
+                            name="toaddress"
+                            className="address-search to-input"
+                            placeholder="288 Bremner Blvd, Toronto, ON M5V 3L9"
+                            value={this.state.userInputTo}
+                            onKeyUp={this.handleUserInput}
+                            onChange={this.handleUserInput}
+                        />
+                        {this.state.htmlTo 
+                         ?   <ul
+                                className="suggestions to-address"
+                                onClick={this.handleUlClick}
+                            >
+                                {ReactHtmlParser(this.state.htmlTo)}
+                            </ul>
+                        : ''
+                        }   
+                    </div>
+                    <button
+                        type="submit"
+                        onClick={(event) => { this.props.submitForm(event, this.state.userInputFrom, this.state.userInputFrom) }}
+                    >
+                        Submit
                 </button>
-            </form>
-        </div>
+                </form>
+            </section>
         )
     }
 }

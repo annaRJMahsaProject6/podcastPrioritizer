@@ -31,7 +31,8 @@ class App extends Component {
                   end:toInput,
                   size:'400,400',
                   countryCode:'CA',
-                  zoom:10
+                  routeColor:'F97068',
+                  width:5,
               }
               }).then((result)=>{
               this.setState({
