@@ -98,7 +98,7 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App wrapper">
+      <div className="App">
         <Header /> 
         <Map submitForm={this.handleAddressSubmit} />
         <Podcast  submitForm={this.handlePodcasSubmit}
@@ -106,8 +106,7 @@ class App extends Component {
       <section className="route-map">
         <img src={this.state.staticMapUrl} alt="Route on map"/>
       </section>
-      </div>
-      
+      </div>  
     );
   }
 }
