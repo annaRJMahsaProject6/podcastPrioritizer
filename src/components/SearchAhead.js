@@ -137,50 +137,56 @@ class SearchAhead extends Component{
         }
     }
     render(){
-        return(
-        <section className="whereTo">
+        return (
+          <section className="whereTo">
             <h2>Where To Go?</h2>
             <form action="submit" className="search-form wrapper">
-                <div className="inputContainer">
-                    <label htmlFor="fromaddress">Starting Location</label>
-                    <input 
-                        type="text"
-                        name="fromaddress"
-                        className="address-search from-input"
-                        value={this.state.userInputFrom}
-                        onKeyUp={this.handleUserInput}
-                        onChange={this.handleUserInput}
-                    />
-                    <ul className="suggestions from-address"
-                    onClick={this.handleUlClick}>
-                    {ReactHtmlParser(this.state.htmlFrom)}
+              <div className="inputContainer">
+                <label htmlFor="fromaddress">Starting Location</label>
+                <input
+                  type="text"
+                  name="fromaddress"
+                  className="address-search from-input"
+                  placeholder="1 Canada's Wonderland Drive, Vaughan, ON L6A 1S6"
+                  value={this.state.userInputFrom}
+                  onKeyUp={this.handleUserInput}
+                  onChange={this.handleUserInput}
+                />
+                <ul
+                  className="suggestions from-address"
+                  onClick={this.handleUlClick}
+                >
+                  {ReactHtmlParser(this.state.htmlFrom)}
                 </ul>
-                </div>
-                <div className="inputContainer">
-                    <label htmlFor="toaddress">Destination</label>
-                    <input 
-                        type="text"
-                        name="toaddress"
-                        className="address-search to-input"
-                        value={this.state.userInputTo}
-                        onKeyUp={this.handleUserInput}
-                        onChange={this.handleUserInput}
-                    />
-                    <ul className="suggestions to-address"
-                    onClick={this.handleUlClick}>
-                    {ReactHtmlParser(this.state.htmlTo)}
+              </div>
+              <div className="inputContainer">
+                <label htmlFor="toaddress">Destination</label>
+                <input
+                  type="text"
+                  name="toaddress"
+                  className="address-search to-input"
+                  placeholder="288 Bremner Blvd, Toronto, ON M5V 3L9"
+                  value={this.state.userInputTo}
+                  onKeyUp={this.handleUserInput}
+                  onChange={this.handleUserInput}
+                />
+                <ul
+                  className="suggestions to-address"
+                  onClick={this.handleUlClick}
+                >
+                  {ReactHtmlParser(this.state.htmlTo)}
                 </ul>
-                </div>
-                <button type="submit" onClick={this.getStaticMap}>
-                    Search
-                </button>
+              </div>
+              <button type="submit" onClick={this.getStaticMap}>
+                Search
+              </button>
             </form>
 
             <div className="route-map">
-                <img src={this.state.staticMapUrl} alt="Route on map"/>
+              <img src={this.state.staticMapUrl} alt="Route on map" />
             </div>
-        </section>
-        )
+          </section>
+        );
     }
 }
 
