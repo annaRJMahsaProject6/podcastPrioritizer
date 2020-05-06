@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
+import Map from './components/Map'
 import SearchAhead from './components/SearchAhead';
 import Header from './components/Header';
 import Podcast from './components/Podcast'
+
 
 class App extends Component {
   render() {
@@ -11,7 +13,8 @@ class App extends Component {
         <h1>TESTING</h1>
           <Header />
           <Podcast />
-         <SearchAhead />
+          <SearchAhead />
+          <Map></Map>
       </div>
 
     );
