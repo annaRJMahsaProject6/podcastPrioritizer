@@ -9,8 +9,7 @@ import Podcast from './components/Podcast'
 class App extends Component {
   render() {
     return (
-      <div className="App wrapper">
-        <h1>TESTING</h1>
+      <div className="App">
           <Header />
           <Podcast />
           <SearchAhead />
