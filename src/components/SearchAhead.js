@@ -138,50 +138,48 @@ class SearchAhead extends Component{
     }
     render(){
         return(
-        <div>
-            <form action="" 
-                className="search-form"
-                >
-                <label htmlFor="fromaddress">From</label>
-                <input 
-                    type="text"
-                    name="fromaddress"
-                    className="address-search from-input"
-                    value={this.state.userInputFrom}
-                    onKeyUp={this.handleUserInput}
-                    onChange={this.handleUserInput}
-                />
-                <ul className="suggestions from-address"
-                    onClick={this.handleUlClick}
-                >
+        <section className="whereTo">
+            <h2>Where To Go?</h2>
+            <form action="submit" className="search-form wrapper">
+                <div className="inputContainer">
+                    <label htmlFor="fromaddress">From</label>
+                    <input 
+                        type="text"
+                        name="fromaddress"
+                        className="address-search from-input"
+                        value={this.state.userInputFrom}
+                        onKeyUp={this.handleUserInput}
+                        onChange={this.handleUserInput}
+                    />
+                    <ul className="suggestions from-address"
+                    onClick={this.handleUlClick}>
                     {ReactHtmlParser(this.state.htmlFrom)}
                 </ul>
-                <label htmlFor="toaddress">To</label>
-                <input 
-                    type="text"
-                    name="toaddress"
-                    className="address-search to-input"
-                    value={this.state.userInputTo}
-                    onKeyUp={this.handleUserInput}
-                    onChange={this.handleUserInput}
-                />
-                <ul className="suggestions to-address"
-                    onClick={this.handleUlClick}
-                >
+                </div>
+                <div className="inputContainer">
+                    <label htmlFor="toaddress">To</label>
+                    <input 
+                        type="text"
+                        name="toaddress"
+                        className="address-search to-input"
+                        value={this.state.userInputTo}
+                        onKeyUp={this.handleUserInput}
+                        onChange={this.handleUserInput}
+                    />
+                    <ul className="suggestions to-address"
+                    onClick={this.handleUlClick}>
                     {ReactHtmlParser(this.state.htmlTo)}
                 </ul>
-                <button 
-                    type="submit"
-                    onClick={this.getStaticMap}
-                >
-                    Submit
+                </div>
+                <button type="submit" onClick={this.getStaticMap}>
+                    Search
                 </button>
             </form>
 
             <div className="route-map">
                 <img src={this.state.staticMapUrl} alt="Route on map"/>
             </div>
-        </div>
+        </section>
         )
     }
 }

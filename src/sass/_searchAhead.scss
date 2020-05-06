@@ -1,35 +1,65 @@
-.wrapper{
-    max-width: 1200px;
-    width:90%;
-    margin:0 auto;
+.whereTo {
+    padding-top: 5rem;
+    background-color: #EDF2EF;
 }
-.search-form{
+
+.search-form {
+    display: flex;
     max-width: 100%;
     margin: 1rem auto;
-    position:relative;
-    text-align:center;
+    position: relative;
+    text-align: center;
+    align-items: flex-end;
+    justify-content: center;
 }
+
+label {
+    display: flex;
+    align-items: center;
+}
+
+input.address-search.from-input,
+input.address-search.to-input {
+    margin: auto;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &:first-child {
+        margin-right: 1.5rem;
+    }
+}
+
 .address-search{
-    width:30rem;
-    height:5rem;
-    border:4px solid black;
-    border-radius:5px;
-    margin:2rem;
-    margin-bottom:0;
-    font-size:2rem;
+    width: 30rem;
+    height: 3rem;
+    border: none;
+    border-radius: 5px;
+    margin: 2rem;
+    margin-bottom: 0;
+    font-size: 2rem;
 }
+
 label{
-    font-size:1.6rem;
-    position:relative;
+    font-size: 1.6rem;
+    position: relative;
 }
+
 .suggestions{
-    width:30rem;
-    margin:0 auto;
-    text-align:left;
-    font-size:1.6rem;
-    padding:1rem;
-    border-radius:5px;
+    width: 30rem;
+    height: 1rem;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 1.6rem;
+    padding: 1rem;
+    border-radius: 5px;
+    position: absolute;
+    z-index: -1;
 }
+
 .suggestions li {
     background: black;
     font-size:1.2rem;
@@ -59,4 +89,14 @@ label{
 .route-map img{
     width:100%;
     height:100%;
+}
+
+button {
+    background-color: #F97068;
+    height: 3rem;
+    display: flex;
+    align-items: flex-end;
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
 }

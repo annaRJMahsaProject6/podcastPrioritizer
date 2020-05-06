@@ -12,19 +12,19 @@ class Podcast extends Component {
 
   componentDidMount() {
     axios({
-    url: "https://listen-api.listennotes.com/api/v2/search",
-    method: "GET",
-    headers: { "X-ListenAPI-Key": "0be4947c18024c2d8a5bb0dcb11eb2ac" },
-    dataResponse: "jsonp",
-    params: {
-        q: "dogs",
-        type: "podcast",
-    },
+      url: "https://listen-api.listennotes.com/api/v2/search",
+      method: "GET",
+      headers: { "X-ListenAPI-Key": "0be4947c18024c2d8a5bb0dcb11eb2ac" },
+      dataResponse: "jsonp",
+      params: {
+        q: "dog",
+        type: "episode"
+      },
     }).then((response) => {
-    console.log(response);
-        this.setState({
-            podcastList: response.data.results
-        })
+      console.log(response);
+      this.setState({
+        podcastList: response.data.results,
+      });
     });
   }
 
