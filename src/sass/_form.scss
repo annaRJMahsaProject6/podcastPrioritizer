@@ -1,5 +1,6 @@
 .whereTo {
     padding-top: 5rem;
+    height: 40rem;
     background-color: #EDF2EF;
     display: flex;
     flex-direction: column;
@@ -61,25 +62,27 @@ input.address-search.to-input {
     margin: 0 auto;
     text-align: left;
     font-size: 1.6rem;
-    padding: 1rem;
+    // padding: 1rem;
     border-radius: 5px;
-    position: absolute;
-    z-index: -1;
+    // position: absolute;
+    // z-index: -1;
 }
 
 .suggestions li {
-    background: black;
+    background: #fff;
     font-size:1.2rem;
     list-style: none;
     border-bottom: 1px solid #C8C8C8;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
     margin: 0;
     padding: 20px;
     transition: background 0.2s;
     display: flex;
     justify-content: flex-start;
+    align-items: flex-start;
     text-transform: capitalize;
-    z-index:20;
+    z-index: 0;
+    position: relative;
 }
 .suggestions li:nth-child(even) {
     background: linear-gradient(to bottom,  #ffffff 0%,#EEEEEE 100%);

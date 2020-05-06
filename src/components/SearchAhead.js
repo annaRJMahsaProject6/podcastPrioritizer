@@ -8,8 +8,8 @@ class SearchAhead extends Component{
         this.state = {
             userInputFrom:'',
             userInputTo:'',
-            htmlFrom:'<li>Address</li>',
-            htmlTo:'<li>Address</li>',
+            htmlFrom:'',
+            htmlTo:'',
             staticMapUrl:''
         }
     }
@@ -67,7 +67,7 @@ class SearchAhead extends Component{
                 if(text !== 'Address'){
                     this.setState({
                         userInputFrom:text,
-                        htmlFrom:`<li>Address</li>`
+                        htmlFrom:``
                     })
                 }
             }
@@ -78,7 +78,7 @@ class SearchAhead extends Component{
                 if(text !== 'Address'){
                     this.setState({
                         userInputTo:text,
-                        htmlTo:`<li>Address</li>`
+                        htmlTo:``
                     })
                 }
             }
@@ -100,13 +100,13 @@ class SearchAhead extends Component{
                         })
                     }
                     this.setState({
-                        htmlFrom: dynamicHtml ? dynamicHtml : '<li>Address</li>'
+                        htmlFrom: dynamicHtml ? dynamicHtml : ''
                     })
                 })
             } else {
                 this.setState({
                     userInputFrom:'',
-                    htmlFrom: `<li>Address</li>`
+                    htmlFrom: ``
                 })
             }
         }
@@ -125,13 +125,13 @@ class SearchAhead extends Component{
                                 })
                             }
                             this.setState({
-                                htmlTo: dynamicHtml ? dynamicHtml : '<li>Address</li>'
+                                htmlTo: dynamicHtml ? dynamicHtml : ''
                             })
                         })
             } else {
                 this.setState({
                     userInputTo: '',
-                    htmlTo: `<li>Address</li>`
+                    htmlTo: ``
                 })
             }
         }
@@ -140,7 +140,7 @@ class SearchAhead extends Component{
         return (
           <section className="whereTo">
             <h2>Where To Go?</h2>
-            <form action="submit" className="search-form wrapper">
+            <form action="submit" className="search-form wrapper" autoComplete="off">
               <div className="inputContainer">
                 <label htmlFor="fromaddress">Starting Location</label>
                 <input

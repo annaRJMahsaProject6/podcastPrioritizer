@@ -44,12 +44,12 @@ class Direction extends Component{
     render(){
         return(
             <form action="" name="Direction">
-                <label htmlFor="from"></label>
+                {/* <label htmlFor="from"></label>
                 <input type="text" id="from" value={this.state.from} onChange={this.handleInput}/>
 
                 <label htmlFor="to"></label>
                 <input type="text" id="to" value={this.state.to} onChange={this.handleInput}/>
-                <button type="submit" onClick={this.handleSubmit}>submit</button>
+                <button type="submit" onClick={this.handleSubmit}>submit</button> */}
             </form>
         )
     }
