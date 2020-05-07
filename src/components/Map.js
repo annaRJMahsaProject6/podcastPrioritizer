@@ -6,6 +6,10 @@ import ReactHtmlParser from 'react-html-parser';
 class Map extends Component{
     constructor(){
         super();
+
+        this.setULRef = this.setULRef.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+
         this.state = {
             userInputFrom:'',
             userInputTo:'',
@@ -14,6 +18,28 @@ class Map extends Component{
             podcastInput: ""
         }
     }
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    // set reference of UL node
+    setULRef(node) {
+        this.ULRef = node;
+    }
+
+    // if clicked on outside of li then address disappear
+    handleClickOutside(event) {
+        if (this.ULRef && !this.ULRef.contains(event.target)) {
+            this.setState({
+                htmlFrom:'',
+                htmlTo: ''
+            })
+        }
+    }
+
     getAddressFromApi = (query)=>{
         return axios({
             url:'https://www.mapquestapi.com/search/v3/prediction',
@@ -21,6 +47,7 @@ class Map extends Component{
             responseType: 'jsonp',
             params: {
                 key:'ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn',
+                format: 'png',
                 limit:'5',
                 collection:'adminArea,address,category,franchise,airport,poi',
                 countryCode:'CA',
@@ -29,6 +56,7 @@ class Map extends Component{
         })
     }
     handleUlClick = (event)=>{
+        this.handleClickOutside(event);
         if (event.target.parentNode.classList.contains('from-address')){
             if(event.target.localName === 'li'){
                 const text = event.target.innerText;
@@ -51,6 +79,7 @@ class Map extends Component{
                 }
             }
         }
+        
     }
     handleUserInput = (event) => {
         if(event.target.classList.contains('from-input')){
@@ -103,6 +132,7 @@ class Map extends Component{
                 })
             }
         }
+
     }
     render(){
         return(
@@ -125,6 +155,7 @@ class Map extends Component{
                         ?   <ul
                                 className="suggestions from-address"
                                 onClick={this.handleUlClick}
+                                ref={this.setULRef}
                             >
                                 {ReactHtmlParser(this.state.htmlFrom)}
                             </ul>
@@ -146,6 +177,7 @@ class Map extends Component{
                          ?   <ul
                                 className="suggestions to-address"
                                 onClick={this.handleUlClick}
+                                ref={this.setULRef}
                             >
                                 {ReactHtmlParser(this.state.htmlTo)}
                             </ul>
