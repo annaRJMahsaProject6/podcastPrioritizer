@@ -67,7 +67,7 @@ class PodcastDisplay extends Component {
                   <h3>{podcast.title_original}</h3>
                   <ReadMoreAndLess
                     ref={this.Readmore}
-                    charLimit={250}
+                    charLimit={200}
                     readMoreText="Read More"
                     readLessText="&nbsp;Read Less"
                   >
