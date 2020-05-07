@@ -5,10 +5,11 @@ import Map from './components/Map';
 import Header from './components/Header';
 import Podcast from './components/Podcast';
 import TravelType from './components/TravelType';
+import AudioPlayer from './components/AudioPlayer';
+import PodcastDisplay from './components/PodcastDisplay';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faWalking, faBiking } from '@fortawesome/free-solid-svg-icons';
-import PodcastDisplay from './components/PodcastDisplay';
 
 
 library.add(fab, faWalking, faBiking)
@@ -16,13 +17,14 @@ class App extends Component {
   constructor(){
     super()
     this.state={
-      staticMapUrl:'',
+      staticMapUrl:"",
       formatedWalkTime:"",
       formatedCycleTime:"",
       walkTime:"",
       cycleTime:"",
       podcastList: [],
       travelType:"",
+      audio:""
     }
   }
   handleAddressSubmit=(event,fromInput,toInput)=>{
@@ -54,10 +56,8 @@ class App extends Component {
               url:'http://www.mapquestapi.com/directions/v2/route',
               params:{
                   key:"TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
-                  // from:fromInput,
-                  // to:toInput,
-                  from:"312 horsham ave, northyork, ontario",
-                  to:"9205 yonge st, richmonhill, ontario",
+                  from:fromInput,
+                  to:toInput,
                   routeType:'pedestrian',
                   unit:'k',
               }
@@ -75,10 +75,8 @@ class App extends Component {
           url:'http://www.mapquestapi.com/directions/v2/route',
           params:{
               key:"TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
-              // from:fromInput,
-              // to:toInput,
-              from:"312 horsham ave, northyork, ontario",
-              to:"9205 yonge st, richmonhill, ontario",
+              from:fromInput,
+              to:toInput,
               routeType:'bicycle',
               unit:'k',
           }
@@ -128,6 +126,12 @@ class App extends Component {
         travelType:id
       })
   }
+  getAudio = (selectedAudio)=>{
+    console.log('Listen click',selectedAudio);
+    this.setState({
+      audio:selectedAudio
+    })
+  }
   render() {
     return (
       <div className="App">
@@ -140,7 +144,11 @@ class App extends Component {
         <img src={this.state.staticMapUrl} alt="Route on map"/>
       </section>
       <section>
-        <PodcastDisplay podcastList={this.state.podcastList}/>
+        <PodcastDisplay podcastList={this.state.podcastList} 
+        getAudioItem={this.getAudio}/>
+      </section>
+      <section>
+        <AudioPlayer audioToPlay={this.state.audio}/>
       </section>
       </div>  
     );

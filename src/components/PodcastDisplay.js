@@ -58,7 +58,7 @@ class PodcastDisplay extends Component {
                     alt=""
                     className="podcastImg"
                   />
-                  <button className="audioButton">
+                  <button className="audioButton" onClick={()=>this.props.getAudioItem(podcast)}>
                     <FontAwesomeIcon icon={faHeadphones} />
                     &nbsp;Listen
                   </button>
