@@ -3,7 +3,12 @@ import './App.scss';
 import axios from 'axios'
 import Map from './components/Map';
 import Header from './components/Header';
-import Podcast from './components/Podcast'
+import Podcast from './components/Podcast';
+import TravelType from './components/TravelType'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faWalking, faBiking } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faWalking, faBiking)
 
 
 class App extends Component {
@@ -16,6 +21,7 @@ class App extends Component {
       walkTime:"",
       cycleTime:"",
       podcastList: [],
+      travelType:""
     }
   }
   handleAddressSubmit=(event,fromInput,toInput)=>{
@@ -27,8 +33,10 @@ class App extends Component {
               responseType: 'json',
               params: {
                   key: 'ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn',
-                  start:fromInput,
-                  end:toInput,
+                  // start:fromInput,
+                  // end:toInput,
+                  start:"312 horsham ave, northyork, ontario",
+                  end:"9205 yonge st, richmonhill, ontario",
                   size:'400,400',
                   countryCode:'CA',
                   routeColor:'F97068',
@@ -45,8 +53,10 @@ class App extends Component {
               url:'http://www.mapquestapi.com/directions/v2/route',
               params:{
                   key:"TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
-                  from:fromInput,
-                  to:toInput,
+                  // from:fromInput,
+                  // to:toInput,
+                  from:"312 horsham ave, northyork, ontario",
+                  to:"9205 yonge st, richmonhill, ontario",
                   routeType:'pedestrian',
                   unit:'k',
               }
@@ -64,8 +74,10 @@ class App extends Component {
           url:'http://www.mapquestapi.com/directions/v2/route',
           params:{
               key:"TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
-              from:fromInput,
-              to:toInput,
+              // from:fromInput,
+              // to:toInput,
+              from:"312 horsham ave, northyork, ontario",
+              to:"9205 yonge st, richmonhill, ontario",
               routeType:'bicycle',
               unit:'k',
           }
@@ -77,8 +89,17 @@ class App extends Component {
           })
           })
   }
-  handlePodcasSubmit=(event, podcastInput)=>{
+  handlePodcastSubmit=(event, podcastInput)=>{
     event.preventDefault();
+    let travelTime=0
+    if(this.state.travelType==="walk"){
+      travelTime=Math.floor((this.state.walkTime)/60)
+    }
+    else if(this.state.travelType==="cycle"){
+      travelTime=Math.floor((this.state.cycleTime)/60)
+    }
+    const minLength=travelTime-5
+    const maxLength=travelTime+5
     axios({
       url: "https://listen-api.listennotes.com/api/v2/search",
       method: "GET",
@@ -87,6 +108,8 @@ class App extends Component {
       params: {
           q: podcastInput,
           type: "episode",
+          len_min:minLength,
+          len_max:maxLength,
 
       },
       }).then((result) => {
@@ -96,14 +119,20 @@ class App extends Component {
           })
       }); 
   }
-  
+  handleChoice=(id)=>{
+    console.log(id)
+      this.setState({
+        travelType:id
+      })
+  }
   render() {
     return (
       <div className="App">
         <Header /> 
         <Map submitForm={this.handleAddressSubmit} />
-        <Podcast  submitForm={this.handlePodcasSubmit}
+        <Podcast  submitForm={this.handlePodcastSubmit}
       />
+      {this.state.formatedWalkTime !== "" ? <TravelType walkTime={this.state.formatedWalkTime} cycleTime={this.state.formatedCycleTime} chooseTravelType={this.handleChoice}></TravelType> : <section></section>}
       <section className="route-map">
         <img src={this.state.staticMapUrl} alt="Route on map"/>
       </section>

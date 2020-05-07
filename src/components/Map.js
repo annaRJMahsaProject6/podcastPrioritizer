@@ -11,6 +11,7 @@ class Map extends Component{
             userInputTo:'',
             htmlFrom:'',
             htmlTo:'',
+            podcastInput: ""
         }
     }
     getAddressFromApi = (query)=>{
@@ -153,7 +154,7 @@ class Map extends Component{
                     </div>
                     <button
                         type="submit"
-                        onClick={(event) => { this.props.submitForm(event, this.state.userInputFrom, this.state.userInputFrom) }}
+                        onClick={(event) => { this.props.submitForm(event, this.state.userInputFrom, this.state.userInputTo) }}
                     >
                         Submit
                 </button>
