@@ -392,6 +392,10 @@ input.address-search.to-input {
   font-size: 2rem;
 }
 
+.podcast-search {
+  border: 2px solid black;
+}
+
 .suggestions {
   width: 30rem;
   height: 1rem;
