@@ -20,8 +20,8 @@ class Podcast extends Component {
       return(
         <form>
           <label htmlFor="podcast"></label>
-          <input className="input-search" type="text" id="podcast" value={this.state.podcastInput} onChange={this.handleChange}/>
-          <button type="submit" onClick={(event)=>{this.props.submitForm(event, this.state.podcastInput)}}></button>
+          <input className="podcast-search" type="text" id="podcast" value={this.state.podcastInput} onChange={this.handleChange}/>
+          <button type="submit" onClick={(event)=>{this.props.submitForm(event, this.state.podcastInput)}}>Search</button>
         </form>
       )
   }

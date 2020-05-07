@@ -9,6 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faWalking, faBiking } from '@fortawesome/free-solid-svg-icons'
 library.add(fab, faWalking, faBiking)
+import PodcastDisplay from './components/PodcastDisplay';
 
 
 class App extends Component {
@@ -40,7 +41,7 @@ class App extends Component {
                   size:'400,400',
                   countryCode:'CA',
                   routeColor:'F97068',
-                  width:5,
+                  routeWidth: 5,
               }
               }).then((result)=>{
               this.setState({
@@ -82,8 +83,8 @@ class App extends Component {
               unit:'k',
           }
       }).then((result)=>{
-           console.log(result.data.route)
-           this.setState({
+          console.log(result.data.route)
+          this.setState({
               formatedCycleTime:result.data.route.formattedTime,
               cycleTime:result.data.route.time
           })
@@ -135,6 +136,9 @@ class App extends Component {
       {this.state.formatedWalkTime !== "" ? <TravelType walkTime={this.state.formatedWalkTime} cycleTime={this.state.formatedCycleTime} chooseTravelType={this.handleChoice}></TravelType> : <section></section>}
       <section className="route-map">
         <img src={this.state.staticMapUrl} alt="Route on map"/>
+      </section>
+      <section>
+        <PodcastDisplay podcastList={this.state.podcastList}/>
       </section>
       </div>  
     );

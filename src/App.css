@@ -381,6 +381,7 @@ input.address-search.to-input {
   margin-right: 1.5rem;
 }
 
+.podcast-search,
 .address-search {
   width: 30rem;
   height: 3rem;
