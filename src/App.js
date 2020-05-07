@@ -85,16 +85,16 @@ class App extends Component {
       headers: { "X-ListenAPI-Key": "0be4947c18024c2d8a5bb0dcb11eb2ac" },
       dataResponse: "jsonp",
       params: {
-          q: podcastInput,
-          type: "episode",
-
+        q: podcastInput,
+        type: "episode",
+        language: "English",
       },
-      }).then((result) => {
+    }).then((result) => {
       console.log(result);
-          this.setState({
-              podcastList: result.data.results
-          })
-      }); 
+      this.setState({
+        podcastList: result.data.results,
+      });
+    }); 
   }
   
   render() {
