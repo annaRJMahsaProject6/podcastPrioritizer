@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function TravelType (props){
     return(
-        <section className="travelTime">
+        <section>
+            <h2>please indicate your prefered form of travel</h2>
             <button id="walk" onClick={(event)=>{props.chooseTravelType(event.target.id)}}>
                 <FontAwesomeIcon icon="walking" className="walkingIcon"></FontAwesomeIcon>
-                <p>{`your walking travel time is ${props.walkTime}`}</p>
+                <p>{`your walking travel time is ${props.walkTime} hours`}</p>
             </button>
             <button id="cycle" onClick={(event)=>{props.chooseTravelType(event.target.id)}}>
                 <FontAwesomeIcon icon="biking" className="walkingIcon"></FontAwesomeIcon>

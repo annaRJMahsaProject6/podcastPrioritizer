@@ -1,6 +1,7 @@
-.whereTo {
+.whereTo,
+.whatToListen{
     padding-top: 5rem;
-    height: 40rem;
+    height: 20rem;
     background-color: #EDF2EF;
     display: flex;
     flex-direction: column;
@@ -27,7 +28,8 @@ label {
 }
 
 input.address-search.from-input,
-input.address-search.to-input {
+input.address-search.to-input,
+input.podcast-search{
     margin: auto;
     font-size: 1rem;
     padding: 0 11px;
@@ -56,11 +58,6 @@ input.address-search.to-input {
     margin-bottom: 0;
     font-size: 2rem;
 }
-
-.podcast-search{
-    border:2px solid black;
-}
-
 
 .suggestions {
     width: 30rem;

@@ -18,11 +18,15 @@ class Podcast extends Component {
   render() {
       // user podcast selection form
       return(
-        <form>
+        <section className="whatToListen">
+        <form className="search-form wrapper">
+          <div className="inputContainer"> 
           <label htmlFor="podcast"></label>
-          <input className="podcast-search" type="text" id="podcast" value={this.state.podcastInput} onChange={this.handleChange}/>
+          <input placeholder="e.g. finance, pets, health" className="podcast-search" type="text" id="podcast" value={this.state.podcastInput} onChange={this.handleChange}/>
           <button type="submit" onClick={(event)=>{this.props.submitForm(event, this.state.podcastInput)}}>Search</button>
+          </div>
         </form>
+        </section>
       )
   }
 }
