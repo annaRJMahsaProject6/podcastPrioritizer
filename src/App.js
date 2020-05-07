@@ -138,7 +138,25 @@ class App extends Component {
         <img src={this.state.staticMapUrl} alt="Route on map"/>
       </section>
       <section>
+<<<<<<< Updated upstream
         <PodcastDisplay podcastList={this.state.podcastList}/>
+||||||| merged common ancestors
+        <PodcastDisplay podcastList={this.state.podcastList} 
+        getAudioItem={this.getAudio}/>
+      </section>
+      <section>
+        <AudioPlayer audioToPlay={this.state.audio}/>
+=======
+        <PodcastDisplay podcastList={this.state.podcastList} 
+        getAudioItem={this.getAudio}/>
+      </section>
+      <section>
+        {
+        this.state.audio
+        ?<AudioPlayer audioToPlay={this.state.audio}/>
+        :''
+        }
+>>>>>>> Stashed changes
       </section>
       </div>  
     );
