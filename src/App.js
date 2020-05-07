@@ -4,7 +4,7 @@ import axios from 'axios'
 import Map from './components/Map';
 import Header from './components/Header';
 import Podcast from './components/Podcast';
-import TravelType from './components/TravelType'
+import TravelType from './components/TravelType';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faWalking, faBiking } from '@fortawesome/free-solid-svg-icons';
@@ -22,7 +22,7 @@ class App extends Component {
       walkTime:"",
       cycleTime:"",
       podcastList: [],
-      travelType:""
+      travelType:"",
     }
   }
   handleAddressSubmit=(event,fromInput,toInput)=>{
