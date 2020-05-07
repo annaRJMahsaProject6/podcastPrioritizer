@@ -5,10 +5,10 @@ import Map from './components/Map';
 import Header from './components/Header';
 import Podcast from './components/Podcast';
 import TravelType from './components/TravelType'
+import PodcastDisplay from './components/PodcastDisplay';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faWalking, faBiking } from '@fortawesome/free-solid-svg-icons'
-import PodcastDisplay from './components/PodcastDisplay';
 library.add(fab, faWalking, faBiking)
 
 class App extends Component {
@@ -35,6 +35,8 @@ class App extends Component {
                   key: 'ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn',
                   start:fromInput,
                   end:toInput,
+                  // start:"312 horsham ave, northyork, ontario",
+                  // end:"9205 yonge st, richmonhill, ontario",
                   size:'400,400',
                   countryCode:'CA',
                   routeColor:'F97068',
@@ -53,6 +55,8 @@ class App extends Component {
                   key:"TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
                   from:fromInput,
                   to:toInput,
+                  // from:"312 horsham ave, northyork, ontario",
+                  // to:"9205 yonge st, richmonhill, ontario",
                   routeType:'pedestrian',
                   unit:'k',
               }
@@ -72,6 +76,8 @@ class App extends Component {
               key:"TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
               from:fromInput,
               to:toInput,
+              // from:"312 horsham ave, northyork, ontario",
+              // to:"9205 yonge st, richmonhill, ontario",
               routeType:'bicycle',
               unit:'k',
           }
@@ -88,9 +94,11 @@ class App extends Component {
     let travelTime=0
     if(this.state.travelType==="walk"){
       travelTime=Math.floor((this.state.walkTime)/60)
+      console.log(this.state.walkTime)
     }
     else if(this.state.travelType==="cycle"){
       travelTime=Math.floor((this.state.cycleTime)/60)
+      console.log(this.state.cycleTime)
     }
     const minLength=travelTime-5
     const maxLength=travelTime+5
