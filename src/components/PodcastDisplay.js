@@ -37,7 +37,7 @@ class PodcastDisplay extends Component {
   };
 
   render() {
-    console.log(this.props.podcastList);
+    // console.log(this.props.podcastList);
     return (
       <section className="podcastContainer">
         <h2 className="podcastHeader">Pick Your Podcast</h2>
