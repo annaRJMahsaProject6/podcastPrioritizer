@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import ReadMoreAndLess from "react-read-more-less";
+import { faHeadphones } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class PodcastDisplay extends Component {
   constructor() {
@@ -9,7 +11,7 @@ class PodcastDisplay extends Component {
     };
   }
 
-  // thank you Salvatore https://stackoverflow.com/questions/39779527/toggle-play-pause-in-react-with-audio
+  // thank you Salvatore @ stackoverflow.com (https://stackoverflow.com/questions/39779527/toggle-play-pause-in-react-with-audio)
 
   audio = new Audio();
 
@@ -56,7 +58,10 @@ class PodcastDisplay extends Component {
                     alt=""
                     className="podcastImg"
                   />
-                  <button className="audioButton">Listen</button>
+                  <button className="audioButton">
+                    <FontAwesomeIcon icon={faHeadphones} />
+                    &nbsp;Listen
+                  </button>
                 </div>
                 <div className="podcastInfo">
                   <h3>{podcast.title_original}</h3>
