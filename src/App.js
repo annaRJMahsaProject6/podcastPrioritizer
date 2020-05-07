@@ -4,7 +4,8 @@ import axios from 'axios'
 import Map from './components/Map';
 import Header from './components/Header';
 import Podcast from './components/Podcast';
-import TravelType from './components/TravelType'
+import TravelType from './components/TravelType';
+import AudioPlayer from './components/AudioPlayer';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faWalking, faBiking } from '@fortawesome/free-solid-svg-icons';
@@ -126,6 +127,12 @@ class App extends Component {
         travelType:id
       })
   }
+  getAudio = (selectedAudio) => {
+    console.log('Listen click', selectedAudio);
+    this.setState({
+      audio: selectedAudio
+    })
+  }
   render() {
     return (
       <div className="App">
@@ -138,15 +145,6 @@ class App extends Component {
         <img src={this.state.staticMapUrl} alt="Route on map"/>
       </section>
       <section>
-<<<<<<< Updated upstream
-        <PodcastDisplay podcastList={this.state.podcastList}/>
-||||||| merged common ancestors
-        <PodcastDisplay podcastList={this.state.podcastList} 
-        getAudioItem={this.getAudio}/>
-      </section>
-      <section>
-        <AudioPlayer audioToPlay={this.state.audio}/>
-=======
         <PodcastDisplay podcastList={this.state.podcastList} 
         getAudioItem={this.getAudio}/>
       </section>
@@ -156,7 +154,6 @@ class App extends Component {
         ?<AudioPlayer audioToPlay={this.state.audio}/>
         :''
         }
->>>>>>> Stashed changes
       </section>
       </div>  
     );

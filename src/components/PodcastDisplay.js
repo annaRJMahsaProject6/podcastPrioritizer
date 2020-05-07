@@ -1,4 +1,7 @@
-import React,{Component} from 'react';
+import React, { Component } from "react";
+import ReadMoreAndLess from "react-read-more-less";
+import { faHeadphones } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class PodcastDisplay extends Component {
 
@@ -6,6 +9,7 @@ class PodcastDisplay extends Component {
   showLess = () => this.setState({ showAll: false });
 
   render() {
+    // console.log(this.props.podcastList);
     return (
       <section className="podcastContainer">
         <h2 className="podcastHeader">Pick Your Podcast</h2>
@@ -19,7 +23,8 @@ class PodcastDisplay extends Component {
                     alt=""
                     className="podcastImg"
                   />
-                  <button className="audioButton" onClick={()=>this.props.getAudioItem(podcast)}>
+                  <button className="audioButton" 
+                  onClick={()=>this.props.getAudioItem(podcast)}>
                     <FontAwesomeIcon icon={faHeadphones} />
                     &nbsp;Listen
                   </button>
