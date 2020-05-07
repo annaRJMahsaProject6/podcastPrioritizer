@@ -8,8 +8,8 @@ import TravelType from './components/TravelType'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faWalking, faBiking } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faWalking, faBiking)
 import PodcastDisplay from './components/PodcastDisplay';
+library.add(fab, faWalking, faBiking)
 
 
 class App extends Component {
@@ -34,10 +34,8 @@ class App extends Component {
               responseType: 'json',
               params: {
                   key: 'ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn',
-                  // start:fromInput,
-                  // end:toInput,
-                  start:"312 horsham ave, northyork, ontario",
-                  end:"9205 yonge st, richmonhill, ontario",
+                  start:fromInput,
+                  end:toInput,
                   size:'400,400',
                   countryCode:'CA',
                   routeColor:'F97068',
@@ -54,10 +52,8 @@ class App extends Component {
               url:'http://www.mapquestapi.com/directions/v2/route',
               params:{
                   key:"TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
-                  // from:fromInput,
-                  // to:toInput,
-                  from:"312 horsham ave, northyork, ontario",
-                  to:"9205 yonge st, richmonhill, ontario",
+                  from:fromInput,
+                  to:toInput,
                   routeType:'pedestrian',
                   unit:'k',
               }
@@ -75,10 +71,8 @@ class App extends Component {
           url:'http://www.mapquestapi.com/directions/v2/route',
           params:{
               key:"TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
-              // from:fromInput,
-              // to:toInput,
-              from:"312 horsham ave, northyork, ontario",
-              to:"9205 yonge st, richmonhill, ontario",
+              from:fromInput,
+              to:toInput,
               routeType:'bicycle',
               unit:'k',
           }
