@@ -11,6 +11,7 @@ class Map extends Component{
             userInputTo:'',
             htmlFrom:'',
             htmlTo:'',
+            podcastInput: ""
         }
     }
     getAddressFromApi = (query)=>{
