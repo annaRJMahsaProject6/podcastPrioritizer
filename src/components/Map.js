@@ -47,6 +47,7 @@ class Map extends Component{
             responseType: 'jsonp',
             params: {
                 key:'ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn',
+                format: 'png',
                 limit:'5',
                 collection:'adminArea,address,category,franchise,airport,poi',
                 countryCode:'CA',
