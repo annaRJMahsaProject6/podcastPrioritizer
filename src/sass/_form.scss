@@ -77,11 +77,13 @@ input.address-search.to-input {
     z-index:10;
 }
 .suggestions li {
-    background: #fff;
-    font-size:1.2rem;
+    // background: none;
+    background-color: #fff;
+    font-size:1rem;
     list-style: none;
-    border-bottom: 1px solid #C8C8C8;
+    border-bottom: 1px solid black;
     // box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+    font-family: inherit;
     margin: 0;
     padding: 20px;
     transition: background 0.2s;
@@ -91,13 +93,6 @@ input.address-search.to-input {
     text-transform: capitalize;
     z-index: 0;
     position: relative;
-}
-.suggestions li:nth-child(even) {
-    background: linear-gradient(to bottom,  #ffffff 0%,#EEEEEE 100%);
-}
-
-.suggestions li:nth-child(odd) {
-    background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
 }
 
 .route-map {
