@@ -1,16 +1,53 @@
-.travelTypeSelection{
-    background-color: #EDF2EF;
+.travelTypeSection {
+    background-color: #FDF592;
     text-align: center;
-    padding: 80px 0 40px 0;
+    height: 30rem;
+    display: flex;
+    align-items: center;
+
+    .safetyWarning {
+        font-size: 1.3rem;
+        font-style: italic;
+
+        &:nth-child(2) {
+            margin-top: 1rem;
+        }
+    }
+
+    .warning {
+        font-weight: 700;
+    }
 }
+
+.travelHeading {
+    @include underlineEffect(#83DEE1);
+}
+
+.travelTypeButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+
+    p {
+        color: #fff;
+    }
+}
+
 .travelTypeSelection button{
     margin: 0 30px;
     height: auto;
     padding: 20px;
-    z-index: 999;
-    position: relative;
+    // z-index: 999;
+    // position: relative;
+    width: 20rem;
+    background-color: #F97068;
+    border-radius: 0.5rem;
+    border: solid #fff 3px;
+    outline: solid #F97068 3px;
 }
-.icon{
+
+.icon {
     font-size: 150px;
     margin-bottom: 20px;
+    color: #fff;
 }
