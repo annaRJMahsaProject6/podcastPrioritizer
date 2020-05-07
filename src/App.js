@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Podcast from './components/Podcast';
 import TravelType from './components/TravelType'
 import PodcastDisplay from './components/PodcastDisplay';
+import AudioPlayer from './components/AudioPlayer';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faWalking, faBiking } from '@fortawesome/free-solid-svg-icons'
