@@ -7,7 +7,18 @@ class Header extends Component {
             <section className="hero">
               <div className="whiteBlock">
                 <h1>Podcast Prioritizer</h1>
-                <p className="heroText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem aliquam odit amet fugiat non perspiciatis necessitatibus perferendis exercitationem assumenda, aperiam, laboriosam consequuntur. Ea id doloribus autem consectetur aspernatur inventore blanditiis.</p>
+                <div className="heroTextContainer">
+                  <p className="heroTextTagline">
+                    Say goodbye to dull and boring commutes!
+                  </p>
+                  <p className="heroText">
+                    Podcast Prioritizer will fill your long and uneventful
+                    commutes with informative and juicy podcasts for your
+                    listening pleasure. Simply enter your starting location,
+                    desired destination and topic of interest and we will suggest
+                    a lists of podcasts based on the length of your journey.
+                  </p>
+                </div>
               </div>
             </section>
           </header>
