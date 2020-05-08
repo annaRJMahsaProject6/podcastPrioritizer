@@ -149,60 +149,68 @@ class Map extends Component{
     render(){
         return(
             <section className="whereTo">
-                <h2>Where To Go?</h2>
-                <form action="submit" className="search-form wrapper" autoComplete="off">
-                    <div className="addressSearchInput">
-                        <label htmlFor="fromaddress">Starting Location</label>
-                        <input
-                            type="text"
-                            name="fromaddress"
-                            className="address-search from-input"
-                            placeholder="1 Canada's Wonderland Drive, Vaughan, ON L6A 1S6"
-                            value={this.state.userInputFrom}
-                            onKeyUp={this.handleUserInput}
-                            onChange={this.handleUserInput}
-                        />
-                        {
-                        this.state.htmlFrom
-                        ?   <ul
-                                className="suggestions from-address"
-                                onClick={this.handleUlClick}
-                                ref={this.setULRef}
-                            >
-                                {ReactHtmlParser(this.state.htmlFrom)}
-                            </ul>
-                        :   ''
-                        }
-                    </div>
-                    <div className="addressSearchInput">
-                        <label htmlFor="toaddress">Destination</label>
-                        <input
-                            type="text"
-                            name="toaddress"
-                            className="address-search to-input"
-                            placeholder="288 Bremner Blvd, Toronto, ON M5V 3L9"
-                            value={this.state.userInputTo}
-                            onKeyUp={this.handleUserInput}
-                            onChange={this.handleUserInput}
-                        />
-                        {this.state.htmlTo 
-                         ?   <ul
-                                className="suggestions to-address"
-                                onClick={this.handleUlClick}
-                                ref={this.setULRef}
-                            >
-                                {ReactHtmlParser(this.state.htmlTo)}
-                            </ul>
-                        : ''
-                        }   
-                    </div>
-                    <button
-                        type="submit"
-                        onClick={(event) => { this.props.submitForm(event, this.state.userInputFrom, this.state.userInputTo) }}
-                    >
-                        Search
-                </button>
-                </form>
+                <div className="whereToContainer wrapper">
+                    <h2>Where To Go?</h2>
+                    <form action="submit" className="search-form wrapper" autoComplete="off">
+                        <div className="addressSearchInput">
+                            <label htmlFor="fromaddress">Starting Location</label>
+                            <input
+                                type="text"
+                                name="fromaddress"
+                                className="address-search from-input"
+                                placeholder="1 Canada's Wonderland Drive, Vaughan, ON L6A 1S6"
+                                value={this.state.userInputFrom}
+                                onKeyUp={this.handleUserInput}
+                                onChange={this.handleUserInput}
+                            />
+                            {
+                            this.state.htmlFrom
+                            ?   <ul
+                                    className="suggestions from-address"
+                                    onClick={this.handleUlClick}
+                                    ref={this.setULRef}
+                                >
+                                    {ReactHtmlParser(this.state.htmlFrom)}
+                                </ul>
+                            :   ''
+                            }
+                        </div>
+                        <div className="addressSearchInput">
+                            <label htmlFor="toaddress">Destination</label>
+                            <input
+                                type="text"
+                                name="toaddress"
+                                className="address-search to-input"
+                                placeholder="288 Bremner Blvd, Toronto, ON M5V 3L9"
+                                value={this.state.userInputTo}
+                                onKeyUp={this.handleUserInput}
+                                onChange={this.handleUserInput}
+                            />
+                            {this.state.htmlTo 
+                            ?   <ul
+                                    className="suggestions to-address"
+                                    onClick={this.handleUlClick}
+                                    ref={this.setULRef}
+                                >
+                                    {ReactHtmlParser(this.state.htmlTo)}
+                                </ul>
+                            : ''
+                            }   
+                        </div>
+                        <button
+                            type="submit"
+                            onClick={(event) => { this.props.submitForm(event, this.state.userInputFrom, this.state.userInputTo) }}
+                        >
+                            Search
+                    </button>
+                    </form>
+                    <ol class="whereToInstructions">
+                        <h3>Instructions</h3>
+                        <li>Type in your starting and desired destination address location in the input field.</li>
+                        <li>Once you are satisfied with your entries, click search to find out the length of your commute.</li>
+                        <li>Next, select your preferred method of travel. We recommend the shorter travel time, but otherwise, it is completely optional.</li>
+                    </ol>
+                </div>
             </section>
         )
     }
