@@ -149,7 +149,15 @@ class App extends Component {
         </section>
         <section>
           <PodcastDisplay podcastList={this.state.podcastList}
+            getAudioItem={this.getAudio}
           />
+        </section>
+        <section>
+          {
+            this.state.audio
+              ? <AudioPlayer audioToPlay={this.state.audio} />
+              : ''
+          }
         </section>
       </div>  
     );
