@@ -52,6 +52,7 @@ button.active{
     }
 }
 button.inactive{
+    border: solid #fff 3px;
     .icon{
         color: #fff;
     }
