@@ -27,36 +27,35 @@ class App extends Component {
       audio: "",
     };
   }
-
-  handleAddressSubmit = (event, fromInput, toInput) => {
+  
+  handleAddressSubmit=(event, fromInput, toInput)=>{
     // getting travel time and static map from map quest API
     event.preventDefault();
-    if (fromInput !== "" && toInput !== "") {
-      axios({
-        url: "https://www.mapquestapi.com/staticmap/v5/map",
-        method: "GET",
-        responseType: "json",
-        params: {
-          key: "ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn",
-          start: fromInput,
-          end: toInput,
-          // start:"312 horsham ave, northyork, ontario",
-          // end:"9205 yonge st, richmonhill, ontario",
-          size: "400,400",
-          countryCode: "CA",
-          routeColor: "F97068",
-          routeWidth: 5,
-        },
-      }).then((result) => {
-        this.setState({
-          staticMapUrl: result.request.responseURL,
-        });
+    axios({
+      url: "https://www.mapquestapi.com/staticmap/v5/map",
+      method: "GET",
+      responseType: "json",
+      params: {
+        key: "ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn",
+        start: fromInput,
+        end: toInput,
+        // start:"312 horsham ave, northyork, ontario",
+        // end:"9205 yonge st, richmonhill, ontario",
+        size: "400,400",
+        countryCode: "CA",
+        routeColor: "F97068",
+        routeWidth: 5,
+      },
+    }).then((result) => {
+      console.log("map API",result)
+      this.setState({
+        staticMapUrl: result.request.responseURL,
       });
-    }
-
+    })
+    
     // getting pedestrian travel time
     if (fromInput !== "" && toInput !== "") {
-      axios({
+     axios({
         method: "GET",
         url: "https://www.mapquestapi.com/directions/v2/route",
         params: {
@@ -69,7 +68,7 @@ class App extends Component {
           unit: "k",
         },
       }).then((result) => {
-        //  console.log(result.data.route)
+         console.log("route API", result)
         if (
           result.data.route.formattedTime !== undefined &&
           result.data.route.time !== undefined &&
@@ -87,7 +86,7 @@ class App extends Component {
     }
 
     // getting cycling travel time
-    axios({
+     axios({
       method: "GET",
       url: "https://www.mapquestapi.com/directions/v2/route",
       params: {
@@ -100,7 +99,6 @@ class App extends Component {
         unit: "k",
       },
     }).then((result) => {
-      // console.log(result.data.route);
       if (
         result.data.route.formattedTime !== undefined &&
         result.data.route.time !== undefined &&
@@ -185,7 +183,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Map submitForm={this.handleAddressSubmit} />
-        {this.state.formatedWalkTime !== "" ? (
+        {this.state.formatedWalkTime !== ""  ? (
           <TravelType
             walkTime={this.state.formatedWalkTime}
             cycleTime={this.state.formatedCycleTime}
@@ -195,14 +193,15 @@ class App extends Component {
           <section></section>
         )}
         <Podcast submitForm={this.handlePodcastSubmit} />
-        <section className="route-map">
+        { this.state.staticMapUrl && this.state.formatedWalkTime !== "" ?
+        <section className="routeMap">
           <img src={this.state.staticMapUrl} alt="Route on map" />
-        </section>
+        </section> : <section></section>}
         <section>
           <PodcastDisplay
             podcastList={this.state.podcastList}
             getAudioItem={this.getAudio}
-          />
+          /> 
         </section>
         <section className="audioPlayer">
           {this.state.audio ? (
