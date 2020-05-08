@@ -56,7 +56,7 @@ class AudioPlayer extends Component {
     showAlert = ()=>{
         Swal.fire({
             title: "Sorry About That!",
-            text: "This audio is not available at the moment. Please choose another audio to play!",
+            text: "This audio is not available at the moment. Please try again audio to play!",
             confirmButtonText: "OK",
             padding: "2rem",
         });
