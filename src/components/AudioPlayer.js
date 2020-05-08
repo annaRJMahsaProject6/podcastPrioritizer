@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Swal from 'sweetalert2';
 class AudioPlayer extends Component {
 
     constructor() {
@@ -53,12 +53,30 @@ class AudioPlayer extends Component {
         setTimeout(this.playAudio,1000);
         this.goToMusic();
     }
-    playAudio = () => {
-        this.setState({
-            isAudioPlaying: true,
-            toggleButton: '❚ ❚',
+    showAlert = ()=>{
+        Swal.fire({
+            title: "Sorry About That!",
+            text: "This audio is not available at the moment. Please choose another audio to play!",
+            confirmButtonText: "OK",
+            padding: "2rem",
         });
-        this.audio.play();
+    }
+    playAudio = () => {
+    //     this.audio.onloadedmetadata = (event)=>{
+    //         if (!event.currentTarget.duration){
+    //             this.showAlert();     
+    //         }
+            if(!this.audio.duration){
+                this.showAlert();
+            }
+            else{
+                this.setState({
+                    isAudioPlaying: true,
+                    toggleButton: '❚ ❚',
+                });
+                this.audio.play();
+            }
+        
     };
 
     pauseAudio = () => {
