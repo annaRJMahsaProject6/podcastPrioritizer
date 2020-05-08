@@ -206,7 +206,7 @@ class Map extends Component{
                     </form>
                     <ol class="whereToInstructions">
                         <h3>Instructions</h3>
-                        <li>Type in your starting and desired destination address location in the input field.</li>
+                        <li>Type in your starting and desired destination address in the input field.</li>
                         <li>Once you are satisfied with your entries, click search to find out the length of your commute.</li>
                         <li>Next, select your preferred method of travel. We recommend the shorter travel time, but otherwise, it is completely optional.</li>
                     </ol>
