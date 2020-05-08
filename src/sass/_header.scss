@@ -29,7 +29,7 @@ header {
     }
 
     .whiteBlock {
-        height: 90vh;
+        height: 95vh;
         background-color: #FFFEF2;
         width: 28%;
         position: absolute;
@@ -39,8 +39,14 @@ header {
         align-items: flex-end;
     }
 
-    .heroText {
+    .heroTextContainer {
       padding: 2rem;
       font-family: 'Lato', sans-serif;
+
+      .heroTextTagline {
+          font-size: 1.1rem;
+          margin-bottom: 0.5rem;
+          font-weight: 700;
+      }
     }
 }

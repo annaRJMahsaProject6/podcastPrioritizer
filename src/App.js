@@ -142,19 +142,15 @@ class App extends Component {
       <div className="App">
         <Header /> 
         <Map submitForm={this.handleAddressSubmit} />
-        <Podcast  submitForm={this.handlePodcastSubmit}
-      />
-      {this.state.formatedWalkTime !== "" ? <TravelType walkTime={this.state.formatedWalkTime} cycleTime={this.state.formatedCycleTime} chooseTravelType={this.handleChoice}></TravelType> : <section></section>}
-      <section className="route-map">
-        <img src={this.state.staticMapUrl} alt="Route on map"/>
-      </section>
-      <section>
-        <PodcastDisplay podcastList={this.state.podcastList} 
-        getAudioItem={this.getAudio}/>
-      </section>
-      <section>
-        <AudioPlayer audioToPlay={this.state.audio}/>
-      </section>
+        {this.state.formatedWalkTime !== "" ? <TravelType walkTime={this.state.formatedWalkTime} cycleTime={this.state.formatedCycleTime} chooseTravelType={this.handleChoice}></TravelType> : <section></section>}
+        <Podcast  submitForm={this.handlePodcastSubmit}/>
+        <section className="route-map">
+          <img src={this.state.staticMapUrl} alt="Route on map"/>
+        </section>
+        <section>
+          <PodcastDisplay podcastList={this.state.podcastList}
+          />
+        </section>
       </div>  
     );
   }

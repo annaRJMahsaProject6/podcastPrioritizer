@@ -1,6 +1,7 @@
-.whereTo {
-    padding-top: 5rem;
-    height: 40rem;
+.whereTo{
+    // padding-top: 5rem;
+    justify-content: center;
+    height: 20rem;
     background-color: #EDF2EF;
     display: flex;
     flex-direction: column;
@@ -10,12 +11,12 @@
 .search-form {
     display: flex;
     max-width: 100%;
-    margin: 1rem auto;
+    margin: 0 auto;
     position: relative;
     text-align: center;
     align-items: flex-end;
     justify-content: center;
-    position:relative;
+    position: relative;
 }
 
 label {
@@ -27,17 +28,19 @@ label {
 }
 
 input.address-search.from-input,
-input.address-search.to-input {
+input.address-search.to-input,
+input.podcast-search{
     margin: auto;
     font-size: 1rem;
     padding: 0 11px;
 }
 
-input.address-search.to-input {
+input.address-search.to-input,
+input.podcast-search {
     margin-right: 1rem;
 }
 
-.inputContainer {
+.addressSearchInput {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -56,11 +59,6 @@ input.address-search.to-input {
     margin-bottom: 0;
     font-size: 2rem;
 }
-
-.podcast-search{
-    border:2px solid black;
-}
-
 
 .suggestions {
     width: 30rem;
@@ -104,15 +102,27 @@ input.address-search.to-input {
     height:100%;
 }
 
-button {
-    background-color: #F97068;
-    height: 3rem;
-    padding: 0 2rem;
+.whatToListen {
+    background-color: #EDF2EF;
+    height: 20rem;
+    justify-content: center;
     display: flex;
-    align-items: flex-end;
-    display: inline-block;
-    border: none;
-    border-radius: 5px;
-    text-transform: uppercase;
-    font-weight: bold;
+    flex-direction: column;
+    align-items: center;
 }
+
+.podcastSearchForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px rgba(131, 222, 225, 0.521) inset !important;
+  }

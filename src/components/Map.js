@@ -139,7 +139,7 @@ class Map extends Component{
             <section className="whereTo">
                 <h2>Where To Go?</h2>
                 <form action="submit" className="search-form wrapper" autoComplete="off">
-                    <div className="inputContainer">
+                    <div className="addressSearchInput">
                         <label htmlFor="fromaddress">Starting Location</label>
                         <input
                             type="text"
@@ -162,7 +162,7 @@ class Map extends Component{
                         :   ''
                         }
                     </div>
-                    <div className="inputContainer">
+                    <div className="addressSearchInput">
                         <label htmlFor="toaddress">Destination</label>
                         <input
                             type="text"
@@ -188,7 +188,7 @@ class Map extends Component{
                         type="submit"
                         onClick={(event) => { this.props.submitForm(event, this.state.userInputFrom, this.state.userInputTo) }}
                     >
-                        Submit
+                        Search
                 </button>
                 </form>
             </section>

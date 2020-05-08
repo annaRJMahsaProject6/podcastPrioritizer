@@ -5,8 +5,9 @@
 }
 
 .podcastHeader {
-    @include underlineEffect(#F97068);
+    @include underlineEffect(#83DEE1);
 }
+
 
 .podcastGrid {
   display: grid;
@@ -20,14 +21,18 @@
   display: flex;
   height: 100%;
   background-color: #fff;
+  // border: 3px solid #83DEE1;
+  // outline: solid #fff 3px;
   border-radius: 0.5rem;
 }
 
 .podcastInfo {
   display: flex;
+  width: 100%;
   text-align: left;
   flex-direction: column;
   padding: 1rem;
+  overflow-x: scroll;
 
     & > *:not(:last-child) {
     margin-bottom: 0.5rem;
