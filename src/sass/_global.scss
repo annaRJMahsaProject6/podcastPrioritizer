@@ -35,3 +35,18 @@ button {
     text-transform: uppercase;
     font-weight: bold;
 }
+
+//override default swal styling
+
+.swal2-title {
+    font-size: 3rem !important;
+}
+
+.swal2-styled.swal2-confirm {
+    background-color: #F97068 !important;
+    font-weight: bold;
+}
+
+.swal2-styled {
+  padding: 0.55rem 3rem !important;
+}

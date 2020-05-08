@@ -131,8 +131,6 @@ class App extends Component {
         Swal.fire({
           title: "Uh-oh!",
           text: "Sorry there are no podcasts that match your search criteria. Please choose another topic!",
-          // imageUrl: 
-          // imageWidth: 200,
           confirmButtonText: "OK",
           padding: "2rem",
         });
