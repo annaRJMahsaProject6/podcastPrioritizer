@@ -44,7 +44,7 @@ class PodcastDisplay extends Component {
         <ul className="podcastGrid wrapper">
           {this.props.podcastList.map((podcast) => {
             return (
-              <li className="podcastList">
+              <li className="podcastList" key={podcast.id}>
                 <div className="podcastImgContainer">
                   <img
                     onClick={

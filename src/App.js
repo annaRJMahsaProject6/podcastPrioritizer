@@ -153,7 +153,6 @@ class App extends Component {
         len_max: maxLength,
       },
     }).then((result) => {
-      console.log(result);
       this.setState({
         podcastList: result.data.results,
       });
@@ -170,14 +169,12 @@ class App extends Component {
   };
 
   handleChoice = (id) => {
-    console.log(id);
     this.setState({
       travelType: id,
     });
   };
 
   getAudio = (selectedAudio) => {
-    console.log("Listen click", selectedAudio);
     this.setState({
       audio: selectedAudio,
     });
