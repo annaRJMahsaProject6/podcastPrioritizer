@@ -55,6 +55,7 @@ class Map extends Component{
             }
         })
     }
+
     handleUlClick = (event)=>{
         this.handleClickOutside(event);
         if (event.target.parentNode.classList.contains('from-address')){
@@ -107,6 +108,7 @@ class Map extends Component{
                 })
             }
         }
+
         if (event.target.classList.contains('to-input')){
             if (event.target.value) {
                 this.setState({
@@ -132,8 +134,18 @@ class Map extends Component{
                 })
             }
         }
+        // this.checkEmptyUserInput();
 
     }
+
+    // checkEmptyUserInput = (event) => {
+    //     if (event.target.value === "") {
+    //         console.log(event.target.value)
+    //         alert('please type an address')
+    //     }
+    // }
+
+
     render(){
         return(
             <section className="whereTo">
