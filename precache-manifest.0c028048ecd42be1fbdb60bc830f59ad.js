@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2b3d661603e40e29619e5096fcd81e0f",
+    "revision": "4ca881a4b84d26330517e09f4bc50376",
     "url": "/podcastPrioritizer/index.html"
   },
   {
