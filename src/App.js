@@ -31,7 +31,7 @@ class App extends Component {
   handleAddressSubmit = (event, fromInput, toInput) => {
     // getting travel time and static map from map quest API
     event.preventDefault();
-    if ((fromInput !== '') && (toInput !== '')) {
+    if (fromInput !== "" && toInput !== "") {
       axios({
         url: "https://www.mapquestapi.com/staticmap/v5/map",
         method: "GET",
@@ -50,19 +50,12 @@ class App extends Component {
       }).then((result) => {
         this.setState({
           staticMapUrl: result.request.responseURL,
-        })
-      })
-    } else if ((fromInput === '') && (toInput === '')) {
-      Swal.fire({
-        title: "Uh-oh!",
-        text: "Sorry, this is an invalid address. Please try again!",
-        confirmButtonText: "OK",
-        padding: "2rem",
+        });
       });
     }
 
     // getting pedestrian travel time
-    if ((fromInput !== '') && (toInput !== '')) {
+    if (fromInput !== "" && toInput !== "") {
       axios({
         method: "GET",
         url: "http://www.mapquestapi.com/directions/v2/route",
@@ -77,11 +70,20 @@ class App extends Component {
         },
       }).then((result) => {
         //  console.log(result.data.route)
-        this.setState({
-          formatedWalkTime: result.data.route.formattedTime,
-          walkTime: result.data.route.time,
-        });
-      })
+        if (
+          result.data.route.formattedTime !== undefined &&
+          result.data.route.time !== undefined &&
+          result.data.route.formattedTime !== "00:00:00" &&
+          result.data.route.time !== "00:00:00"
+        ) {
+          this.setState({
+            formatedWalkTime: result.data.route.formattedTime,
+            walkTime: result.data.route.time,
+          });
+        } else {
+          this.showInvalidAdressModal();
+        }
+      });
     }
 
     // getting cycling travel time
@@ -98,12 +100,30 @@ class App extends Component {
         unit: "k",
       },
     }).then((result) => {
-      console.log(result.data.route);
-      this.setState({
-        formatedCycleTime: result.data.route.formattedTime,
-        cycleTime: result.data.route.time,
-      });
-    })
+      // console.log(result.data.route);
+      if (
+        result.data.route.formattedTime !== undefined &&
+        result.data.route.time !== undefined &&
+        result.data.route.formattedTime !== "00:00:00" &&
+        result.data.route.time !== "00:00:00"
+      ) {
+        this.setState({
+          formatedCycleTime: result.data.route.formattedTime,
+          cycleTime: result.data.route.time,
+        });
+      } else {
+        this.showInvalidAdressModal();
+      }
+    });
+  };
+
+  showInvalidAdressModal = () => {
+    Swal.fire({
+      title: "Uh-oh!",
+      text: "You must enter in a valid starting and destination address if you wish to proceed.",
+      confirmButtonText: "OK",
+      padding: "2rem",
+    });
   };
 
   handlePodcastSubmit = (event, podcastInput) => {
@@ -188,12 +208,11 @@ class App extends Component {
           />
         </section>
         <section className="audioPlayer">
-          {
-            this.state.audio
-              ? <AudioPlayer audioToPlay={this.state.audio} />
-              : ''
-          }
-
+          {this.state.audio ? (
+            <AudioPlayer audioToPlay={this.state.audio} />
+          ) : (
+            ""
+          )}
         </section>
       </div>
     );
