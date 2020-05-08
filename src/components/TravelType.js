@@ -25,7 +25,7 @@ class TravelType extends Component{
             <span className="warning">Warning:</span> Biking with headphones on
             is <span className="emphasisText">not</span> suggested.
           </p>
-          <p class="safetyWarning">
+          <p className="safetyWarning">
             Please be safe when listening to audio while cycling.
           </p>
           <div className="travelTypeButtonContainer">
