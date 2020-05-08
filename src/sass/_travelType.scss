@@ -42,15 +42,17 @@
     width: 20rem;
     background-color: #F97068;
     border-radius: 0.5rem;
-    border: solid #fff 3px;
     outline: solid #F97068 3px;
 }
-.active{
+button.active{
+    border: solid #83dee1 3px;
     .icon{
         color:#83dee1;
+       
     }
 }
-.inactive{
+button.inactive{
+    border: solid #fff 3px;
     .icon{
         color: #fff;
     }
