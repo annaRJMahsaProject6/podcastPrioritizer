@@ -1,10 +1,37 @@
+.audioPlayer{
+    background: #EDF2EF;
+    padding-top:30px;
+    padding-bottom: 30px;
+}
+.audioWrapper{
+    padding:50px 20px 50px 20px;
+    background:white;
+    border-radius:8px;
+    margin:20px auto;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+
+}
+.audioHeader{
+    align-self: center;
+}
+.playerThumbnail{
+    margin:20px auto;
+}
+.playerThumbnail img{
+    border-radius:8px;
+}
 .audioControl{
     display:flex;
     justify-content: space-between;
     align-items: center;
     margin-top:5px;
     margin-bottom:5px;
+    width:80%;
+    align-self: center;
 }
+
 
 .progress {
     flex:9;
