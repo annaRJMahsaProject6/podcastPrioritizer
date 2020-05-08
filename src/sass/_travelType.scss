@@ -45,9 +45,19 @@
     border: solid #fff 3px;
     outline: solid #F97068 3px;
 }
+.active{
+    .icon{
+        color:#83dee1;
+    }
+}
+.inactive{
+    .icon{
+        color: #fff;
+    }
+}
 
 .icon {
     font-size: 150px;
     margin-bottom: 20px;
-    color: #fff;
+    
 }
