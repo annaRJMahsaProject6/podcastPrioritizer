@@ -152,7 +152,7 @@ class App extends Component {
             getAudioItem={this.getAudio}
           />
         </section>
-        <section>
+        <section className="audioPlayer">
           {
             this.state.audio
               ? <AudioPlayer audioToPlay={this.state.audio} />

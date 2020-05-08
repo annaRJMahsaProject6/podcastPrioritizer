@@ -33,6 +33,11 @@ class AudioPlayer extends Component {
         })
         this.audio.src = this.props.audioToPlay.audio;
         this.audio.ontimeupdate = this.handleProgress;
+        setTimeout(this.playAudio, 1000);
+        this.goToMusic();
+    }
+    goToMusic = ()=>{
+        window.scrollTo(0, document.body.scrollHeight);
     }
     setAudio = () => {
         const newAudio = this.props.audioToPlay;
@@ -45,6 +50,8 @@ class AudioPlayer extends Component {
         })
         this.audio.src = newAudio.audio;
         this.audio.currentTime = 0;
+        setTimeout(this.playAudio,1000);
+        this.goToMusic();
     }
     playAudio = () => {
         this.setState({
@@ -91,11 +98,15 @@ class AudioPlayer extends Component {
         }
     }
     render() {
-        // window.scrollTo(0, document.body.scrollHeight);
         const selectedAudio = this.props.audioToPlay;
         return (
-            <div className="audioPlayer wrapper">
-                <img src={selectedAudio.thumbnail} alt={selectedAudio.title} />
+            <div className="wrapper audioWrapper">
+                <h2 className="audioHeader">Your Music Here</h2>
+                <div className="playerThumbnail">
+                    <img 
+                    src={selectedAudio.thumbnail} 
+                    alt={selectedAudio.title} />
+                </div>
                 <div className="audioControl">
                     <button
                         className="playerButton toggle" title="Toggle Play"
