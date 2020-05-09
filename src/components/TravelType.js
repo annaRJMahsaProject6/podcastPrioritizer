@@ -21,28 +21,44 @@ class TravelType extends Component{
       <section className="travelTypeSection">
         <div className="travelTypeSelection wrapper">
           <h2 className="travelHeading">Travel Preference?</h2>
-          <p class="safetyWarning">
-            <span className="warning">Warning:</span> Biking with headphones on
+          <p className="travelTypeText">
+            We suggest the fastest route, but please pick whatever option suits
+            you best.
+          </p>
+          <p className="travelTypeText">
+            Warning: Biking with headphones on
             is <span className="emphasisText">not</span> suggested.
           </p>
-          <p class="safetyWarning">
+          <p class="travelTypeText">
             Please be safe when listening to audio while cycling.
           </p>
           <div className="travelTypeButtonContainer">
-            <button id="walk" onClick={this.handleClick} className={this.state.travelType==="walk" ? "active" : "inactive" }>
+            <button
+              id="walk"
+              onClick={this.handleClick}
+              className={
+                this.state.travelType === "walk" ? "active" : "inactive"
+              }
+            >
               <FontAwesomeIcon
                 icon="walking"
                 className="icon"
               ></FontAwesomeIcon>
               <p>{`your walking travel time is ${this.props.walkTime} hour(s)`}</p>
             </button>
-            <button id="cycle" onClick={this.handleClick} className={this.state.travelType==="cycle" ? "active" : "inactive"}>
+            <button
+              id="cycle"
+              onClick={this.handleClick}
+              className={
+                this.state.travelType === "cycle" ? "active" : "inactive"
+              }
+            >
               <FontAwesomeIcon icon="biking" className="icon"></FontAwesomeIcon>
               <p>{`your cycling travel time is ${this.props.cycleTime} hour(s)`}</p>
             </button>
           </div>
         </div>
       </section>
-    )}
+    );}
 }
 export default TravelType

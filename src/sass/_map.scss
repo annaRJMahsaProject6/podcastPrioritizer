@@ -1,6 +1,4 @@
-.routeMap{
-    
-}
+
 
 .suggestions{
     li{
@@ -17,4 +15,30 @@
             transform:scale(1.1);
         }
     }
+.routeMap {
+    height: 40rem;
+    display: flex;
+    // align-items: cent;
+    background-color: #EDF2EF;
+}
+
+.routeMapContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+
+    .routeMapHeader {
+     margin-bottom: 0;
+    }
+
+    p {
+        font-size: 1.3rem;
+        margin: 1rem 0 2rem;
+    }
+}
+
+.routeMapImg {
+    border: 3px solid #fff;
+    outline: solid #F97068 3px;
+    border-radius: 0.5rem;
 }

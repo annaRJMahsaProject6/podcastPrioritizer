@@ -41,7 +41,7 @@ class Podcast extends Component {
               </button>
             </div>
           </form>
-          <ol class="whatToListenInstructions">
+          <ol className="whatToListenInstructions">
             <h3>Instructions</h3>
             <li>
               Type your topic of interest into the input field above and
