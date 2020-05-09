@@ -58,7 +58,10 @@ class App extends Component {
       this.setState({
         staticMapUrl: result.request.responseURL,
         isLoadingMap: false,
-      });
+      }, () => {
+        if (this.state.staticMapUrl && this.state.formatedWalkTime !== "") {
+          setTimeout(() => this.scrollTo(this.staticMapRef), 0);
+        }});
     });
 
     // getting pedestrian travel time
@@ -217,9 +220,6 @@ class App extends Component {
   };
   
   render() {
-    if (this.state.staticMapUrl && this.state.formatedWalkTime !== ""){
-      setTimeout(()=>this.scrollTo(this.staticMapRef),1000);
-    }
     
     return (
       <div className="App">
