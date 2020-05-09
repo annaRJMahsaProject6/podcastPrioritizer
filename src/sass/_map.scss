@@ -1,3 +1,20 @@
+
+
+.suggestions{
+    li{
+        display:flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    img{
+        padding-right:10px;
+    }
+    li:hover{
+        background:lightgrey;
+        img{
+            transform:scale(1.1);
+        }
+    }
 .routeMap {
     height: 40rem;
     display: flex;

@@ -56,7 +56,7 @@ class App extends Component {
     if (fromInput !== "" && toInput !== "") {
      axios({
         method: "GET",
-        url: "http://www.mapquestapi.com/directions/v2/route",
+        url: "https://www.mapquestapi.com/directions/v2/route",
         params: {
           key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
           from: fromInput,
@@ -87,7 +87,7 @@ class App extends Component {
     // getting cycling travel time
      axios({
       method: "GET",
-      url: "http://www.mapquestapi.com/directions/v2/route",
+      url: "https://www.mapquestapi.com/directions/v2/route",
       params: {
         key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
         from: fromInput,

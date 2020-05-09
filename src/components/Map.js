@@ -15,7 +15,9 @@ class Map extends Component{
             userInputTo:'',
             htmlFrom:'',
             htmlTo:'',
-            podcastInput: ""
+            podcastInput: '',
+            isFromListExpanded: false,
+            isToListExpanded: false
         }
     }
     componentDidMount() {
@@ -82,6 +84,16 @@ class Map extends Component{
         }
         
     }
+    extractList = (result) => {
+        let list = '';
+        if (result && result.data.results) {
+            result.data.results.forEach((address) => {
+                list = list + `<li><img src="https://assets.mapquestapi.com/icon/v2/marker-sm.png" alt="icon" ></img>${address.displayString}</li>`;
+            })
+        } else { list = ''; }
+        return list;
+    }
+
     handleUserInput = (event) => {
         if(event.target.classList.contains('from-input')){
             if (event.target.value) {
@@ -91,12 +103,7 @@ class Map extends Component{
                 if((event.target.value).length > 1)
                 this.getAddressFromApi(event.target.value)
                 .then((result)=>{
-                    let dynamicHtml = '';
-                    if (result && result.data.results) {
-                        result.data.results.forEach((address) => {
-                            dynamicHtml = dynamicHtml + `<li>${address.displayString}</li>`;
-                        })
-                    }
+                    let dynamicHtml = this.extractList(result);
                     this.setState({
                         htmlFrom: dynamicHtml ? dynamicHtml : ''
                     })
@@ -117,12 +124,7 @@ class Map extends Component{
                 if ((event.target.value).length > 1)
                     this.getAddressFromApi(event.target.value)
                         .then((result) => {
-                            let dynamicHtml = '';
-                            if (result && result.data.results) {
-                                result.data.results.forEach((address) => {
-                                    dynamicHtml = dynamicHtml + `<li>${address.displayString}</li>`;
-                                })
-                            }
+                            let dynamicHtml = this.extractList(result);
                             this.setState({
                                 htmlTo: dynamicHtml ? dynamicHtml : ''
                             })
@@ -153,9 +155,11 @@ class Map extends Component{
                                 value={this.state.userInputFrom}
                                 onKeyUp={this.handleUserInput}
                                 onChange={this.handleUserInput}
+                                onFocus={() => this.setState({ isFromListExpanded: true })}
+                                onBlur={() => this.setState({ isFromListExpanded: false })}
                             />
                             {
-                            this.state.htmlFrom
+                            this.state.htmlFrom && this.state.isFromListExpanded
                             ?   <ul
                                     className="suggestions from-address"
                                     onClick={this.handleUlClick}
@@ -176,8 +180,10 @@ class Map extends Component{
                                 value={this.state.userInputTo}
                                 onKeyUp={this.handleUserInput}
                                 onChange={this.handleUserInput}
+                                onFocus={() => this.setState({ isToListExpanded: true })}
+                                onBlur={() => this.setState({ isToListExpanded: false })}
                             />
-                            {this.state.htmlTo 
+                            {this.state.htmlTo && this.state.isToListExpanded
                             ?   <ul
                                     className="suggestions to-address"
                                     onClick={this.handleUlClick}
