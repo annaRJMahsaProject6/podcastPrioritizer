@@ -15,6 +15,7 @@ class Podcast extends Component {
   componentDidUpdate(){
     this.scroll(this.podcastRef);
   }
+
   handleChange=(event)=>{
     this.setState({
       podcastInput:event.target.value

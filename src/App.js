@@ -162,47 +162,37 @@ class App extends Component {
     const minLength = travelTime - 5;
     const maxLength = travelTime + 5;
 
-    if (this.state.walkTime!==""){
-    axios({
-      url: "https://listen-api.listennotes.com/api/v2/search",
-      method: "GET",
-      headers: { "X-ListenAPI-Key": "0be4947c18024c2d8a5bb0dcb11eb2ac" },
-      dataResponse: "jsonp",
-      params: {
-        q: `"${podcastInput}"`,
-        type: "episode",
-        language: "English",
-        len_min: minLength,
-        len_max: maxLength,
-      },
-    }).then((result) => {
-      this.setState({
-        podcastList: result.data.results,
-        isLoadingPodcast: false,
+    if (this.state.walkTime !== "") {
+      axios({
+        url: "https://listen-api.listennotes.com/api/v2/search",
+        method: "GET",
+        headers: { "X-ListenAPI-Key": "0be4947c18024c2d8a5bb0dcb11eb2ac" },
+        dataResponse: "jsonp",
+        params: {
+          q: `"${podcastInput}"`,
+          type: "episode",
+          language: "English",
+          len_min: minLength,
+          len_max: maxLength,
+        },
+      }).then((result) => {
+        if (result.data.results.length === 0) {
+          Swal.fire({
+            title: "Uh-oh!",
+            text:
+              "Sorry, there are no podcasts that match your search criteria. Please choose another topic!",
+            confirmButtonText: "OK",
+            padding: "2rem",
+          });
+        } else {
+          this.setState({
+            podcastList: result.data.results,
+            isLoadingPodcast: false,
+          });
+        }
       });
-    })
     }
-    else{
-      Swal.fire({
-        title: "Uh-oh!",
-        text: "please enter the address first",
-        confirmButtonText: "OK",
-        padding: "2rem",
-      });
-    }
-    
-    if (this.state.podcastList.length !== 0){ 
-        Swal.fire({
-          title: "Uh-oh!",
-          text:
-            "Sorry, there are no podcasts that match your search criteria. Please choose another topic!",
-          confirmButtonText: "OK",
-          padding: "2rem",
-        });
-      
-    };
-  }
-  
+  };
 
   handleChoice = (id) => {
     this.setState({
