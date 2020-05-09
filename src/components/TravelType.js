@@ -1,22 +1,27 @@
-import React, { Component } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-class TravelType extends Component{
-    constructor(){
-        super()
-        this.state={
-            travelType:""
-        }
-    }
-     handleClick=(event)=>{
-        event.persist()
-        const id=event.target.id || event.target.parentElement.id || event.target.parentElement.parentElement.id
-        this.setState({
-            travelType:id
-        })
-        this.props.chooseTravelType(id)
-    }
-    render(){
+class TravelType extends Component {
+  constructor() {
+    super();
+    this.state = {
+      travelType: "",
+    };
+  }
+  
+  handleClick = (event) => {
+    event.persist();
+    const id =
+      event.target.id ||
+      event.target.parentElement.id ||
+      event.target.parentElement.parentElement.id;
+    this.setState({
+      travelType: id,
+    });
+    this.props.chooseTravelType(id);
+  };
+
+  render() {
     return (
       <section className="travelTypeSection">
         <div className="travelTypeSelection wrapper">
@@ -26,8 +31,8 @@ class TravelType extends Component{
             you best.
           </p>
           <p className="travelTypeText">
-            Warning: Biking with headphones on
-            is <span className="emphasisText">not</span> suggested.
+            Warning: Biking with headphones on is{" "}
+            <span className="emphasisText">not</span> suggested.
           </p>
           <p class="travelTypeText">
             Please be safe when listening to audio while cycling.
@@ -59,6 +64,7 @@ class TravelType extends Component{
           </div>
         </div>
       </section>
-    );}
+    );
+  }
 }
-export default TravelType
+export default TravelType;
