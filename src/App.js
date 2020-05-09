@@ -27,8 +27,8 @@ class App extends Component {
       audio: "",
     };
   }
-  
-  handleAddressSubmit=(event, fromInput, toInput)=>{
+
+  handleAddressSubmit = (event, fromInput, toInput) => {
     // getting travel time and static map from map quest API
     event.preventDefault();
     axios({
@@ -37,25 +37,24 @@ class App extends Component {
       responseType: "json",
       params: {
         key: "ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn",
+        format: "png",
         start: fromInput,
         end: toInput,
-        // start:"312 horsham ave, northyork, ontario",
-        // end:"9205 yonge st, richmonhill, ontario",
-        size: "400,400",
+        size: "500,200@2x",
         countryCode: "CA",
         routeColor: "F97068",
         routeWidth: 5,
       },
     }).then((result) => {
-      console.log("map API",result)
+      console.log("map API", result);
       this.setState({
         staticMapUrl: result.request.responseURL,
       });
-    })
-    
+    });
+
     // getting pedestrian travel time
     if (fromInput !== "" && toInput !== "") {
-     axios({
+      axios({
         method: "GET",
         url: "https://www.mapquestapi.com/directions/v2/route",
         params: {
@@ -68,7 +67,7 @@ class App extends Component {
           unit: "k",
         },
       }).then((result) => {
-         console.log("route API", result)
+        console.log("route API", result);
         if (
           result.data.route.formattedTime !== undefined &&
           result.data.route.time !== undefined &&
@@ -86,15 +85,13 @@ class App extends Component {
     }
 
     // getting cycling travel time
-     axios({
+    axios({
       method: "GET",
       url: "https://www.mapquestapi.com/directions/v2/route",
       params: {
         key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
         from: fromInput,
         to: toInput,
-        // from:"312 horsham ave, northyork, ontario",
-        // to:"9205 yonge st, richmonhill, ontario",
         routeType: "bicycle",
         unit: "k",
       },
@@ -118,7 +115,8 @@ class App extends Component {
   showInvalidAdressModal = () => {
     Swal.fire({
       title: "Uh-oh!",
-      text: "You must enter in a valid starting and destination address if you wish to proceed.",
+      text:
+        "You must enter in a valid starting and destination address if you wish to proceed.",
       confirmButtonText: "OK",
       padding: "2rem",
     });
@@ -158,7 +156,8 @@ class App extends Component {
       if (this.state.podcastList.length === 0) {
         Swal.fire({
           title: "Uh-oh!",
-          text: "Sorry, there are no podcasts that match your search criteria. Please choose another topic!",
+          text:
+            "Sorry, there are no podcasts that match your search criteria. Please choose another topic!",
           confirmButtonText: "OK",
           padding: "2rem",
         });
@@ -183,7 +182,22 @@ class App extends Component {
       <div className="App">
         <Header />
         <Map submitForm={this.handleAddressSubmit} />
-        {this.state.formatedWalkTime !== ""  ? (
+        {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
+          <section className="routeMap">
+            <div className="routeMapContainer wrapper">
+              <h2 class="routeMapHeader">Your Travel Route</h2>
+              <p>Map overview of your communte.</p>
+              <img
+                src={this.state.staticMapUrl}
+                className="routeMapImg"
+                alt="Route on map"
+              />
+            </div>
+          </section>
+        ) : (
+          <section></section>
+        )}
+        {this.state.formatedWalkTime !== "" ? (
           <TravelType
             walkTime={this.state.formatedWalkTime}
             cycleTime={this.state.formatedCycleTime}
@@ -193,16 +207,16 @@ class App extends Component {
           <section></section>
         )}
         <Podcast submitForm={this.handlePodcastSubmit} />
-        { this.state.staticMapUrl && this.state.formatedWalkTime !== "" ?
-        <section className="routeMap">
-          <img src={this.state.staticMapUrl} alt="Route on map" />
-        </section> : <section></section>}
-        <section>
-          <PodcastDisplay
-            podcastList={this.state.podcastList}
-            getAudioItem={this.getAudio}
-          /> 
-        </section>
+        {this.state.podcastList.length !== 0 ? (
+          <section>
+            <PodcastDisplay
+              podcastList={this.state.podcastList}
+              getAudioItem={this.getAudio}
+            />
+          </section>
+        ) : (
+          <section></section>
+        )}
         <section className="audioPlayer">
           {this.state.audio ? (
             <AudioPlayer audioToPlay={this.state.audio} />

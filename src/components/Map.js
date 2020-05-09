@@ -135,16 +135,7 @@ class Map extends Component{
                 })
             }
         }
-        // this.checkEmptyUserInput();
-
     }
-
-    // checkEmptyUserInput = (event) => {
-    //     if (event.target.value === "") {
-    //         console.log(event.target.value)
-    //         alert('please type an address')
-    //     }
-    // }
 
 
     render(){
