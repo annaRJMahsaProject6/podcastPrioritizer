@@ -2,23 +2,24 @@ import React, { Component } from "react";
 import Swal from "sweetalert2";
 
 class AudioPlayer extends Component {
-  constructor() {
-    super();
-    this.progressBar = React.createRef();
-    this.state = {
-      isAudioPlaying: false,
-      toggleButton: "▶️",
-      progress: "",
-      timeLeft: "00:00",
-      mouseDown: false,
-      audioFile: "",
-      callNumber:0
-    };
-    this.audioPlayerRef = React.createRef();
-  }
 
-  // thank you Salvatore @ stackoverflow.com (https://stackoverflow.com/questions/39779527/toggle-play-pause-in-react-with-audio)
-  audio = new Audio();
+    constructor() {
+        super();
+        this.progressBar = React.createRef();
+        this.state = {
+            isAudioPlaying: false,
+            toggleButton: "▶️",
+            progress: "",
+            timeLeft: "00:00",
+            mouseDown: false,
+            audioFile: "",
+            callNumber:0
+        };
+        this.audioPlayerRef = React.createRef();    
+    }
+
+    // thank you Salvatore @ stackoverflow.com (https://stackoverflow.com/questions/39779527/toggle-play-pause-in-react-with-audio)
+    audio = new Audio();
     // here first check if there is any difference in state and props received
     componentDidUpdate(prevProps, prevState) {
         if (this.props.audioToPlay.audio !== prevState.audioFile) {
@@ -37,7 +38,15 @@ class AudioPlayer extends Component {
         setTimeout(this.playAudio, 1000);
         this.scroll(this.audioPlayerRef);
     }
-    
+    getFormattedTime = (timeLeft) => {
+        const hour = Math.floor(timeLeft / (60 * 60));
+        let mins = Math.floor(timeLeft / 60) % 60;
+        let seconds = timeLeft % 60;
+        mins = mins < 10 && mins >= 0 ? "0" + mins : mins;
+        seconds = seconds < 10 && seconds >= 0 ? "0" + seconds : seconds;
+        timeLeft = hour ? `${hour}:${mins}:${seconds}` : `${mins}:${seconds}`;
+        return timeLeft;
+    };
     setAudio = () => {
         const newAudio = this.props.audioToPlay;
         this.setState({
@@ -97,23 +106,22 @@ class AudioPlayer extends Component {
         const scrubTime = (event.nativeEvent.offsetX / this.progressBar.current.offsetWidth) * this.audio.duration;
         this.audio.currentTime = scrubTime;
     }
-  };
 
-  pauseAudio = () => {
-    this.setState({
-      isAudioPlaying: false,
-      toggleButton: "▶️",
-    });
-    this.audio.pause();
-  };
+    pauseAudio = () => {
+        this.setState({
+        isAudioPlaying: false,
+        toggleButton: "▶️",
+        });
+        this.audio.pause();
+    };
 
-  togglePlay = () => {
-    if (this.state.isAudioPlaying) {
-      this.pauseAudio();
-    } else {
-      this.playAudio();
+    togglePlay = () => {
+        if (this.state.isAudioPlaying) {
+        this.pauseAudio();
+        } else {
+        this.playAudio();
+        }
     }
-  }
     scroll(ref) {
         ref.current.scrollIntoView({ behavior: 'smooth' })
     }
@@ -145,7 +153,6 @@ class AudioPlayer extends Component {
             </div>
         )
     }
-  };
-}
+};
 
 export default AudioPlayer;
