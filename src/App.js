@@ -152,6 +152,7 @@ class App extends Component {
     const minLength = travelTime - 5;
     const maxLength = travelTime + 5;
 
+    if (this.state.walkTime!==""){
     axios({
       url: "https://listen-api.listennotes.com/api/v2/search",
       method: "GET",
@@ -169,8 +170,18 @@ class App extends Component {
         podcastList: result.data.results,
         isLoadingPodcast: false,
       });
-
-      if (this.state.podcastList.length === 0) {
+    })
+    }
+    else{
+      Swal.fire({
+        title: "Uh-oh!",
+        text: "please enter the address first",
+        confirmButtonText: "OK",
+        padding: "2rem",
+      });
+    }
+    
+    if (this.state.podcastList.length !== 0){ 
         Swal.fire({
           title: "Uh-oh!",
           text:
@@ -178,9 +189,10 @@ class App extends Component {
           confirmButtonText: "OK",
           padding: "2rem",
         });
-      }
-    });
-  };
+      
+    };
+  }
+  
 
   handleChoice = (id) => {
     this.setState({
