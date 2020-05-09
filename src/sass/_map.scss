@@ -1,5 +1,5 @@
 .routeMap {
-    height: 35rem;
+    height: 40rem;
     display: flex;
     // align-items: cent;
     background-color: #EDF2EF;
@@ -8,7 +8,16 @@
 .routeMapContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; 
+
+    .routeMapHeader {
+     margin-bottom: 0;
+    }
+
+    p {
+        font-size: 1.3rem;
+        margin: 1rem 0 2rem;
+    }
 }
 
 .routeMapImg {

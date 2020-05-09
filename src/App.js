@@ -92,8 +92,6 @@ class App extends Component {
         key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
         from: fromInput,
         to: toInput,
-        // from:"312 horsham ave, northyork, ontario",
-        // to:"9205 yonge st, richmonhill, ontario",
         routeType: "bicycle",
         unit: "k",
       },
@@ -185,7 +183,8 @@ class App extends Component {
         {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
           <section className="routeMap">
             <div className="routeMapContainer wrapper">
-              <h2>Your Travel Route</h2>
+              <h2 class="routeMapHeader">Your Travel Route</h2>
+              <p>Map overview of your communte.</p>
               <img src={this.state.staticMapUrl} className="routeMapImg" alt="Route on map" />
             </div>
           </section>
