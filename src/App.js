@@ -37,21 +37,20 @@ class App extends Component {
       responseType: "json",
       params: {
         key: "ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn",
+        format: "png",
         start: fromInput,
         end: toInput,
-        // start:"312 horsham ave, northyork, ontario",
-        // end:"9205 yonge st, richmonhill, ontario",
-        size: "400,400",
+        size: "500,200@2x",
         countryCode: "CA",
         routeColor: "F97068",
         routeWidth: 5,
       },
     }).then((result) => {
-      console.log("map API",result)
+      console.log("map API", result);
       this.setState({
         staticMapUrl: result.request.responseURL,
       });
-    })
+    });
     
     // getting pedestrian travel time
     if (fromInput !== "" && toInput !== "") {
@@ -93,8 +92,6 @@ class App extends Component {
         key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
         from: fromInput,
         to: toInput,
-        // from:"312 horsham ave, northyork, ontario",
-        // to:"9205 yonge st, richmonhill, ontario",
         routeType: "bicycle",
         unit: "k",
       },
@@ -183,7 +180,18 @@ class App extends Component {
       <div className="App">
         <Header />
         <Map submitForm={this.handleAddressSubmit} />
-        {this.state.formatedWalkTime !== ""  ? (
+        {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
+          <section className="routeMap">
+            <div className="routeMapContainer wrapper">
+              <h2 class="routeMapHeader">Your Travel Route</h2>
+              <p>Map overview of your communte.</p>
+              <img src={this.state.staticMapUrl} className="routeMapImg" alt="Route on map" />
+            </div>
+          </section>
+        ) : (
+          <section></section>
+        )}
+        {this.state.formatedWalkTime !== "" ? (
           <TravelType
             walkTime={this.state.formatedWalkTime}
             cycleTime={this.state.formatedCycleTime}
@@ -193,15 +201,11 @@ class App extends Component {
           <section></section>
         )}
         <Podcast submitForm={this.handlePodcastSubmit} />
-        { this.state.staticMapUrl && this.state.formatedWalkTime !== "" ?
-        <section className="routeMap">
-          <img src={this.state.staticMapUrl} alt="Route on map" />
-        </section> : <section></section>}
         <section>
           <PodcastDisplay
             podcastList={this.state.podcastList}
             getAudioItem={this.getAudio}
-          /> 
+          />
         </section>
         <section className="audioPlayer">
           {this.state.audio ? (
