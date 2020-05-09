@@ -44,6 +44,8 @@ class App extends Component {
         countryCode: "CA",
         routeColor: "F97068",
         routeWidth: 5,
+        scalebar:true,
+        margin:40,
       },
     }).then((result) => {
       console.log("map API", result);
@@ -63,6 +65,7 @@ class App extends Component {
           to: toInput,
           // from:"312 horsham ave, northyork, ontario",
           // to:"9205 yonge st, richmonhill, ontario",
+          countryCode:"CA",
           routeType: "pedestrian",
           unit: "k",
         },
@@ -92,6 +95,7 @@ class App extends Component {
         key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
         from: fromInput,
         to: toInput,
+        countryCode: "CA",
         routeType: "bicycle",
         unit: "k",
       },
@@ -185,7 +189,7 @@ class App extends Component {
         {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
           <section className="routeMap">
             <div className="routeMapContainer wrapper">
-              <h2 class="routeMapHeader">Your Travel Route</h2>
+              <h2 className="routeMapHeader">Your Travel Route</h2>
               <p>Map overview of your communte.</p>
               <img
                 src={this.state.staticMapUrl}
