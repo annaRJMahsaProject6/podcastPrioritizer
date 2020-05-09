@@ -1,13 +1,13 @@
-.podcastContainer {
+.podcastDisplay {
   background-color: #FDF592;
-  padding: 3rem 0;
+  padding: 6rem 0;
+  height: auto;
   text-align: center;
 }
 
 .podcastHeader {
     @include underlineEffect(#83DEE1);
 }
-
 
 .podcastGrid {
   display: grid;

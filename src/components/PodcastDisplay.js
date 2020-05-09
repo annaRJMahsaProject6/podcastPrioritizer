@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReadMoreAndLess from "react-read-more-less";
 import { faHeadphones } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Preloader from "./Preloader";
 
 class PodcastDisplay extends Component {
   constructor() {
@@ -39,49 +40,57 @@ class PodcastDisplay extends Component {
   render() {
     // console.log(this.props.podcastList);
     return (
-      <section className="podcastContainer">
-        <h2 className="podcastHeader">Pick Your Podcast</h2>
-        <ul className="podcastGrid wrapper">
-          {this.props.podcastList.map((podcast) => {
-            return (
-              <li className="podcastList" key={podcast.id}>
-                <div className="podcastImgContainer">
-                  <img
-                    onClick={
-                      this.state.isAudioPlaying
-                        ? this.pauseAudio
-                        : () => {
-                            this.playAudio(podcast.audio);
-                          }
-                    }
-                    src={podcast.thumbnail}
-                    alt=""
-                    className="podcastImg"
-                  />
-                  <button className="audioButton" 
-                  onClick={()=>this.props.getAudioItem(podcast)}>
-                    <FontAwesomeIcon icon={faHeadphones} />
-                    &nbsp;Listen
-                  </button>
-                </div>
-                <div className="podcastInfo">
-                  <h3>{podcast.title_original}</h3>
-                  <ReadMoreAndLess
-                    ref={this.Readmore}
-                    charLimit={200}
-                    readMoreText="Read More"
-                    readLessText="&nbsp;Read Less"
-                  >
-                    {podcast.description_original}
-                  </ReadMoreAndLess>
-                  <p className="podcastLength">
-                    Length: {Math.floor(podcast.audio_length_sec / 60)} minutes
-                  </p>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+      <section className="podcastDisplay">
+        <div className="wrapper">
+          <h2 className="podcastHeader">Pick Your Podcast</h2>
+          {this.props.isLoadingPodcast ? <Preloader /> : null}
+          {this.props.isLoadingPodcast ? null : (
+            <ul className="podcastGrid ">
+              {this.props.podcastList.map((podcast) => {
+                return (
+                  <li className="podcastList" key={podcast.id}>
+                    <div className="podcastImgContainer">
+                      <img
+                        onClick={
+                          this.state.isAudioPlaying
+                            ? this.pauseAudio
+                            : () => {
+                                this.playAudio(podcast.audio);
+                              }
+                        }
+                        src={podcast.thumbnail}
+                        alt=""
+                        className="podcastImg"
+                      />
+                      <button
+                        className="audioButton"
+                        onClick={() => this.props.getAudioItem(podcast)}
+                      >
+                        <FontAwesomeIcon icon={faHeadphones} />
+                        &nbsp;Listen
+                      </button>
+                    </div>
+                    <div className="podcastInfo">
+                      <h3>{podcast.title_original}</h3>
+                      <ReadMoreAndLess
+                        ref={this.Readmore}
+                        charLimit={200}
+                        readMoreText="Read More"
+                        readLessText="&nbsp;Read Less"
+                      >
+                        {podcast.description_original}
+                      </ReadMoreAndLess>
+                      <p className="podcastLength">
+                        Length: {Math.floor(podcast.audio_length_sec / 60)}{" "}
+                        minutes
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
       </section>
     );
   }

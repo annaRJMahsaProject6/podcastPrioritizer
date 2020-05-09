@@ -7,6 +7,7 @@ import Podcast from "./components/Podcast";
 import TravelType from "./components/TravelType";
 import PodcastDisplay from "./components/PodcastDisplay";
 import AudioPlayer from "./components/AudioPlayer";
+import Footer from "./components/Footer";
 import Swal from "sweetalert2";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -25,6 +26,8 @@ class App extends Component {
       podcastList: [],
       travelType: "",
       audio: "",
+      isLoadingMap: false,
+      isLoadingPodcast: false,
     };
   }
 
@@ -49,6 +52,7 @@ class App extends Component {
       console.log("map API", result);
       this.setState({
         staticMapUrl: result.request.responseURL,
+        isLoadingMap: false,
       });
     });
 
@@ -122,6 +126,18 @@ class App extends Component {
     });
   };
 
+  loadMapUrl = () => {
+    this.setState({
+      isLoadingMap: true,
+    });
+  };
+
+  loadPodcastList = () => {
+    this.setState({
+      isLoadingPodcast: true,
+    });
+  };
+
   handlePodcastSubmit = (event, podcastInput) => {
     event.preventDefault();
     let travelTime = 0;
@@ -151,6 +167,7 @@ class App extends Component {
     }).then((result) => {
       this.setState({
         podcastList: result.data.results,
+        isLoadingPodcast: false,
       });
 
       if (this.state.podcastList.length === 0) {
@@ -181,9 +198,15 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Map submitForm={this.handleAddressSubmit} />
-        {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
-          <section className="routeMap">
+        <Map
+          submitForm={this.handleAddressSubmit}
+          isLoadingMap={this.state.isLoadingMap}
+          loadMapUrl={this.loadMapUrl}
+        />
+        {this.state.staticMapUrl &&
+        this.state.formatedWalkTime !== "" &&
+        !this.state.isLoadingMap ? (
+          <section className="routeMap" id="routeMap">
             <div className="routeMapContainer wrapper">
               <h2 class="routeMapHeader">Your Travel Route</h2>
               <p>Map overview of your communte.</p>
@@ -194,36 +217,40 @@ class App extends Component {
               />
             </div>
           </section>
-        ) : (
-          <section></section>
-        )}
-        {this.state.formatedWalkTime !== "" ? (
+        ) : null}
+        {this.state.formatedWalkTime !== "" && !this.state.isLoadingMap ? (
           <TravelType
             walkTime={this.state.formatedWalkTime}
             cycleTime={this.state.formatedCycleTime}
             chooseTravelType={this.handleChoice}
           ></TravelType>
-        ) : (
-          <section></section>
-        )}
-        <Podcast submitForm={this.handlePodcastSubmit} />
+        ) : null}
+        {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
+          <Podcast
+            submitForm={this.handlePodcastSubmit}
+            isLoadingPodcast={this.state.isLoadingPodcast}
+            loadPodcastList={this.loadPodcastList}
+          />
+        ) : null}
         {this.state.podcastList.length !== 0 ? (
           <section>
             <PodcastDisplay
               podcastList={this.state.podcastList}
               getAudioItem={this.getAudio}
+              isLoadingPodcast={this.state.isLoadingPodcast}
             />
           </section>
-        ) : (
-          <section></section>
-        )}
-        <section className="audioPlayer">
-          {this.state.audio ? (
-            <AudioPlayer audioToPlay={this.state.audio} />
-          ) : (
-            ""
-          )}
-        </section>
+        ) : null}
+        {this.state.audio !== "" ? (
+          <section className="audioPlayer">
+            {this.state.audio ? (
+              <AudioPlayer audioToPlay={this.state.audio} />
+            ) : (
+              ""
+            )}
+          </section>
+        ) : null}
+        <Footer />
       </div>
     );
   }
