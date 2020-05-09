@@ -1,15 +1,14 @@
 .whereTo, .whatToListen {
-    // padding-top: 5rem;
-    // padding: 4rem 0;
     justify-content: center;
-    height: 30rem;
+    height: 40rem;
     background-color: #EDF2EF;
     display: flex;
     flex-direction: column;
     align-items: center;
     // margin: 0 auto;
     text-align: center;
-
+    position: relative;
+    
     &Instructions {
         line-height: 1.7;
         list-style: decimal;
@@ -93,12 +92,12 @@ input.podcast-search {
     background-color: #fff;
     font-size:1rem;
     list-style: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid;
     // box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
     font-family: inherit;
-    margin: 0;
-    padding: 20px;
-    transition: background 0.2s;
+    // margin: 0;
+    padding: 10px;
+    // transition: background 0.2s;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;

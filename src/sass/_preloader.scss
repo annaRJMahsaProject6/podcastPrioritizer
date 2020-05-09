@@ -1,0 +1,25 @@
+.preloaderWhereTo {
+    position: absolute;
+    bottom: 1rem;
+}
+
+.preloaderPodcastDisplay {
+    position: relative;
+    top: 4rem;
+}
+
+.preloader {
+    font-size: 5rem;
+    color: #83dee1;
+    animation: spinning 1s linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spinning {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

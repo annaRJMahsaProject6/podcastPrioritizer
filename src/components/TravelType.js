@@ -22,7 +22,7 @@ class TravelType extends Component{
         <div className="travelTypeSelection wrapper">
           <h2 className="travelHeading">Travel Preference?</h2>
           <p className="travelTypeText">
-            We suggest the fastest route, but please pick whatever option suits
+            We suggest the faster route, but please pick whatever option suits
             you best.
           </p>
           <p className="travelTypeText">

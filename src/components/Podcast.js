@@ -23,6 +23,7 @@ class Podcast extends Component {
   scroll(ref) {
     ref.current.scrollIntoView({ behavior: 'smooth' })
   }
+  
   render() {
       // user podcast selection form
       return (
@@ -43,6 +44,7 @@ class Podcast extends Component {
                 type="submit"
                 onClick={(event) => {
                   this.props.submitForm(event, this.state.podcastInput);
+                  this.props.loadPodcastList();
                 }}
               >
                 Search
