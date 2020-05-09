@@ -124,6 +124,9 @@ class App extends Component {
       confirmButtonText: "OK",
       padding: "2rem",
     });
+    this.setState({
+      isLoadingMap: false,
+    });
   };
 
   loadMapUrl = () => {
@@ -237,14 +240,16 @@ class App extends Component {
             chooseTravelType={this.handleChoice}
           ></TravelType>
         ) : null}
-        {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
+        {this.state.staticMapUrl &&
+        this.state.formatedWalkTime !== "" &&
+        !this.state.isLoadingMap ? (
           <Podcast
             submitForm={this.handlePodcastSubmit}
             isLoadingPodcast={this.state.isLoadingPodcast}
             loadPodcastList={this.loadPodcastList}
           />
         ) : null}
-        {this.state.podcastList.length !== 0 ? (
+        {this.state.podcastList.length !== 0 && !this.state.isLoadingMap ? (
           <section>
             <PodcastDisplay
               podcastList={this.state.podcastList}

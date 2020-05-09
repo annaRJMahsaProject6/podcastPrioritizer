@@ -43,7 +43,7 @@ class PodcastDisplay extends Component {
       <section className="podcastDisplay">
         <div className="wrapper">
           <h2 className="podcastHeader">Pick Your Podcast</h2>
-          {this.props.isLoadingPodcast ? <Preloader /> : null}
+          {this.props.isLoadingPodcast ? <Preloader styleName="PodcastDisplay"/> : null}
           {this.props.isLoadingPodcast ? null : (
             <ul className="podcastGrid ">
               {this.props.podcastList.map((podcast) => {

@@ -232,7 +232,7 @@ class Map extends Component {
             </li>
           </ol>
         </div>
-        {this.props.isLoadingMap ? <Preloader /> : null}
+        {this.props.isLoadingMap ? <Preloader styleName="WhereTo" /> : null}
       </section>
     );
   }
