@@ -60,9 +60,11 @@ class Map extends Component{
 
     handleUlClick = (event)=>{
         this.handleClickOutside(event);
+        console.log(event)
         if (event.target.parentNode.classList.contains('from-address')){
             if(event.target.localName === 'li'){
                 const text = event.target.innerText;
+                console.log(text);
                 if(text !== 'Address'){
                     this.setState({
                         userInputFrom:text,
@@ -82,7 +84,6 @@ class Map extends Component{
                 }
             }
         }
-        
     }
     extractList = (result) => {
         let list = '';
@@ -168,7 +169,7 @@ class Map extends Component{
                                 onBlur={() => this.setState({ isFromListExpanded: false })}
                             />
                             {
-                            this.state.htmlFrom && this.state.isFromListExpanded
+                            (this.state.htmlFrom && this.state.isFromListExpanded)
                             ?   <ul
                                     className="suggestions from-address"
                                     onClick={this.handleUlClick}
