@@ -7,7 +7,6 @@ import Podcast from "./components/Podcast";
 import TravelType from "./components/TravelType";
 import PodcastDisplay from "./components/PodcastDisplay";
 import AudioPlayer from "./components/AudioPlayer";
-import Preloader from "./components/Preloader";
 import Swal from "sweetalert2";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -132,6 +131,12 @@ class App extends Component {
     });
   };
 
+  loadPodcastList = () => {
+    this.setState({
+      isLoadingPodcast: true,
+    });
+  };
+
   handlePodcastSubmit = (event, podcastInput) => {
     event.preventDefault();
     let travelTime = 0;
@@ -161,6 +166,7 @@ class App extends Component {
     }).then((result) => {
       this.setState({
         podcastList: result.data.results,
+        isLoadingPodcast: false,
       });
 
       if (this.state.podcastList.length === 0) {
@@ -196,8 +202,10 @@ class App extends Component {
           isLoadingMap={this.state.isLoadingMap}
           loadMapUrl={this.loadMapUrl}
         />
-        {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
-          <section className="routeMap">
+        {this.state.staticMapUrl &&
+        this.state.formatedWalkTime !== "" &&
+        !this.state.isLoadingMap ? (
+          <section className="routeMap" id="routeMap">
             <div className="routeMapContainer wrapper">
               <h2 class="routeMapHeader">Your Travel Route</h2>
               <p>Map overview of your communte.</p>
@@ -209,7 +217,7 @@ class App extends Component {
             </div>
           </section>
         ) : null}
-        {this.state.formatedWalkTime !== "" ? (
+        {this.state.formatedWalkTime !== "" && !this.state.isLoadingMap ? (
           <TravelType
             walkTime={this.state.formatedWalkTime}
             cycleTime={this.state.formatedCycleTime}
@@ -217,13 +225,18 @@ class App extends Component {
           ></TravelType>
         ) : null}
         {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
-          <Podcast submitForm={this.handlePodcastSubmit} />
+          <Podcast
+            submitForm={this.handlePodcastSubmit}
+            isLoadingPodcast={this.state.isLoadingPodcast}
+            loadPodcastList={this.loadPodcastList}
+          />
         ) : null}
         {this.state.podcastList.length !== 0 ? (
           <section>
             <PodcastDisplay
               podcastList={this.state.podcastList}
               getAudioItem={this.getAudio}
+              isLoadingPodcast={this.state.isLoadingPodcast}
             />
           </section>
         ) : null}

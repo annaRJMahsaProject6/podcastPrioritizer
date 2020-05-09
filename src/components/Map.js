@@ -139,12 +139,6 @@ class Map extends Component {
     }
   };
 
-//   getMapUrl = () => {
-//     this.setState({
-//       isLoadingMap: true,
-//     });
-//   };
-
   render() {
     return (
       <section className="whereTo">

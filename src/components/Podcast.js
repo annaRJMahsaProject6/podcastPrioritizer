@@ -35,6 +35,7 @@ class Podcast extends Component {
                 type="submit"
                 onClick={(event) => {
                   this.props.submitForm(event, this.state.podcastInput);
+                  this.props.loadPodcastList();
                 }}
               >
                 Search
