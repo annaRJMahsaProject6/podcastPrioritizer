@@ -12,9 +12,8 @@ class Podcast extends Component {
     this.setState({
       podcastInput:event.target.value
     })
-    
-
   }
+  
   render() {
       // user podcast selection form
       return (
@@ -35,6 +34,7 @@ class Podcast extends Component {
                 type="submit"
                 onClick={(event) => {
                   this.props.submitForm(event, this.state.podcastInput);
+                  this.props.loadPodcastList();
                 }}
               >
                 Search
