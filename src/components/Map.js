@@ -42,21 +42,21 @@ class Map extends Component {
       });
     }
   }
-
-  getAddressFromApi = (query) => {
-    return axios({
-      url: "https://www.mapquestapi.com/search/v3/prediction",
-      method: "GET",
-      responseType: "json",
-      params: {
-        key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
-        limit: "5",
-        collection: "adminArea,address,category,franchise,airport,poi",
-        countryCode: "CA",
-        q: query,
-      },
-    });
-  };
+  getAddressFromApi = (query)=>{
+      return axios({
+          url:'https://www.mapquestapi.com/search/v3/prediction',
+          method: 'GET',
+          responseType: 'jsonp',
+          params: {
+              key:'TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS',
+              format: 'png',
+              limit:'5',
+              collection:'adminArea,address,category,franchise,airport,poi',
+              countryCode:'CA',
+              q:query,
+          }
+      })
+  }
 
   handleUlClick = (event) => {
     this.handleClickOutside(event);

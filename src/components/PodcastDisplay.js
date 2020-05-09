@@ -7,42 +7,26 @@ import Preloader from "./Preloader";
 class PodcastDisplay extends Component {
   constructor() {
     super();
-    this.state = {
-      isAudioPlaying: false,
-    };
+    this.podcastListRef = React.createRef();
   }
-
-  // thank you Salvatore @ stackoverflow.com (https://stackoverflow.com/questions/39779527/toggle-play-pause-in-react-with-audio)
-
-  audio = new Audio();
 
   showMore = () => this.setState({ showAll: true });
   showLess = () => this.setState({ showAll: false });
 
-  playAudio = (audio) => {
-    console.log(typeof audio);
-    console.log("play");
-    this.setState({
-      isAudioPlaying: true,
-    });
-    this.audio.src = audio;
-    this.audio.play();
-  };
-
-  pauseAudio = () => {
-    console.log("pause");
-    this.setState({
-      isAudioPlaying: false,
-    });
-    this.audio.pause();
-  };
-
+  componentDidUpdate(){
+    this.scroll(this.podcastListRef);
+  }
+  componentDidMount(){
+    this.scroll(this.podcastListRef);
+  }
+  scroll(ref) {
+    ref.current.scrollIntoView({ behavior: 'smooth' })
+  }
   render() {
-    // console.log(this.props.podcastList);
     return (
       <section className="podcastDisplay">
         <div className="wrapper">
-          <h2 className="podcastHeader">Pick Your Podcast</h2>
+          <h2 ref={this.podcastListRef} className="podcastHeader">Pick Your Podcast</h2>
           {this.props.isLoadingPodcast ? <Preloader styleName="PodcastDisplay"/> : null}
           {this.props.isLoadingPodcast ? null : (
             <ul className="podcastGrid ">
@@ -51,13 +35,6 @@ class PodcastDisplay extends Component {
                   <li className="podcastList" key={podcast.id}>
                     <div className="podcastImgContainer">
                       <img
-                        onClick={
-                          this.state.isAudioPlaying
-                            ? this.pauseAudio
-                            : () => {
-                                this.playAudio(podcast.audio);
-                              }
-                        }
                         src={podcast.thumbnail}
                         alt=""
                         className="podcastImg"
