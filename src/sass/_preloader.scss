@@ -1,6 +1,11 @@
-.preloaderContainer {
+.preloaderWhereTo {
+    position: absolute;
+    bottom: 1rem;
+}
+
+.preloaderPodcastDisplay {
     position: relative;
-    top: 5rem;
+    top: 4rem;
 }
 
 .preloader {
