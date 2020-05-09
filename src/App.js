@@ -7,6 +7,7 @@ import Podcast from "./components/Podcast";
 import TravelType from "./components/TravelType";
 import PodcastDisplay from "./components/PodcastDisplay";
 import AudioPlayer from "./components/AudioPlayer";
+import Preloader from "./components/Preloader";
 import Swal from "sweetalert2";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -25,6 +26,8 @@ class App extends Component {
       podcastList: [],
       travelType: "",
       audio: "",
+      isLoadingMap: false,
+      isLoadingPodcast: false,
     };
   }
 
@@ -49,6 +52,7 @@ class App extends Component {
       console.log("map API", result);
       this.setState({
         staticMapUrl: result.request.responseURL,
+        isLoadingMap: false,
       });
     });
 
@@ -122,6 +126,12 @@ class App extends Component {
     });
   };
 
+  loadMapUrl = () => {
+    this.setState({
+      isLoadingMap: true,
+    });
+  };
+
   handlePodcastSubmit = (event, podcastInput) => {
     event.preventDefault();
     let travelTime = 0;
@@ -181,7 +191,11 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Map submitForm={this.handleAddressSubmit} />
+        <Map
+          submitForm={this.handleAddressSubmit}
+          isLoadingMap={this.state.isLoadingMap}
+          loadMapUrl={this.loadMapUrl}
+        />
         {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
           <section className="routeMap">
             <div className="routeMapContainer wrapper">
@@ -194,19 +208,17 @@ class App extends Component {
               />
             </div>
           </section>
-        ) : (
-          <section></section>
-        )}
+        ) : null}
         {this.state.formatedWalkTime !== "" ? (
           <TravelType
             walkTime={this.state.formatedWalkTime}
             cycleTime={this.state.formatedCycleTime}
             chooseTravelType={this.handleChoice}
           ></TravelType>
-        ) : (
-          <section></section>
-        )}
-        <Podcast submitForm={this.handlePodcastSubmit} />
+        ) : null}
+        {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
+          <Podcast submitForm={this.handlePodcastSubmit} />
+        ) : null}
         {this.state.podcastList.length !== 0 ? (
           <section>
             <PodcastDisplay
@@ -214,9 +226,7 @@ class App extends Component {
               getAudioItem={this.getAudio}
             />
           </section>
-        ) : (
-          <section></section>
-        )}
+        ) : null}
         <section className="audioPlayer">
           {this.state.audio ? (
             <AudioPlayer audioToPlay={this.state.audio} />
