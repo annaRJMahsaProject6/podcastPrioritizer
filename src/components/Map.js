@@ -47,9 +47,9 @@ class Map extends Component {
     return axios({
       url: "https://www.mapquestapi.com/search/v3/prediction",
       method: "GET",
-      responseType: "jsonp",
+      responseType: "json",
       params: {
-        key: "ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn",
+        key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
         limit: "5",
         collection: "adminArea,address,category,franchise,airport,poi",
         countryCode: "CA",
@@ -90,7 +90,7 @@ class Map extends Component {
       result.data.results.forEach((address) => {
         list =
           list +
-          `<li><img src="https://assets.mapquestapi.com/icon/v2/marker-sm.png" alt="drop icon" ></img>${address.displayString}</li>`;
+          `<li><img src="https://assets.mapquestapi.com/icon/v2/marker-sm.png" alt="drop icon"></img>${address.displayString}</li>`;
       });
     } else {
       list = "";
