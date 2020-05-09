@@ -60,11 +60,9 @@ class Map extends Component{
 
     handleUlClick = (event)=>{
         this.handleClickOutside(event);
-        console.log(event)
         if (event.target.parentNode.classList.contains('from-address')){
             if(event.target.localName === 'li'){
                 const text = event.target.innerText;
-                console.log(text);
                 if(text !== 'Address'){
                     this.setState({
                         userInputFrom:text,
@@ -89,7 +87,7 @@ class Map extends Component{
         let list = '';
         if (result && result.data.results) {
             result.data.results.forEach((address) => {
-                list = list + `<li><img src="https://assets.mapquestapi.com/icon/v2/marker-sm.png" alt="icon" ></img>${address.displayString}</li>`;
+                list = list + `<li><img src="https://assets.mapquestapi.com/icon/v2/marker-sm.png" alt="drop icon" ></img>${address.displayString}</li>`;
             })
         } else { list = ''; }
         return list;
@@ -173,6 +171,7 @@ class Map extends Component{
                             ?   <ul
                                     className="suggestions from-address"
                                     onClick={this.handleUlClick}
+                                    onMouseDown={this.handleUlClick}
                                     ref={this.setULRef}
                                 >
                                     {ReactHtmlParser(this.state.htmlFrom)}
@@ -197,6 +196,7 @@ class Map extends Component{
                             ?   <ul
                                     className="suggestions to-address"
                                     onClick={this.handleUlClick}
+                                    onMouseDown={this.handleUlClick}
                                     ref={this.setULRef}
                                 >
                                     {ReactHtmlParser(this.state.htmlTo)}
@@ -211,7 +211,7 @@ class Map extends Component{
                             Search
                     </button>
                     </form>
-                    <ol class="whereToInstructions">
+                    <ol className="whereToInstructions">
                         <h3>Instructions</h3>
                         <li>Type in your starting and desired destination address in the input field.</li>
                         <li>Once you are satisfied with your entries, click search to find out the length of your commute.</li>
