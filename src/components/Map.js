@@ -83,6 +83,7 @@ class Map extends Component {
       }
     }
   };
+  
   extractList = (result) => {
     let list = "";
     if (result && result.data.results) {

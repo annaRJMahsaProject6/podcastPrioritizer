@@ -40,7 +40,7 @@ class PodcastDisplay extends Component {
   render() {
     // console.log(this.props.podcastList);
     return (
-      <section className="podcastContainer">
+      <section className="podcastDisplay">
         <div className="wrapper">
           <h2 className="podcastHeader">Pick Your Podcast</h2>
           {this.props.isLoadingPodcast ? <Preloader /> : null}

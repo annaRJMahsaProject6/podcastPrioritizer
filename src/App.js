@@ -7,6 +7,7 @@ import Podcast from "./components/Podcast";
 import TravelType from "./components/TravelType";
 import PodcastDisplay from "./components/PodcastDisplay";
 import AudioPlayer from "./components/AudioPlayer";
+import Footer from "./components/Footer";
 import Swal from "sweetalert2";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -240,13 +241,16 @@ class App extends Component {
             />
           </section>
         ) : null}
-        <section className="audioPlayer">
-          {this.state.audio ? (
-            <AudioPlayer audioToPlay={this.state.audio} />
-          ) : (
-            ""
-          )}
-        </section>
+        {this.state.audio !== "" ? (
+          <section className="audioPlayer">
+            {this.state.audio ? (
+              <AudioPlayer audioToPlay={this.state.audio} />
+            ) : (
+              ""
+            )}
+          </section>
+        ) : null}
+        <Footer />
       </div>
     );
   }

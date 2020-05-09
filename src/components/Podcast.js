@@ -12,9 +12,8 @@ class Podcast extends Component {
     this.setState({
       podcastInput:event.target.value
     })
-    
-
   }
+  
   render() {
       // user podcast selection form
       return (
