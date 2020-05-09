@@ -82,13 +82,12 @@ class Map extends Component{
                 }
             }
         }
-        
     }
     extractList = (result) => {
         let list = '';
         if (result && result.data.results) {
             result.data.results.forEach((address) => {
-                list = list + `<li><img src="https://assets.mapquestapi.com/icon/v2/marker-sm.png" alt="icon" ></img>${address.displayString}</li>`;
+                list = list + `<li><img src="https://assets.mapquestapi.com/icon/v2/marker-sm.png" alt="drop icon" ></img>${address.displayString}</li>`;
             })
         } else { list = ''; }
         return list;
@@ -159,10 +158,11 @@ class Map extends Component{
                                 onBlur={() => this.setState({ isFromListExpanded: false })}
                             />
                             {
-                            this.state.htmlFrom && this.state.isFromListExpanded
+                            (this.state.htmlFrom && this.state.isFromListExpanded)
                             ?   <ul
                                     className="suggestions from-address"
                                     onClick={this.handleUlClick}
+                                    onMouseDown={this.handleUlClick}
                                     ref={this.setULRef}
                                 >
                                     {ReactHtmlParser(this.state.htmlFrom)}
@@ -187,6 +187,7 @@ class Map extends Component{
                             ?   <ul
                                     className="suggestions to-address"
                                     onClick={this.handleUlClick}
+                                    onMouseDown={this.handleUlClick}
                                     ref={this.setULRef}
                                 >
                                     {ReactHtmlParser(this.state.htmlTo)}
