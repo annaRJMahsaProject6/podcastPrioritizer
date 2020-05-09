@@ -134,16 +134,7 @@ class Map extends Component{
                 })
             }
         }
-        // this.checkEmptyUserInput();
-
     }
-
-    // checkEmptyUserInput = (event) => {
-    //     if (event.target.value === "") {
-    //         console.log(event.target.value)
-    //         alert('please type an address')
-    //     }
-    // }
 
 
     render(){
@@ -204,7 +195,7 @@ class Map extends Component{
                             Search
                     </button>
                     </form>
-                    <ol class="whereToInstructions">
+                    <ol className="whereToInstructions">
                         <h3>Instructions</h3>
                         <li>Type in your starting and desired destination address in the input field.</li>
                         <li>Once you are satisfied with your entries, click search to find out the length of your commute.</li>
