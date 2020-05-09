@@ -48,7 +48,7 @@ class Map extends Component{
             method: 'GET',
             responseType: 'jsonp',
             params: {
-                key:'ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn',
+                key:'TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS',
                 format: 'png',
                 limit:'5',
                 collection:'adminArea,address,category,franchise,airport,poi',

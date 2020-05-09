@@ -12,7 +12,9 @@ class AudioPlayer extends Component {
             timeLeft: '00:00',
             mouseDown: false,
             audioFile: '',
+            callNumber:0
         };
+        this.audioPlayerRef = React.createRef();
     }
 
 
@@ -23,9 +25,10 @@ class AudioPlayer extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (this.props.audioToPlay.audio !== prevState.audioFile) {
             this.setAudio();
+            this.scroll(this.audioPlayerRef);
         }
     }
-
+    
     componentDidMount() {
         this.setState({
             isAudioPlaying: false,
@@ -34,11 +37,9 @@ class AudioPlayer extends Component {
         this.audio.src = this.props.audioToPlay.audio;
         this.audio.ontimeupdate = this.handleProgress;
         setTimeout(this.playAudio, 1000);
-        this.goToMusic();
+        this.scroll(this.audioPlayerRef);
     }
-    goToMusic = ()=>{
-        window.scrollTo(0, document.body.scrollHeight);
-    }
+    
     setAudio = () => {
         const newAudio = this.props.audioToPlay;
         this.setState({
@@ -51,7 +52,6 @@ class AudioPlayer extends Component {
         this.audio.src = newAudio.audio;
         this.audio.currentTime = 0;
         setTimeout(this.playAudio,1000);
-        this.goToMusic();
     }
     showAlert = ()=>{
         Swal.fire({
@@ -62,21 +62,25 @@ class AudioPlayer extends Component {
         });
     }
     playAudio = () => {
-    //     this.audio.onloadedmetadata = (event)=>{
-    //         if (!event.currentTarget.duration){
-    //             this.showAlert();     
-    //         }
-            if(!this.audio.duration){
-                this.showAlert();
+        let flag = false;
+        if(!this.audio.duration){
+            if(!this.state.callNumber){
+                setTimeout(()=>{
+                        this.playAudio();
+                        this.setState({callNumber:1})}
+                    ,2000);
+            }else{
+                flag = true;
             }
-            else{
-                this.setState({
-                    isAudioPlaying: true,
-                    toggleButton: '❚ ❚',
-                });
-                this.audio.play();
-            }
-        
+        }
+        else{
+            this.setState({
+                isAudioPlaying: true,
+                toggleButton: '❚ ❚',
+            });
+            this.audio.play();
+        }
+        if(flag)this.showAlert();
     };
 
     pauseAudio = () => {
@@ -115,6 +119,9 @@ class AudioPlayer extends Component {
             })
         }
     }
+    scroll(ref) {
+        ref.current.scrollIntoView({ behavior: 'smooth' })
+    }
     render() {
         const selectedAudio = this.props.audioToPlay;
         return (
@@ -125,7 +132,7 @@ class AudioPlayer extends Component {
                     src={selectedAudio.thumbnail} 
                     alt={selectedAudio.title} />
                 </div>
-                <div className="audioControl">
+                <div ref={this.audioPlayerRef} className="audioControl">
                     <button
                         className="playerButton toggle" title="Toggle Play"
                         onClick={() => this.togglePlay()}>{this.state.toggleButton}

@@ -26,6 +26,10 @@ class App extends Component {
       travelType: "",
       audio: "",
     };
+    this.staticMapRef = React.createRef();
+  }
+  scrollTo(ref){
+    ref.current.scrollIntoView({ behavior: 'smooth' });
   }
 
   handleAddressSubmit = (event, fromInput, toInput) => {
@@ -36,7 +40,7 @@ class App extends Component {
       method: "GET",
       responseType: "json",
       params: {
-        key: "ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn",
+        key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
         format: "png",
         start: fromInput,
         end: toInput,
@@ -48,7 +52,6 @@ class App extends Component {
         margin:40,
       },
     }).then((result) => {
-      console.log("map API", result);
       this.setState({
         staticMapUrl: result.request.responseURL,
       });
@@ -180,8 +183,12 @@ class App extends Component {
       audio: selectedAudio,
     });
   };
-
+  
   render() {
+    if (this.state.staticMapUrl && this.state.formatedWalkTime !== ""){
+      setTimeout(()=>this.scrollTo(this.staticMapRef),1000);
+    }
+    
     return (
       <div className="App">
         <Header />
@@ -189,8 +196,8 @@ class App extends Component {
         {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
           <section className="routeMap">
             <div className="routeMapContainer wrapper">
-              <h2 className="routeMapHeader">Your Travel Route</h2>
-              <p>Map overview of your communte.</p>
+              <h2 ref={this.staticMapRef} className="routeMapHeader">Your Travel Route</h2>
+              <p>Map overview of your commute.</p>
               <img
                 src={this.state.staticMapUrl}
                 className="routeMapImg"
