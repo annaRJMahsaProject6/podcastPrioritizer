@@ -42,21 +42,21 @@ class Map extends Component {
       });
     }
   }
-
-  getAddressFromApi = (query) => {
-    return axios({
-      url: "https://www.mapquestapi.com/search/v3/prediction",
-      method: "GET",
-      responseType: "jsonp",
-      params: {
-        key: "ozwRV4KrZgLGMjKBYbnTIZBWQAN4JZBn",
-        limit: "5",
-        collection: "adminArea,address,category,franchise,airport,poi",
-        countryCode: "CA",
-        q: query,
-      },
-    });
-  };
+  getAddressFromApi = (query)=>{
+      return axios({
+          url:'https://www.mapquestapi.com/search/v3/prediction',
+          method: 'GET',
+          responseType: 'jsonp',
+          params: {
+              key:'TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS',
+              format: 'png',
+              limit:'5',
+              collection:'adminArea,address,category,franchise,airport,poi',
+              countryCode:'CA',
+              q:query,
+          }
+      })
+  }
 
   handleUlClick = (event) => {
     this.handleClickOutside(event);
@@ -90,7 +90,7 @@ class Map extends Component {
       result.data.results.forEach((address) => {
         list =
           list +
-          `<li><img src="https://assets.mapquestapi.com/icon/v2/marker-sm.png" alt="drop icon" ></img>${address.displayString}</li>`;
+          `<li><img src="https://assets.mapquestapi.com/icon/v2/marker-sm.png" alt="drop icon"></img>${address.displayString}</li>`;
       });
     } else {
       list = "";
@@ -232,7 +232,7 @@ class Map extends Component {
             </li>
           </ol>
         </div>
-        {this.props.isLoadingMap ? <Preloader /> : null}
+        {this.props.isLoadingMap ? <Preloader styleName="WhereTo" /> : null}
       </section>
     );
   }

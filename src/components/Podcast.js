@@ -7,11 +7,21 @@ class Podcast extends Component {
     this.state = {
         podcastInput: ""
     }
+    this.podcastRef = React.createRef();
+  }
+  componentDidMount(){
+    this.scroll(this.podcastRef);
+  }
+  componentDidUpdate(){
+    this.scroll(this.podcastRef);
   }
   handleChange=(event)=>{
     this.setState({
       podcastInput:event.target.value
     })
+  }
+  scroll(ref) {
+    ref.current.scrollIntoView({ behavior: 'smooth' })
   }
   
   render() {
@@ -19,7 +29,7 @@ class Podcast extends Component {
       return (
         <section className="whatToListen">
           <form className="search-form podcastSearchForm wrapper">
-            <h2 className="podcastSearchHeader">What to Listen to?</h2>
+            <h2 ref={this.podcastRef} className="podcastSearchHeader">What to Listen to?</h2>
             <div className="podcastSearchInput">
               <label htmlFor="podcast"></label>
               <input
