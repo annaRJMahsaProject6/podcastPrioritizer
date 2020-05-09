@@ -1,3 +1,18 @@
-.routeMap{
-    
+.routeMap {
+    height: 35rem;
+    display: flex;
+    // align-items: cent;
+    background-color: #EDF2EF;
+}
+
+.routeMapContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.routeMapImg {
+    border: 3px solid #fff;
+    outline: solid #F97068 3px;
+    border-radius: 0.5rem;
 }
