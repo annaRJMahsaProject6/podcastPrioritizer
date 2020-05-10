@@ -1,3 +1,10 @@
+@media(max-width:750px){
+    input.address-search.from-input, 
+    input.address-search.to-input, 
+    input.podcast-search{
+        font-size: 0.75rem;
+    }
+}
 @media(max-width:600px){
     h2{
         font-size: 3rem;
@@ -6,9 +13,22 @@
         flex-wrap: wrap;
         .addressSearchInput{
             width: 100%;
+            margin: 20px 0;
+            .from-input,.to-input{
+                margin: 0;
+            }
         }
+        
         button{
             width: 100%;
+        }
+    }
+    .search-form{
+        .podcastSearchInput{
+            .podcast-search{
+                width:100%;
+                margin-bottom: 20px;
+            }
         }
     }
 }
