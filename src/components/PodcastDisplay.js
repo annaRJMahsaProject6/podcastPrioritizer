@@ -36,7 +36,7 @@ class PodcastDisplay extends Component {
                     <div className="podcastImgContainer">
                       <img
                         src={podcast.thumbnail}
-                        alt=""
+                        alt={podcast.title_highlighted}
                         className="podcastImg"
                       />
                       <button

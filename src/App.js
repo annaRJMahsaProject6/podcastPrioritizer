@@ -264,7 +264,7 @@ class App extends Component {
             loadPodcastList={this.loadPodcastList}
           />
         ) : null}
-        {this.state.podcastList.length !== 0 && !this.state.isLoadingMap ? (
+        {this.state.podcastList.length !== 0 && !this.state.isLoadingMap && !this.state.isLoadingMap ? (
           <section>
             <PodcastDisplay
               podcastList={this.state.podcastList}
