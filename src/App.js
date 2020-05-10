@@ -165,21 +165,21 @@ class App extends Component {
     const minLength = travelTime - 5;
     const maxLength = travelTime + 5;
 
-    if (this.state.walkTime !== "") {
-      axios({
-        url: "https://listen-api.listennotes.com/api/v2/search",
-        method: "GET",
-        headers: { "X-ListenAPI-Key": "0be4947c18024c2d8a5bb0dcb11eb2ac" },
-        dataResponse: "jsonp",
-        params: {
-          q: `"${podcastInput}"`,
-          type: "episode",
-          language: "English",
-          len_min: minLength,
-          len_max: maxLength,
-        },
-      }).then((result) => {
-        if (result.data.results.length === 0) {
+    if (this.state.walkTime!=="" && this.state.travelType!==""){
+    axios({
+      url: "https://listen-api.listennotes.com/api/v2/search",
+      method: "GET",
+      headers: { "X-ListenAPI-Key": "0be4947c18024c2d8a5bb0dcb11eb2ac" },
+      dataResponse: "jsonp",
+      params: {
+        q: `"${podcastInput}"`,
+        type: "episode",
+        language: "English",
+        len_min: minLength,
+        len_max: maxLength,
+      },
+    }).then((result) => {
+      if (result.data.results.length === 0) {
           Swal.fire({
             title: "Uh-oh!",
             text:
@@ -197,6 +197,14 @@ class App extends Component {
             isLoadingPodcast: false,
           });
         }
+    })
+    }
+    else{
+      Swal.fire({
+        title: "Uh-oh!",
+        text: "please enter the address and travel type first",
+        confirmButtonText: "OK",
+        padding: "2rem",
       });
     }
   };

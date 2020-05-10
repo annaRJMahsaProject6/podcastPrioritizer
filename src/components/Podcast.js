@@ -29,6 +29,7 @@ class Podcast extends Component {
       // user podcast selection form
       return (
         <section className="whatToListen">
+        <div className="whatToListenContainer wrapper">
           <form className="search-form podcastSearchForm wrapper">
             <h2 ref={this.podcastRef} className="podcastSearchHeader">What to Listen to?</h2>
             <div className="podcastSearchInput">
@@ -67,6 +68,7 @@ class Podcast extends Component {
               Click the listen button to hear a podcast. Happy listening!
             </li>
           </ol>
+          </div>
         </section>
       );
   }
