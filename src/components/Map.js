@@ -57,30 +57,40 @@ class Map extends Component {
           }
       })
   }
-
+  setFromState=(text)=>{
+    this.setState({
+      userInputFrom: text,
+      htmlFrom: ``,
+    });
+  }
+  setToState=(text)=>{
+    this.setState({
+      userInputTo: text,
+      htmlTo: ``,
+    });
+  }
   handleUlClick = (event) => {
+    event.preventDefault();
     this.handleClickOutside(event);
-    if (event.target.parentNode.classList.contains("from-address")) {
-      if (event.target.localName === "li") {
-        const text = event.target.innerText;
-        if (text !== "Address") {
-          this.setState({
-            userInputFrom: text,
-            htmlFrom: ``,
-          });
-        }
-      }
+    if (event.target.localName === "button" && 
+        event.target.parentNode.parentNode.classList.contains("from-address")){
+      const text = event.target.parentNode.innerText;
+      this.setFromState(text);
     }
-    if (event.target.parentNode.classList.contains("to-address")) {
-      if (event.target.localName === "li") {
+    if (event.target.localName === "li" && 
+        event.target.parentNode.classList.contains("from-address")) {
         const text = event.target.innerText;
-        if (text !== "Address") {
-          this.setState({
-            userInputTo: text,
-            htmlTo: ``,
-          });
-        }
+      this.setFromState(text);
+    }
+    if (event.target.localName === "li" && 
+      event.target.parentNode.classList.contains("to-address")) {
+      const text = event.target.innerText;
+        this.setToState(text);
       }
+    if (event.target.localName === "button" && 
+      event.target.parentNode.parentNode.classList.contains("to-address")) {
+        const text = event.target.parentNode.innerText;
+        this.setToState(text);
     }
   };
   
@@ -90,7 +100,7 @@ class Map extends Component {
       result.data.results.forEach((address) => {
         list =
           list +
-          `<li><img src="https://assets.mapquestapi.com/icon/v2/marker-sm.png" alt="drop icon"></img>${address.displayString}</li>`;
+          `<li><button><img src="https://assets.mapquestapi.com/icon/v2/marker.png" alt="drop icon"></img>${address.displayString}</button></li>`;
       });
     } else {
       list = "";
@@ -161,7 +171,7 @@ class Map extends Component {
                 onKeyUp={this.handleUserInput}
                 onChange={this.handleUserInput}
                 onFocus={() => this.setState({ isFromListExpanded: true })}
-                onBlur={() => this.setState({ isFromListExpanded: false })}
+                // onBlur={() => this.setState({ isFromListExpanded: false })}
               />
               {this.state.htmlFrom && this.state.isFromListExpanded ? (
                 <ul
@@ -187,7 +197,7 @@ class Map extends Component {
                 onKeyUp={this.handleUserInput}
                 onChange={this.handleUserInput}
                 onFocus={() => this.setState({ isToListExpanded: true })}
-                onBlur={() => this.setState({ isToListExpanded: false })}
+                // onBlur={() => this.setState({ isToListExpanded: false })}
               />
               {this.state.htmlTo && this.state.isToListExpanded ? (
                 <ul
