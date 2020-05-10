@@ -43,39 +43,3 @@
     border-radius: 0.5rem;
     width: 100%;
 }
-
-@media (max-width: 1128px) {
-    .routeMap {
-        height: 40rem;
-    }
-}
-
-@media (max-width: 890px) {
-    .routeMapContainer {
-        p {
-            font-size: 1.2rem;
-        }
-    }
-    .routeMap {
-        height: 35rem;
-    }
-}
-
-@media (max-width: 806px) {
-    .routeMap {
-        height: 33rem;
-    }
-}
-
-@media (max-width: 682px) {
-    .routeMap {
-        height: 30rem;
-    }
-}
-
-@media (max-width: 605px) {
-    .routeMap {
-        height: 25rem;
-        align-items:center;
-    }
-}

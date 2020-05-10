@@ -202,7 +202,7 @@ class App extends Component {
     else{
       Swal.fire({
         title: "Uh-oh!",
-        text: "please enter the address and travel type first",
+        text: "Please select a travel preference first before proceeding.",
         confirmButtonText: "OK",
         padding: "2rem",
       });
