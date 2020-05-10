@@ -12,16 +12,18 @@ class AudioPlayer extends Component {
       timeLeft: "00:00",
       mouseDown: false,
       audioFile: "",
+      callNumber: 0,
     };
+    this.audioPlayerRef = React.createRef();
   }
 
   // thank you Salvatore @ stackoverflow.com (https://stackoverflow.com/questions/39779527/toggle-play-pause-in-react-with-audio)
   audio = new Audio();
-
   // here first check if there is any difference in state and props received
   componentDidUpdate(prevProps, prevState) {
     if (this.props.audioToPlay.audio !== prevState.audioFile) {
       this.setAudio();
+      this.scroll(this.audioPlayerRef);
     }
   }
 
@@ -33,11 +35,19 @@ class AudioPlayer extends Component {
     this.audio.src = this.props.audioToPlay.audio;
     this.audio.ontimeupdate = this.handleProgress;
     setTimeout(this.playAudio, 1000);
-    this.goToMusic();
+    this.scroll(this.audioPlayerRef);
   }
-  goToMusic = () => {
-    window.scrollTo(0, document.body.scrollHeight);
+  
+  getFormattedTime = (timeLeft) => {
+    const hour = Math.floor(timeLeft / (60 * 60));
+    let mins = Math.floor(timeLeft / 60) % 60;
+    let seconds = timeLeft % 60;
+    mins = mins < 10 && mins >= 0 ? "0" + mins : mins;
+    seconds = seconds < 10 && seconds >= 0 ? "0" + seconds : seconds;
+    timeLeft = hour ? `${hour}:${mins}:${seconds}` : `${mins}:${seconds}`;
+    return timeLeft;
   };
+
   setAudio = () => {
     const newAudio = this.props.audioToPlay;
     this.setState({
@@ -50,24 +60,29 @@ class AudioPlayer extends Component {
     this.audio.src = newAudio.audio;
     this.audio.currentTime = 0;
     setTimeout(this.playAudio, 1000);
-    this.goToMusic();
   };
+
   showAlert = () => {
     Swal.fire({
-      title: "Uh-oh!",
+      title: "Sorry About That!",
       text:
-        "This audio is not available at the moment. Please select another podcast to play!",
+        "This audio is not available at the moment. Please try again audio to play!",
       confirmButtonText: "OK",
       padding: "2rem",
     });
   };
+
   playAudio = () => {
-    //     this.audio.onloadedmetadata = (event)=>{
-    //         if (!event.currentTarget.duration){
-    //             this.showAlert();
-    //         }
+    let flag = false;
     if (!this.audio.duration) {
-      this.showAlert();
+      if (!this.state.callNumber) {
+        setTimeout(() => {
+          this.playAudio();
+          this.setState({ callNumber: 1 });
+        }, 2000);
+      } else {
+        flag = true;
+      }
     } else {
       this.setState({
         isAudioPlaying: true,
@@ -75,6 +90,7 @@ class AudioPlayer extends Component {
       });
       this.audio.play();
     }
+    if (flag) this.showAlert();
   };
 
   pauseAudio = () => {
@@ -101,14 +117,12 @@ class AudioPlayer extends Component {
     this.audio.currentTime = scrubTime;
   };
 
-  getFormattedTime = (timeLeft) => {
-    const hour = Math.floor(timeLeft / (60 * 60));
-    let mins = Math.floor(timeLeft / 60) % 60;
-    let seconds = timeLeft % 60;
-    mins = mins < 10 && mins >= 0 ? "0" + mins : mins;
-    seconds = seconds < 10 && seconds >= 0 ? "0" + seconds : seconds;
-    timeLeft = hour ? `${hour}:${mins}:${seconds}` : `${mins}:${seconds}`;
-    return timeLeft;
+  pauseAudio = () => {
+    this.setState({
+      isAudioPlaying: false,
+      toggleButton: "▶️",
+    });
+    this.audio.pause();
   };
 
   handleProgress = () => {
@@ -123,15 +137,27 @@ class AudioPlayer extends Component {
     }
   };
 
+  togglePlay = () => {
+    if (this.state.isAudioPlaying) {
+      this.pauseAudio();
+    } else {
+      this.playAudio();
+    }
+  };
+
+  scroll(ref) {
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  }
+
   render() {
     const selectedAudio = this.props.audioToPlay;
     return (
       <div className="wrapper audioWrapper">
-        <h2 className="audioHeader">Happy Listening!</h2>
+        <h2 className="audioHeader">Your Music Here</h2>
         <div className="playerThumbnail">
           <img src={selectedAudio.thumbnail} alt={selectedAudio.title} />
         </div>
-        <div className="audioControl">
+        <div ref={this.audioPlayerRef} className="audioControl">
           <button
             className="playerButton toggle"
             title="Toggle Play"

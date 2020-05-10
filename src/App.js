@@ -29,6 +29,10 @@ class App extends Component {
       isLoadingMap: false,
       isLoadingPodcast: false,
     };
+    this.staticMapRef = React.createRef();
+  }
+  scrollTo(ref){
+    ref.current.scrollIntoView({ behavior: 'smooth' });
   }
 
   handleAddressSubmit = (event, fromInput, toInput) => {
@@ -47,13 +51,17 @@ class App extends Component {
         countryCode: "CA",
         routeColor: "F97068",
         routeWidth: 5,
+        scalebar:true,
+        margin:40,
       },
     }).then((result) => {
-      console.log("map API", result);
       this.setState({
         staticMapUrl: result.request.responseURL,
         isLoadingMap: false,
-      });
+      }, () => {
+        if (this.state.staticMapUrl && this.state.formatedWalkTime !== "") {
+          setTimeout(() => this.scrollTo(this.staticMapRef), 0);
+        }});
     });
 
     // getting pedestrian travel time
@@ -67,6 +75,7 @@ class App extends Component {
           to: toInput,
           // from:"312 horsham ave, northyork, ontario",
           // to:"9205 yonge st, richmonhill, ontario",
+          countryCode:"CA",
           routeType: "pedestrian",
           unit: "k",
         },
@@ -96,6 +105,7 @@ class App extends Component {
         key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
         from: fromInput,
         to: toInput,
+        countryCode: "CA",
         routeType: "bicycle",
         unit: "k",
       },
@@ -123,6 +133,9 @@ class App extends Component {
         "You must enter in a valid starting and destination address if you wish to proceed.",
       confirmButtonText: "OK",
       padding: "2rem",
+    });
+    this.setState({
+      isLoadingMap: false,
     });
   };
 
@@ -166,10 +179,24 @@ class App extends Component {
         len_max: maxLength,
       },
     }).then((result) => {
-      this.setState({
-        podcastList: result.data.results,
-        isLoadingPodcast: false,
-      });
+      if (result.data.results.length === 0) {
+          Swal.fire({
+            title: "Uh-oh!",
+            text:
+              "Sorry, there are no podcasts that match your search criteria. Please choose another topic!",
+            confirmButtonText: "OK",
+            padding: "2rem",
+          });
+           this.setState({
+             podcastList: result.data.results,
+             isLoadingPodcast: false,
+           });
+        } else {
+          this.setState({
+            podcastList: result.data.results,
+            isLoadingPodcast: false,
+          });
+        }
     })
     }
     else{
@@ -180,19 +207,7 @@ class App extends Component {
         padding: "2rem",
       });
     }
-    
-    if (this.state.podcastList.length !== 0){ 
-        Swal.fire({
-          title: "Uh-oh!",
-          text:
-            "Sorry, there are no podcasts that match your search criteria. Please choose another topic!",
-          confirmButtonText: "OK",
-          padding: "2rem",
-        });
-      
-    };
-  }
-  
+  };
 
   handleChoice = (id) => {
     this.setState({
@@ -205,8 +220,9 @@ class App extends Component {
       audio: selectedAudio,
     });
   };
-
+  
   render() {
+    
     return (
       <div className="App">
         <Header />
@@ -220,8 +236,10 @@ class App extends Component {
         !this.state.isLoadingMap ? (
           <section className="routeMap" id="routeMap">
             <div className="routeMapContainer wrapper">
-              <h2 class="routeMapHeader">Your Travel Route</h2>
-              <p>Map overview of your communte.</p>
+              <h2 ref={this.staticMapRef} className="routeMapHeader">
+                Your Travel Route
+              </h2>
+              <p>Map overview of your commute.</p>
               <img
                 src={this.state.staticMapUrl}
                 className="routeMapImg"
@@ -237,14 +255,16 @@ class App extends Component {
             chooseTravelType={this.handleChoice}
           ></TravelType>
         ) : null}
-        {this.state.staticMapUrl && this.state.formatedWalkTime !== "" ? (
+        {this.state.staticMapUrl &&
+        this.state.formatedWalkTime !== "" &&
+        !this.state.isLoadingMap ? (
           <Podcast
             submitForm={this.handlePodcastSubmit}
             isLoadingPodcast={this.state.isLoadingPodcast}
             loadPodcastList={this.loadPodcastList}
           />
         ) : null}
-        {this.state.podcastList.length !== 0 ? (
+        {this.state.podcastList.length !== 0 && !this.state.isLoadingMap ? (
           <section>
             <PodcastDisplay
               podcastList={this.state.podcastList}
