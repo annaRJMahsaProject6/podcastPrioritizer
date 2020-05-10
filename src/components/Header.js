@@ -4,7 +4,7 @@ class Header extends Component {
     render() {
         return (
           <header>
-            <section className="hero">
+            <section className="hero wrapper">
               <div className="whiteBlock">
                 <h1>Podcast Prioritizer</h1>
                 <div className="heroTextContainer">
