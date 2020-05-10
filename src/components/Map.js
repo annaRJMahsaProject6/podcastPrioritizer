@@ -147,7 +147,7 @@ class Map extends Component {
           <h2>Where To Go?</h2>
           <form
             action="submit"
-            className="search-form wrapper"
+            className="search-form"
             autoComplete="off"
           >
             <div className="addressSearchInput">
