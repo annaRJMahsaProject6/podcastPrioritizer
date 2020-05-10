@@ -228,7 +228,9 @@ class App extends Component {
         !this.state.isLoadingMap ? (
           <section className="routeMap" id="routeMap">
             <div className="routeMapContainer wrapper">
-              <h2 ref={this.staticMapRef} className="routeMapHeader">Your Travel Route</h2>
+              <h2 ref={this.staticMapRef} className="routeMapHeader">
+                Your Travel Route
+              </h2>
               <p>Map overview of your commute.</p>
               <img
                 src={this.state.staticMapUrl}
@@ -254,7 +256,7 @@ class App extends Component {
             loadPodcastList={this.loadPodcastList}
           />
         ) : null}
-        {this.state.podcastList.length !== 0 && !this.state.isLoadingMap && !this.state.isLoadingMap ? (
+        {this.state.podcastList.length !== 0 && !this.state.isLoadingMap ? (
           <section>
             <PodcastDisplay
               podcastList={this.state.podcastList}
