@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Swal from "sweetalert2";
 
 class AudioPlayer extends Component {
-
     constructor() {
         super();
         this.progressBar = React.createRef();
@@ -17,7 +16,6 @@ class AudioPlayer extends Component {
         };
         this.audioPlayerRef = React.createRef();    
     }
-
     // thank you Salvatore @ stackoverflow.com (https://stackoverflow.com/questions/39779527/toggle-play-pause-in-react-with-audio)
     audio = new Audio();
     // here first check if there is any difference in state and props received
@@ -107,13 +105,6 @@ class AudioPlayer extends Component {
         this.audio.currentTime = scrubTime;
     }
 
-    pauseAudio = () => {
-        this.setState({
-        isAudioPlaying: false,
-        toggleButton: "▶️",
-        });
-        this.audio.pause();
-    };
     handleProgress = () => {
         const percent = (this.audio.currentTime / this.audio.duration) * 100;
         let timeLeft = Math.floor(this.audio.duration - this.audio.currentTime);
@@ -123,13 +114,6 @@ class AudioPlayer extends Component {
                 timeLeft: timeLeft,
                 progress: `${percent}`
             })
-        }
-    }
-    togglePlay = () => {
-        if (this.state.isAudioPlaying) {
-        this.pauseAudio();
-        } else {
-        this.playAudio();
         }
     }
     scroll(ref) {
@@ -164,5 +148,4 @@ class AudioPlayer extends Component {
         )
     }
 };
-
 export default AudioPlayer;

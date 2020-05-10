@@ -179,10 +179,24 @@ class App extends Component {
         len_max: maxLength,
       },
     }).then((result) => {
-      this.setState({
-        podcastList: result.data.results,
-        isLoadingPodcast: false,
-      });
+      if (result.data.results.length === 0) {
+          Swal.fire({
+            title: "Uh-oh!",
+            text:
+              "Sorry, there are no podcasts that match your search criteria. Please choose another topic!",
+            confirmButtonText: "OK",
+            padding: "2rem",
+          });
+           this.setState({
+             podcastList: result.data.results,
+             isLoadingPodcast: false,
+           });
+        } else {
+          this.setState({
+            podcastList: result.data.results,
+            isLoadingPodcast: false,
+          });
+        }
     })
     }
     else{
@@ -222,7 +236,9 @@ class App extends Component {
         !this.state.isLoadingMap ? (
           <section className="routeMap" id="routeMap">
             <div className="routeMapContainer wrapper">
-              <h2 ref={this.staticMapRef} className="routeMapHeader">Your Travel Route</h2>
+              <h2 ref={this.staticMapRef} className="routeMapHeader">
+                Your Travel Route
+              </h2>
               <p>Map overview of your commute.</p>
               <img
                 src={this.state.staticMapUrl}
