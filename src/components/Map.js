@@ -142,7 +142,7 @@ class Map extends Component {
 
   render() {
     return (
-      <section className="whereTo">
+      <section className="whereTo" id="whereTo">
         <div className="whereToContainer wrapper">
           <h2>Where To Go?</h2>
           <form

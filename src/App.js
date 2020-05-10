@@ -31,8 +31,8 @@ class App extends Component {
     };
     this.staticMapRef = React.createRef();
   }
-  scrollTo(ref){
-    ref.current.scrollIntoView({ behavior: 'smooth' });
+  scrollTo(ref) {
+    ref.current.scrollIntoView({ behavior: "smooth" });
   }
 
   handleAddressSubmit = (event, fromInput, toInput) => {
@@ -51,17 +51,21 @@ class App extends Component {
         countryCode: "CA",
         routeColor: "F97068",
         routeWidth: 5,
-        scalebar:true,
-        margin:40,
+        scalebar: true,
+        margin: 40,
       },
     }).then((result) => {
-      this.setState({
-        staticMapUrl: result.request.responseURL,
-        isLoadingMap: false,
-      }, () => {
-        if (this.state.staticMapUrl && this.state.formatedWalkTime !== "") {
-          setTimeout(() => this.scrollTo(this.staticMapRef), 0);
-        }});
+      this.setState(
+        {
+          staticMapUrl: result.request.responseURL,
+          isLoadingMap: false,
+        },
+        () => {
+          if (this.state.staticMapUrl && this.state.formatedWalkTime !== "") {
+            setTimeout(() => this.scrollTo(this.staticMapRef), 0);
+          }
+        }
+      );
     });
 
     // getting pedestrian travel time
@@ -75,7 +79,7 @@ class App extends Component {
           to: toInput,
           // from:"312 horsham ave, northyork, ontario",
           // to:"9205 yonge st, richmonhill, ontario",
-          countryCode:"CA",
+          countryCode: "CA",
           routeType: "pedestrian",
           unit: "k",
         },
@@ -165,21 +169,21 @@ class App extends Component {
     const minLength = travelTime - 5;
     const maxLength = travelTime + 5;
 
-    if (this.state.walkTime!=="" && this.state.travelType!==""){
-    axios({
-      url: "https://listen-api.listennotes.com/api/v2/search",
-      method: "GET",
-      headers: { "X-ListenAPI-Key": "0be4947c18024c2d8a5bb0dcb11eb2ac" },
-      dataResponse: "jsonp",
-      params: {
-        q: `"${podcastInput}"`,
-        type: "episode",
-        language: "English",
-        len_min: minLength,
-        len_max: maxLength,
-      },
-    }).then((result) => {
-      if (result.data.results.length === 0) {
+    if (this.state.walkTime !== "" && this.state.travelType !== "") {
+      axios({
+        url: "https://listen-api.listennotes.com/api/v2/search",
+        method: "GET",
+        headers: { "X-ListenAPI-Key": "0be4947c18024c2d8a5bb0dcb11eb2ac" },
+        dataResponse: "jsonp",
+        params: {
+          q: `"${podcastInput}"`,
+          type: "episode",
+          language: "English",
+          len_min: minLength,
+          len_max: maxLength,
+        },
+      }).then((result) => {
+        if (result.data.results.length === 0) {
           Swal.fire({
             title: "Uh-oh!",
             text:
@@ -187,19 +191,18 @@ class App extends Component {
             confirmButtonText: "OK",
             padding: "2rem",
           });
-           this.setState({
-             podcastList: result.data.results,
-             isLoadingPodcast: false,
-           });
+          this.setState({
+            podcastList: result.data.results,
+            isLoadingPodcast: false,
+          });
         } else {
           this.setState({
             podcastList: result.data.results,
             isLoadingPodcast: false,
           });
         }
-    })
-    }
-    else{
+      });
+    } else {
       Swal.fire({
         title: "Uh-oh!",
         text: "Please select a travel preference first before proceeding.",
@@ -220,9 +223,8 @@ class App extends Component {
       audio: selectedAudio,
     });
   };
-  
+
   render() {
-    
     return (
       <div className="App">
         <Header />
@@ -264,7 +266,9 @@ class App extends Component {
             loadPodcastList={this.loadPodcastList}
           />
         ) : null}
-        {this.state.podcastList.length !== 0 && !this.state.isLoadingMap && !this.state.isLoadingMap ? (
+        {this.state.podcastList.length !== 0 &&
+        !this.state.isLoadingMap &&
+        !this.state.isLoadingMap ? (
           <section>
             <PodcastDisplay
               podcastList={this.state.podcastList}

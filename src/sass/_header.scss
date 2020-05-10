@@ -22,6 +22,14 @@ header {
         z-index: 1;
     }
 
+    .startLink {
+        text-decoration: none;
+        border-bottom: 2px solid;
+        color: #F97068;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
     .hero {
         height: 100%;
     }
