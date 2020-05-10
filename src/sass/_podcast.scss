@@ -11,19 +11,22 @@
 
 .podcastGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   align-items: center;
   grid-gap: 30px;
   margin-top: 4rem;
+  transition:all 0.3s ease-in-out;
 }
 
 .podcastList {
   display: flex;
+  flex-direction:row;
   height: 100%;
   background-color: #fff;
-  // border: 3px solid #83DEE1;
+  border: 2px solid #83DEE1;
   // outline: solid #fff 3px;
   border-radius: 0.5rem;
+  transition:flex-direction 0.3s ease-in-out;
 }
 
 .podcastInfo {
@@ -33,8 +36,9 @@
   flex-direction: column;
   padding: 1rem;
   overflow-x: scroll;
-
-    & > *:not(:last-child) {
+  transition:all 0.3s ease-in-out;
+  
+  & > *:not(:last-child) {
     margin-bottom: 0.5rem;
   }
 }
@@ -43,6 +47,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition:all 0.3s ease-in-out;
 }
 
 .podcastImg {

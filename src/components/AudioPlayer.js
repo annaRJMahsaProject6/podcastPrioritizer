@@ -114,7 +114,17 @@ class AudioPlayer extends Component {
         });
         this.audio.pause();
     };
-
+    handleProgress = () => {
+        const percent = (this.audio.currentTime / this.audio.duration) * 100;
+        let timeLeft = Math.floor(this.audio.duration - this.audio.currentTime);
+        timeLeft = this.getFormattedTime(timeLeft);
+        if (percent) {
+            this.setState({
+                timeLeft: timeLeft,
+                progress: `${percent}`
+            })
+        }
+    }
     togglePlay = () => {
         if (this.state.isAudioPlaying) {
         this.pauseAudio();
