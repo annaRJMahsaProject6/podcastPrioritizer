@@ -62,38 +62,3 @@ button.inactive{
     font-size: 150px;
     margin-bottom: 20px; 
 }
-
-@media (max-width: 845px) {
-    .travelTypeSection {
-        height: auto;
-        padding: 4rem 1rem;
-
-        .travelTypeText {
-            font-size: 1.2rem;
-        }
-    }
-
-    .travelTypeButtonContainer {       
-        & > *:not(:last-child) {
-            margin-bottom: 2rem;
-        }
-    }
-
-    .icon {
-        font-size: 130px;
-    }
-
-    .travelTypeSelection button{
-        width: 18rem;
-    }
-}
-
-@media (max-width: 382px) {
-     .icon {
-        font-size: 100px;
-    }
-
-    .travelTypeSelection button{
-        width: 16rem;
-    }
-}
