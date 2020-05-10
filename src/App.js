@@ -152,7 +152,7 @@ class App extends Component {
     const minLength = travelTime - 5;
     const maxLength = travelTime + 5;
 
-    if (this.state.walkTime!==""){
+    if (this.state.walkTime!=="" && this.state.travelType!==""){
     axios({
       url: "https://listen-api.listennotes.com/api/v2/search",
       method: "GET",
@@ -175,7 +175,7 @@ class App extends Component {
     else{
       Swal.fire({
         title: "Uh-oh!",
-        text: "please enter the address first",
+        text: "please enter the address and travel type first",
         confirmButtonText: "OK",
         padding: "2rem",
       });

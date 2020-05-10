@@ -1,0 +1,19 @@
+@media(max-width:600px){
+    h2{
+        font-size: 3rem;
+    }
+    .search-form{
+        flex-wrap: wrap;
+        .addressSearchInput{
+            width: 100%;
+        }
+        button{
+            width: 100%;
+        }
+    }
+}
+@media(max-width:400px){
+    h2{
+        font-size: 2rem;
+    }
+}
