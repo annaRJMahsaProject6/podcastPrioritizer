@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/podcastPrioritizer/static/css/main.697106fa.chunk.css",
-    "main.js": "/podcastPrioritizer/static/js/main.65adb013.chunk.js",
-    "main.js.map": "/podcastPrioritizer/static/js/main.65adb013.chunk.js.map",
+    "main.css": "/podcastPrioritizer/static/css/main.f40945bb.chunk.css",
+    "main.js": "/podcastPrioritizer/static/js/main.7c84e2bb.chunk.js",
+    "main.js.map": "/podcastPrioritizer/static/js/main.7c84e2bb.chunk.js.map",
     "runtime-main.js": "/podcastPrioritizer/static/js/runtime-main.77d81851.js",
     "runtime-main.js.map": "/podcastPrioritizer/static/js/runtime-main.77d81851.js.map",
     "static/js/2.c1127a8c.chunk.js": "/podcastPrioritizer/static/js/2.c1127a8c.chunk.js",
     "static/js/2.c1127a8c.chunk.js.map": "/podcastPrioritizer/static/js/2.c1127a8c.chunk.js.map",
     "index.html": "/podcastPrioritizer/index.html",
-    "precache-manifest.7039f6a01da5f57ad273a66012e693ca.js": "/podcastPrioritizer/precache-manifest.7039f6a01da5f57ad273a66012e693ca.js",
+    "precache-manifest.563708b8ca9c4181a6df78f8ccae3624.js": "/podcastPrioritizer/precache-manifest.563708b8ca9c4181a6df78f8ccae3624.js",
     "service-worker.js": "/podcastPrioritizer/service-worker.js",
-    "static/css/main.697106fa.chunk.css.map": "/podcastPrioritizer/static/css/main.697106fa.chunk.css.map",
+    "static/css/main.f40945bb.chunk.css.map": "/podcastPrioritizer/static/css/main.f40945bb.chunk.css.map",
     "static/js/2.c1127a8c.chunk.js.LICENSE.txt": "/podcastPrioritizer/static/js/2.c1127a8c.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/podcastPrioritizer/static/media/unsplashHeadphonesBg.1e18c276.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.77d81851.js",
     "static/js/2.c1127a8c.chunk.js",
-    "static/css/main.697106fa.chunk.css",
-    "static/js/main.65adb013.chunk.js"
+    "static/css/main.f40945bb.chunk.css",
+    "static/js/main.7c84e2bb.chunk.js"
   ]
 }
