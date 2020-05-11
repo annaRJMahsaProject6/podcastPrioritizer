@@ -138,7 +138,11 @@ class AudioPlayer extends Component {
         const selectedAudio = this.props.audioToPlay;
         return (
             <div className="wrapper audioWrapper">
-                <h2 className="audioHeader">Your Podcast</h2>
+                <h2 className="audioHeader"><span>Your Podcast</span></h2>
+                <div className="dividerContainer">
+                    <div className="dividerYellow dividerLeftReverse dividerLeft"></div>
+                    <div className="dividerYellow dividerLeftReverse dividerRight"></div>
+                </div>
                 <div className="playerThumbnail">
                     <img 
                     src={selectedAudio.thumbnail} 

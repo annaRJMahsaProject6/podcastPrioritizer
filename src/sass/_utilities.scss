@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
     max-width: 1200px;
     width: 90%;
     margin: 0 auto;
@@ -7,4 +7,46 @@
 .emphasisText {
     text-transform: uppercase;
     text-decoration: underline;
+}
+
+
+// h2 divider style
+.dividerContainer {
+    margin-top: 0.5rem;
+}
+
+.dividerYellow {
+    @include divider($brandColorYellow);
+
+    &:before, &:after {
+        @include dividerBeforeAfter($brandColorYellow);
+    }
+}
+
+.dividerBlue {
+    @include divider($colorBlue);
+
+    &:before, &:after {
+        @include dividerBeforeAfter($colorBlue);
+    }
+}
+
+.dividerLeft {
+    &:before {
+        right: -9px;
+    }
+
+    &:after {
+        right: -18px;  
+    }
+}
+
+.dividerRight {
+    &:before {
+        left: -9px;
+    }
+
+    &:after {
+        left: -18px;
+    }
 }

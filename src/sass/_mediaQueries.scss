@@ -297,15 +297,38 @@
 }
 
 @media(max-width:400px){
+    @mixin h2CircleResponsive($color) {
+        &:after {
+        top: -5px;
+        left: -10px;
+        margin: 0 auto;
+        width: 32px;
+        height: 32px;
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background-color: $color;
+      }
+    }
+
     h2{
         font-size: 2rem;
         margin-bottom: 0;
+        @include h2CircleResponsive($brandColorYellow);
     }
 
     .playerThumbnail{
         width:230px;
         height:230px;
     }
+
+    .travelHeading {
+        @include h2CircleResponsive($colorBlue);
+    }
+
+    .podcastHeader {
+        @include h2CircleResponsive($colorBlue);
+    }   
 }
 
 @media (max-width: 382px) {

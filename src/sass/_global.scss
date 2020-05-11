@@ -8,9 +8,17 @@ body{
 h2 {
   font-family: $fontPrimary;
   font-size: 4rem;
-  @include underlineEffect($brandColorYellow);
-  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+  @include h2TextShadow($brandColorYellow);
+  @include h2Circle($brandColorYellow);
+
+  & span {
+    position: relative;
+    z-index: 3;
+  }
 }
+
 
 h3 {
   font-family: $fontPrimary;

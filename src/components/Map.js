@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import axios from 'axios';
-import ReactHtmlParser from 'react-html-parser';
+import React, { Component } from "react";
+import axios from "axios";
+import ReactHtmlParser from "react-html-parser";
 import Preloader from "./Preloader";
 
 // Get the user value for starting address and destination with search ahead
@@ -48,61 +48,69 @@ class Map extends Component {
   }
   // Promise to search ahead for the user input to generate a list of addresses
   // @params: query - for which to return suggestions
-  getAddressFromApi = (query)=>{
-      return axios({
-          url:'https://www.mapquestapi.com/search/v3/prediction',
-          method: 'GET',
-          responseType: 'jsonp',
-          params: {
-              key:'TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS',
-              format: 'png',
-              limit:'5',
-              collection:'adminArea,address,category,franchise,airport,poi',
-              countryCode:'CA',
-              q:query,
-          }
-      })
-  }
+  getAddressFromApi = (query) => {
+    return axios({
+      url: "https://www.mapquestapi.com/search/v3/prediction",
+      method: "GET",
+      responseType: "jsonp",
+      params: {
+        key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
+        format: "png",
+        limit: "5",
+        collection: "adminArea,address,category,franchise,airport,poi",
+        countryCode: "CA",
+        q: query,
+      },
+    });
+  };
   // Set the value of starting address
   // @params: text - starting address
-  setFromState=(text)=>{
+  setFromState = (text) => {
     this.setState({
       userInputFrom: text,
       htmlFrom: ``,
     });
-  }
+  };
   // Set the value of ending address
   // @params: text - ending address
-  setToState=(text)=>{
+  setToState = (text) => {
     this.setState({
       userInputTo: text,
       htmlTo: ``,
     });
-  }
+  };
   // Get value from suggestions list on click
   // @params: event - UL click event or space-bar or enter if user using keyboard
   handleUlClick = (event) => {
     event.preventDefault();
     this.handleClickOutside(event);
-    if (event.target.localName === "button" && 
-        event.target.parentNode.parentNode.classList.contains("fromAddress")){
+    if (
+      event.target.localName === "button" &&
+      event.target.parentNode.parentNode.classList.contains("fromAddress")
+    ) {
       const text = event.target.parentNode.innerText;
       this.setFromState(text);
     }
-    if (event.target.localName === "li" && 
-        event.target.parentNode.classList.contains("fromAddress")) {
-        const text = event.target.innerText;
+    if (
+      event.target.localName === "li" &&
+      event.target.parentNode.classList.contains("fromAddress")
+    ) {
+      const text = event.target.innerText;
       this.setFromState(text);
     }
-    if (event.target.localName === "li" && 
-      event.target.parentNode.classList.contains("toAddress")) {
+    if (
+      event.target.localName === "li" &&
+      event.target.parentNode.classList.contains("toAddress")
+    ) {
       const text = event.target.innerText;
-        this.setToState(text);
-      }
-    if (event.target.localName === "button" && 
-      event.target.parentNode.parentNode.classList.contains("toAddress")) {
-        const text = event.target.parentNode.innerText;
-        this.setToState(text);
+      this.setToState(text);
+    }
+    if (
+      event.target.localName === "button" &&
+      event.target.parentNode.parentNode.classList.contains("toAddress")
+    ) {
+      const text = event.target.parentNode.innerText;
+      this.setToState(text);
     }
   };
   // Return List from result returned by api
@@ -123,9 +131,8 @@ class Map extends Component {
   // Get the value from user input and make api calls
   // @params: event - onChange or onKeyUp
   handleUserInput = (event) => {
-
-  // For starting address  
-  if (event.target.classList.contains("fromInput")) {
+    // For starting address
+    if (event.target.classList.contains("fromInput")) {
       if (event.target.value) {
         this.setState({
           userInputFrom: event.target.value,
@@ -171,12 +178,14 @@ class Map extends Component {
     return (
       <div className="whereTo" id="whereTo">
         <div className="whereToContainer wrapper">
-          <h2>Where To Go?</h2>
-          <form
-            action="submit"
-            className="searchForm"
-            autoComplete="off"
-          >
+          <h2>
+            <span>Where To Go?</span>
+          </h2>
+          <div className="dividerContainer">
+            <div className="dividerYellow dividerLeftReverse dividerLeft"></div>
+            <div className="dividerYellow dividerLeftReverse dividerRight"></div>
+          </div>
+          <form action="submit" className="searchForm" autoComplete="off">
             <div className="addressSearchInput">
               <label htmlFor="fromaddress">Starting Location</label>
               <input
@@ -199,8 +208,8 @@ class Map extends Component {
                   {ReactHtmlParser(this.state.htmlFrom)}
                 </ul>
               ) : (
-                ""
-              )}
+                  ""
+                )}
             </div>
             <div className="addressSearchInput">
               <label htmlFor="toaddress">Destination</label>
@@ -224,8 +233,8 @@ class Map extends Component {
                   {ReactHtmlParser(this.state.htmlTo)}
                 </ul>
               ) : (
-                ""
-              )}
+                  ""
+                )}
             </div>
             <button
               type="submit"

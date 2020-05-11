@@ -41,7 +41,11 @@ class PodcastDisplay extends Component {
     return (
       <section className="podcastDisplay">
         <div className="wrapper">
-          <h2 ref={this.podcastListRef} className="podcastHeader">Pick Your Podcast</h2>
+          <h2 ref={this.podcastListRef} className="podcastHeader"><span>Pick Your Podcast</span></h2>
+          <div className="dividerContainer">
+            <div className="dividerBlue dividerLeftReverse dividerLeft"></div>
+            <div className="dividerBlue dividerLeftReverse dividerRight"></div>
+          </div>
           {this.props.isLoadingPodcast ? <Preloader styleName="PodcastDisplay"/> : null}
           {this.props.isLoadingPodcast ? null : (
             <ul className="podcastGrid ">

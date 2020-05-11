@@ -19,7 +19,8 @@
 }
 
 .travelHeading {
-    @include underlineEffect($colorBlue);
+    @include h2TextShadow($colorBlue);
+    @include h2Circle($colorBlue);
 }
 
 .travelTypeButtonContainer {

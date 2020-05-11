@@ -1,5 +1,37 @@
 // underline effect to be used on all headings
-@mixin underlineEffect($underlineColor) {
-    background-image: linear-gradient(rgba(255, 255, 255, 0) 60%, $underlineColor 20%);
+@mixin h2TextShadow($color) {
+    text-shadow: 2px 2px $color;
+}
+
+@mixin h2Circle($color) {
+    &:after {
+    left: -16px;
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: $color;
+  }
+}
+
+@mixin divider($color) {
+    width: 63px;
+    height: 4px;
     display: inline-block;
+    position: relative;
+    margin: 0 11px 35px;
+    background-color: #545454;
+    box-shadow: 3px 3px $color;
+}
+
+@mixin dividerBeforeAfter($color) {
+    width: 5px;
+    height: 5px;
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: #545454;
+    box-shadow: 3px 3px $color;
 }

@@ -27,7 +27,13 @@ class TravelType extends Component {
     return (
       <section className="travelTypeSection">
         <div className="travelTypeSelection wrapper">
-          <h2 className="travelHeading">Travel Preference?</h2>
+          <h2 className="travelHeading">
+            <span>Travel Preference?</span>
+          </h2>
+          <div className="dividerContainer">
+            <div className="dividerBlue dividerLeftReverse dividerLeft"></div>
+            <div className="dividerBlue dividerLeftReverse dividerRight"></div>
+          </div>
           <p className="travelTypeText">
             We suggest the faster route, but please pick whatever option suits
             you best.

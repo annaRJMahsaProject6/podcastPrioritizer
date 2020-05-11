@@ -9,10 +9,14 @@ import PodcastDisplay from "./components/PodcastDisplay";
 import AudioPlayer from "./components/AudioPlayer";
 import Footer from "./components/Footer";
 import Swal from "sweetalert2";
-import scrollTo from './helper/scrollTo';
+import scrollTo from "./helper/scrollTo";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faWalking, faBiking, faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faWalking,
+  faBiking,
+  faArrowCircleUp,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fab, faWalking, faBiking, faArrowCircleUp);
 
@@ -36,15 +40,15 @@ class App extends Component {
     this.inputAddressRef = React.createRef();
     this.toTopRef = React.createRef();
   }
-  
+
   // This method is used as helper to scroll when called from Header.js
   // @param: event - on which event it gets called - click here
-  goToScroll=(event)=>{
+  goToScroll = (event) => {
     event.preventDefault();
     scrollTo(this.inputAddressRef);
-  }
+  };
   // This method is used to make api calls to get static map for given input
-  // @params: event - search button click,fromInput - starting address, toInput - destination address 
+  // @params: event - search button click,fromInput - starting address, toInput - destination address
   handleAddressSubmit = (event, fromInput, toInput) => {
     event.preventDefault();
     axios({
@@ -234,42 +238,45 @@ class App extends Component {
       audio: selectedAudio,
     });
   };
-  // Method to render component to the page 
+  // Method to render component to the page
   render() {
-
     return (
       <div className="App">
         <header ref={this.toTopRef}>
-          <Header goToInput={this.goToScroll}/>
+          <Header goToInput={this.goToScroll} />
         </header>
         <section ref={this.inputAddressRef}>
-          <Map 
+          <Map
             submitForm={this.handleAddressSubmit}
             isLoadingMap={this.state.isLoadingMap}
             loadMapUrl={this.loadMapUrl}
           />
         </section>
         {this.state.staticMapUrl &&
-        this.state.formatedWalkTime !== "" &&
-        !this.state.isLoadingMap ? (
-          <section className="routeMap" id="routeMap">
-            <div className="routeMapContainer wrapper">
-              <h2 ref={this.staticMapRef} className="routeMapHeader">
-                Your Travel Route
-              </h2>
-              <p>Map overview of your commute.</p>
-              <p>
-                Please scroll to the next section to pick your travel
-                preference.
+          this.state.formatedWalkTime !== "" &&
+          !this.state.isLoadingMap ? (
+            <section className="routeMap" id="routeMap">
+              <div className="routeMapContainer wrapper">
+                <h2 ref={this.staticMapRef} className="routeMapHeader">
+                  <span>Your Travel Route</span>
+                </h2>
+                <div className="dividerContainer">
+                  <div className="dividerYellow dividerLeftReverse dividerLeft"></div>
+                  <div className="dividerYellow dividerLeftReverse dividerRight"></div>
+                </div>
+                <p>Map overview of your commute.</p>
+                <p>
+                  Please scroll to the next section to pick your travel
+                  preference.
               </p>
-              <img
-                src={this.state.staticMapUrl}
-                className="routeMapImg"
-                alt="Route on map"
-              />
-            </div>
-          </section>
-        ) : null}
+                <img
+                  src={this.state.staticMapUrl}
+                  className="routeMapImg"
+                  alt="Route on map"
+                />
+              </div>
+            </section>
+          ) : null}
         {this.state.formatedWalkTime !== "" && !this.state.isLoadingMap ? (
           <TravelType
             walkTime={this.state.formatedWalkTime}
@@ -278,37 +285,35 @@ class App extends Component {
           ></TravelType>
         ) : null}
         {this.state.staticMapUrl &&
-        this.state.formatedWalkTime !== "" &&
-        !this.state.isLoadingMap ? (
-          <Podcast
-            submitForm={this.handlePodcastSubmit}
-            isLoadingPodcast={this.state.isLoadingPodcast}
-            loadPodcastList={this.loadPodcastList}
-          />
-        ) : null}
-        {this.state.podcastList.length !== 0 &&
-        !this.state.isLoadingMap &&
-        !this.state.isLoadingMap ? (
-          <section>
-            <PodcastDisplay
-              podcastList={this.state.podcastList}
-              getAudioItem={this.getAudio}
+          this.state.formatedWalkTime !== "" &&
+          !this.state.isLoadingMap ? (
+            <Podcast
+              submitForm={this.handlePodcastSubmit}
               isLoadingPodcast={this.state.isLoadingPodcast}
+              loadPodcastList={this.loadPodcastList}
             />
-          </section>
-        ) : null}
+          ) : null}
+        {this.state.podcastList.length !== 0 &&
+          !this.state.isLoadingMap &&
+          !this.state.isLoadingMap ? (
+            <section>
+              <PodcastDisplay
+                podcastList={this.state.podcastList}
+                getAudioItem={this.getAudio}
+                isLoadingPodcast={this.state.isLoadingPodcast}
+              />
+            </section>
+          ) : null}
         {this.state.audio !== "" ? (
           <section className="audioPlayer">
             {this.state.audio ? (
               <AudioPlayer audioToPlay={this.state.audio} />
             ) : (
-              ""
-            )}
+                ""
+              )}
           </section>
         ) : null}
-        <button className="toTop"
-          onClick={()=>scrollTo(this.toTopRef)}
-          >
+        <button className="toTop" onClick={() => scrollTo(this.toTopRef)}>
           <FontAwesomeIcon
             icon="arrow-circle-up"
             className="icon"
