@@ -206,9 +206,19 @@
 }
 
 @media(max-width:600px){
+    @mixin h2CircleResponsiveOne($color) {
+        &:after {
+            top: -3px;
+            left: -14px;
+            width: 40px;
+            height: 40px;
+      }
+    }
+
     h2 {
         font-size: 3rem;
         transition: all 0.3s linear;
+        @include h2CircleResponsiveOne($brandColorYellow);
     }
 
     .whereTo {
@@ -299,15 +309,10 @@
 @media(max-width:400px){
     @mixin h2CircleResponsive($color) {
         &:after {
-        top: -5px;
+        top: -4px;
         left: -10px;
-        margin: 0 auto;
-        width: 32px;
-        height: 32px;
-        content: "";
-        position: absolute;
-        border-radius: 50%;
-        background-color: $color;
+        width: 30px;
+        height: 30px;
       }
     }
 
