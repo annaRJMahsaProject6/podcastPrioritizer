@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Header extends Component {
   render() {
     return (
-      <header>
         <section className="hero wrapper">
           <div className="whiteBlock">
             <h1>Podcast Prioritizer</h1>
@@ -18,9 +17,10 @@ class Header extends Component {
                 topic of interest and we will suggest a lists of podcasts based
                 on the length of your journey.{" "}
                 <a
-                  href="#whereTo"
+                  href="#"
                   className="startLink"
-                  aria-label="Click here to proceed to the next ssection"
+                  aria-label="Click here to proceed to the next section"
+                  onClick={this.props.goToInput}
                 >
                   &nbsp;Let's Start!
                 </a>
@@ -28,7 +28,6 @@ class Header extends Component {
             </div>
           </div>
         </section>
-      </header>
     );
   }
 }

@@ -60,8 +60,8 @@ class AudioPlayer extends Component {
     }
     showAlert = ()=>{
         Swal.fire({
-            title: "Sorry About That!",
-            text: "This audio is not available at the moment. Please try again audio to play!",
+            title: "Uh-oh!",
+            text: "This audio is not available at the moment. Please select another podcast!",
             confirmButtonText: "OK",
             padding: "2rem",
         });
@@ -123,7 +123,7 @@ class AudioPlayer extends Component {
         const selectedAudio = this.props.audioToPlay;
         return (
             <div className="wrapper audioWrapper">
-                <h2 className="audioHeader">Your Music Here</h2>
+                <h2 className="audioHeader">Your Podcast</h2>
                 <div className="playerThumbnail">
                     <img 
                     src={selectedAudio.thumbnail} 

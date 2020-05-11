@@ -1,3 +1,4 @@
+// shared stylying for both whereTo and whatToListen sections
 .whereTo, .whatToListen {
     justify-content: center;
     height: 40rem;
@@ -30,6 +31,7 @@
     position: relative;
 }
 
+// starting and destination address input styling
 label {
     display: flex;
     align-items: center;
@@ -68,6 +70,52 @@ input.podcastSearch {
     margin-bottom: 0;
     font-size: 2rem;
 }
+// address autocomplete styling
+.suggestions{
+    li {
+        display:flex;
+        align-items: center;
+        padding:0;
+        cursor: pointer;
+    }
+
+    img {
+        padding-right:10px;
+        width:28px;
+        height:32px;
+    }
+
+    li:hover,
+    li:focus,
+    li:active {
+        background:lightgrey;
+
+        img {
+            transform:scale(1.1);
+        }
+    }
+}
+
+.suggestions li button{
+    color: black;
+    font-family: $fontSecondary;
+    padding:10px;
+    padding-left:0.5rem;
+    font-weight: normal;
+    text-transform: none;
+    background:none;
+    display:flex;
+    justify-content: flex-start;
+    text-align: left;
+    align-items: center;
+    height:fit-content;
+
+    &:hover,
+    &:focus,
+    &:active{
+        background:lightgrey;
+    }
+}
 
 .suggestions {
     width: 100%;
@@ -80,6 +128,7 @@ input.podcastSearch {
     top:75px;
     z-index:10;
 }
+
 .suggestions li {
     background-color: #fff;
     font-size:1rem;
@@ -95,19 +144,21 @@ input.podcastSearch {
     position: relative;
 }
 
-.route-map {
-    width:50%;
-    margin:0 auto;
-}
-.route-map img {
-    width: 100%;
-    height: 100%;
+// podcast search input styling
+.podcast-search,
+.address-search {
+    height: 3rem;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 0;
+    font-size: 2rem;
 }
 
 .podcastSearchForm {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .podcastSearchInput{
         width: 100%;
         .podcastSearch{
@@ -116,6 +167,8 @@ input.podcastSearch {
     }
 }
 
+
+// overriding chrome's input box-shadow color
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus textarea:-webkit-autofill,

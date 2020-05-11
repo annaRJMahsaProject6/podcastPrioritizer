@@ -152,7 +152,7 @@ class Map extends Component {
 
   render() {
     return (
-      <section className="whereTo" id="whereTo">
+      <div className="whereTo" id="whereTo">
         <div className="whereToContainer wrapper">
           <h2>Where To Go?</h2>
           <form
@@ -241,7 +241,7 @@ class Map extends Component {
           </ol>
         </div>
         {this.props.isLoadingMap ? <Preloader styleName="WhereTo" /> : null}
-      </section>
+      </div>
     );
   }
 }
