@@ -290,6 +290,14 @@ class App extends Component {
             )}
           </section>
         ) : null}
+        <button className="toTop"
+          onClick={()=>this.scrollTo(this.toTopRef)}
+          >
+          <FontAwesomeIcon
+            icon="arrow-circle-up"
+            className="icon"
+          ></FontAwesomeIcon>
+        </button>
         <Footer />
       </div>
     );
