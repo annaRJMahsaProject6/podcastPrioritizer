@@ -18,9 +18,10 @@ class Header extends Component {
                 topic of interest and we will suggest a lists of podcasts based
                 on the length of your journey.{" "}
                 <a
-                  href="#whereTo"
+                  href="#"
                   className="startLink"
-                  aria-label="Click here to proceed to the next ssection"
+                  aria-label="Click here to proceed to the next section"
+                  onClick={this.props.goToInput}
                 >
                   &nbsp;Let's Start!
                 </a>
