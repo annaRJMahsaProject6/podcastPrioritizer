@@ -16,14 +16,13 @@ class Header extends Component {
                 Simply enter your starting location, desired destination and
                 topic of interest and we will suggest a lists of podcasts based
                 on the length of your journey.{" "}
-                <a
-                  href="#"
+                <button
                   className="startLink"
                   aria-label="Click here to proceed to the next section"
                   onClick={this.props.goToInput}
                 >
                   &nbsp;Let's Start!
-                </a>
+                </button>
               </p>
             </div>
           </div>

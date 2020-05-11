@@ -88,7 +88,6 @@ class App extends Component {
           unit: "k",
         },
       }).then((result) => {
-        console.log("route API", result);
         if (
           result.data.route.formattedTime !== undefined &&
           result.data.route.time !== undefined &&
@@ -164,10 +163,8 @@ class App extends Component {
     let travelTime = 0;
     if (this.state.travelType === "walk") {
       travelTime = Math.floor(this.state.walkTime / 60);
-      console.log(this.state.walkTime);
     } else if (this.state.travelType === "cycle") {
       travelTime = Math.floor(this.state.cycleTime / 60);
-      console.log(this.state.cycleTime);
     }
 
     const minLength = travelTime - 5;
