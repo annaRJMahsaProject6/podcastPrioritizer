@@ -1,6 +1,5 @@
 // underline effect to be used on all headings
 @mixin underlineEffect($underlineColor) {
     background-image: linear-gradient(rgba(255, 255, 255, 0) 60%, $underlineColor 20%);
-    // mix-blend-mode: multiply;
-    display: inline;
+    display: inline-block;
 }

@@ -21,7 +21,7 @@
 }
 .suggestions li button{
     color: black;
-    font-family: 'Lato', sans-serif;
+    font-family: $fontSecondary;
     padding:10px;
     padding-left:0.5rem;
     font-weight: normal;
@@ -43,7 +43,7 @@
     display: flex;
     align-items: flex-start;
     text-align: center;
-    background-color: #EDF2EF;
+    background-color: $brandColorWhite;
 }
 
 .routeMapContainer {
@@ -57,13 +57,20 @@
 
     p {
         font-size: 1.3rem;
-        margin: 1rem 0 2rem;
+    }
+
+    p:nth-last-of-type(1) {
+        margin-bottom: 1.5rem;
+    }
+
+     p:nth-last-of-type(2) {
+        margin-top: 2rem;
     }
 }
 
 .routeMapImg {
     border: 3px solid #fff;
-    outline: solid #F97068 3px;
+    outline: solid $brandColorRed 3px;
     border-radius: 0.5rem;
     width: 100%;
 }
