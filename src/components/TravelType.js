@@ -5,7 +5,7 @@ class TravelType extends Component {
   constructor() {
     super();
     this.state = {
-      travelType: "",
+      travelType: "walk",
     };
   }
   

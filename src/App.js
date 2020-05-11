@@ -24,7 +24,7 @@ class App extends Component {
       walkTime: "",
       cycleTime: "",
       podcastList: [],
-      travelType: "",
+      travelType: "walk",
       audio: "",
       isLoadingMap: false,
       isLoadingPodcast: false,

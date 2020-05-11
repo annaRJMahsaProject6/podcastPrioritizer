@@ -8,15 +8,26 @@ class PodcastDisplay extends Component {
   constructor() {
     super();
     this.podcastListRef = React.createRef();
+    this.state = {
+      podcastList: []
+    }
   }
 
   showMore = () => this.setState({ showAll: true });
   showLess = () => this.setState({ showAll: false });
 
-  componentDidUpdate(){
-    this.scroll(this.podcastListRef);
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.podcastList !== prevState.podcastList) {
+      this.setState({
+        podcastList: this.props.podcastList
+      })
+      this.scroll(this.podcastListRef);
+    }
   }
-  componentDidMount(){
+  componentDidMount() {
+    this.setState({
+      podcastList: this.props.podcastList
+    })
     this.scroll(this.podcastListRef);
   }
   scroll(ref) {
