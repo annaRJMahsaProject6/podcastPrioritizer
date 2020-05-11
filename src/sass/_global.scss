@@ -55,8 +55,12 @@ button {
   position:absolute;
   bottom:70px;
   right:20px;
-  background:black;
+  padding: 0;
   border-radius:50%;
-  width:30px;
-  height:50px;
+  width:auto;
+  height:auto;
+  .icon{
+    font-size: 30px;
+    margin: 0;
+  }
 }

@@ -73,22 +73,22 @@ class Map extends Component {
     event.preventDefault();
     this.handleClickOutside(event);
     if (event.target.localName === "button" && 
-        event.target.parentNode.parentNode.classList.contains("from-address")){
+        event.target.parentNode.parentNode.classList.contains("fromAddress")){
       const text = event.target.parentNode.innerText;
       this.setFromState(text);
     }
     if (event.target.localName === "li" && 
-        event.target.parentNode.classList.contains("from-address")) {
+        event.target.parentNode.classList.contains("fromAddress")) {
         const text = event.target.innerText;
       this.setFromState(text);
     }
     if (event.target.localName === "li" && 
-      event.target.parentNode.classList.contains("to-address")) {
+      event.target.parentNode.classList.contains("toAddress")) {
       const text = event.target.innerText;
         this.setToState(text);
       }
     if (event.target.localName === "button" && 
-      event.target.parentNode.parentNode.classList.contains("to-address")) {
+      event.target.parentNode.parentNode.classList.contains("toAddress")) {
         const text = event.target.parentNode.innerText;
         this.setToState(text);
     }
@@ -109,7 +109,7 @@ class Map extends Component {
   };
 
   handleUserInput = (event) => {
-    if (event.target.classList.contains("from-input")) {
+    if (event.target.classList.contains("fromInput")) {
       if (event.target.value) {
         this.setState({
           userInputFrom: event.target.value,
@@ -129,7 +129,7 @@ class Map extends Component {
       }
     }
 
-    if (event.target.classList.contains("to-input")) {
+    if (event.target.classList.contains("toInput")) {
       if (event.target.value) {
         this.setState({
           userInputTo: event.target.value,
@@ -157,7 +157,7 @@ class Map extends Component {
           <h2>Where To Go?</h2>
           <form
             action="submit"
-            className="search-form"
+            className="searchForm"
             autoComplete="off"
           >
             <div className="addressSearchInput">
@@ -165,7 +165,7 @@ class Map extends Component {
               <input
                 type="text"
                 name="fromaddress"
-                className="address-search from-input"
+                className="addressSearch fromInput"
                 placeholder="1 Canada's Wonderland Drive, Vaughan, ON L6A 1S6"
                 value={this.state.userInputFrom}
                 onKeyUp={this.handleUserInput}
@@ -174,7 +174,7 @@ class Map extends Component {
               />
               {this.state.htmlFrom && this.state.isFromListExpanded ? (
                 <ul
-                  className="suggestions from-address"
+                  className="suggestions fromAddress"
                   onClick={this.handleUlClick}
                   onMouseDown={this.handleUlClick}
                   ref={this.setULRef}
@@ -190,7 +190,7 @@ class Map extends Component {
               <input
                 type="text"
                 name="toaddress"
-                className="address-search to-input"
+                className="addressSearch toInput"
                 placeholder="288 Bremner Blvd, Toronto, ON M5V 3L9"
                 value={this.state.userInputTo}
                 onKeyUp={this.handleUserInput}
@@ -199,7 +199,7 @@ class Map extends Component {
               />
               {this.state.htmlTo && this.state.isToListExpanded ? (
                 <ul
-                  className="suggestions to-address"
+                  className="suggestions toAddress"
                   onClick={this.handleUlClick}
                   onMouseDown={this.handleUlClick}
                   ref={this.setULRef}
