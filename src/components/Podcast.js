@@ -31,7 +31,7 @@ class Podcast extends Component {
         <section className="whatToListen">
           <div className="whatToListenContainer wrapper">
             <form className="search-form podcastSearchForm">
-            <h2 ref={this.podcastRef} className="podcastSearchHeader">What to Listen to?</h2>
+            <h2 ref={this.podcastRef} className="podcastSearchHeader">What to Listen?</h2>
             <div className="podcastSearchInput">
               <label htmlFor="podcast"></label>
               <input
@@ -61,7 +61,7 @@ class Podcast extends Component {
             </li>
             <li>
               Afterwards, you will be automatically directed to a list of curated
-              podcasts selected based on your chosen topic and the length of
+              podcasts based on your chosen topic and the length of
               your commute.
             </li>
             <li>

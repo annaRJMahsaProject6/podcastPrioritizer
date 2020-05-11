@@ -171,7 +171,6 @@ class Map extends Component {
                 onKeyUp={this.handleUserInput}
                 onChange={this.handleUserInput}
                 onFocus={() => this.setState({ isFromListExpanded: true })}
-                // onBlur={() => this.setState({ isFromListExpanded: false })}
               />
               {this.state.htmlFrom && this.state.isFromListExpanded ? (
                 <ul
@@ -197,7 +196,6 @@ class Map extends Component {
                 onKeyUp={this.handleUserInput}
                 onChange={this.handleUserInput}
                 onFocus={() => this.setState({ isToListExpanded: true })}
-                // onBlur={() => this.setState({ isToListExpanded: false })}
               />
               {this.state.htmlTo && this.state.isToListExpanded ? (
                 <ul
