@@ -3,36 +3,40 @@ import ReadMoreAndLess from "react-read-more-less";
 import { faHeadphones } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Preloader from "./Preloader";
-
+import scrollTo from '../helper/scrollTo';
+// Component to display the podcast list on page
 class PodcastDisplay extends Component {
   constructor() {
     super();
-    this.podcastListRef = React.createRef();
     this.state = {
       podcastList: []
     }
+    this.podcastListRef = React.createRef();
   }
-
+  // Methods to set state for Read more or less
+  // @params: no-params
   showMore = () => this.setState({ showAll: true });
   showLess = () => this.setState({ showAll: false });
-
+  // Update podcastList and scroll to it on update
+  // @params: pervProps - Previous Props, prevState - previous State
   componentDidUpdate(prevProps, prevState) {
     if (this.props.podcastList !== prevState.podcastList) {
       this.setState({
         podcastList: this.props.podcastList
       })
-      this.scroll(this.podcastListRef);
+      scrollTo(this.podcastListRef);
     }
   }
+  // Scroll to list on mounting
+  // @params: no-params
   componentDidMount() {
     this.setState({
       podcastList: this.props.podcastList
     })
-    this.scroll(this.podcastListRef);
+    scrollTo(this.podcastListRef);
   }
-  scroll(ref) {
-    ref.current.scrollIntoView({ behavior: 'smooth' })
-  }
+  
+  // Render the component on page
   render() {
     return (
       <section className="podcastDisplay">

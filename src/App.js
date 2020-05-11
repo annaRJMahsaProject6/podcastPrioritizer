@@ -9,12 +9,14 @@ import PodcastDisplay from "./components/PodcastDisplay";
 import AudioPlayer from "./components/AudioPlayer";
 import Footer from "./components/Footer";
 import Swal from "sweetalert2";
+import scrollTo from './helper/scrollTo';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faWalking, faBiking, faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fab, faWalking, faBiking, faArrowCircleUp);
 
+// Main component container App
 class App extends Component {
   constructor() {
     super();
@@ -34,15 +36,16 @@ class App extends Component {
     this.inputAddressRef = React.createRef();
     this.toTopRef = React.createRef();
   }
-  scrollTo(ref) {
-    ref.current.scrollIntoView({ behavior: "smooth" });
-  }
+  
+  // This method is used as helper to scroll when called from Header.js
+  // @param: event - on which event it gets called - click here
   goToScroll=(event)=>{
     event.preventDefault();
-    this.scrollTo(this.inputAddressRef);
+    scrollTo(this.inputAddressRef);
   }
+  // This method is used to make api calls to get static map for given input
+  // @params: event - search button click,fromInput - starting address, toInput - destination address 
   handleAddressSubmit = (event, fromInput, toInput) => {
-    // getting travel time and static map from map quest API
     event.preventDefault();
     axios({
       url: "https://www.mapquestapi.com/staticmap/v5/map",
@@ -68,13 +71,13 @@ class App extends Component {
         },
         () => {
           if (this.state.staticMapUrl && this.state.formatedWalkTime !== "") {
-            setTimeout(() => this.scrollTo(this.staticMapRef), 0);
+            setTimeout(() => scrollTo(this.staticMapRef), 0);
           }
         }
       );
     });
 
-    // getting pedestrian travel time
+    // If user enters valid address then Make another axios call to get the pedestrian and bicycle travel time
     if (fromInput !== "" && toInput !== "") {
       axios({
         method: "GET",
@@ -99,12 +102,11 @@ class App extends Component {
             walkTime: result.data.route.time,
           });
         } else {
-          this.showInvalidAdressModal();
+          this.showInvalidAddressModal();
         }
       });
     }
 
-    // getting cycling travel time
     axios({
       method: "GET",
       url: "https://www.mapquestapi.com/directions/v2/route",
@@ -128,12 +130,14 @@ class App extends Component {
           cycleTime: result.data.route.time,
         });
       } else {
-        this.showInvalidAdressModal();
+        this.showInvalidAddressModal();
       }
     });
   };
 
-  showInvalidAdressModal = () => {
+  // Modal to show error if the user enter invalid address
+  // @params: no-params
+  showInvalidAddressModal = () => {
     Swal.fire({
       title: "Uh-oh!",
       text:
@@ -146,18 +150,22 @@ class App extends Component {
     });
   };
 
+  // Set State for loading map image
+  // @params: no-params
   loadMapUrl = () => {
     this.setState({
       isLoadingMap: true,
     });
   };
-
+  // Set state for loading podcast list
+  // @params: no-params
   loadPodcastList = () => {
     this.setState({
       isLoadingPodcast: true,
     });
   };
-
+  // Method to get user input to search podcast List
+  // @params: event - search click event, podcastInput - user entered value
   handlePodcastSubmit = (event, podcastInput) => {
     event.preventDefault();
     let travelTime = 0;
@@ -169,7 +177,7 @@ class App extends Component {
 
     const minLength = travelTime - 5;
     const maxLength = travelTime + 5;
-
+    // Make axios call to get the podcast list
     if (this.state.walkTime !== "" && this.state.travelType !== "") {
       axios({
         url: "https://listen-api.listennotes.com/api/v2/search",
@@ -212,21 +220,23 @@ class App extends Component {
       });
     }
   };
-
+  // Set the travel type when user select different option
+  // @params: id - "walk" or "cycle"
   handleChoice = (id) => {
     this.setState({
       travelType: id,
     });
   };
-
+  // Set state for user selected audio
+  // @params: selectedAudio - audio selected when user clicks Listen button
   getAudio = (selectedAudio) => {
     this.setState({
       audio: selectedAudio,
     });
   };
-  
+  // Method to render component to the page 
   render() {
-    
+
     return (
       <div className="App">
         <header ref={this.toTopRef}>
@@ -297,7 +307,7 @@ class App extends Component {
           </section>
         ) : null}
         <button className="toTop"
-          onClick={()=>this.scrollTo(this.toTopRef)}
+          onClick={()=>scrollTo(this.toTopRef)}
           >
           <FontAwesomeIcon
             icon="arrow-circle-up"

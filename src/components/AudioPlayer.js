@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Swal from "sweetalert2";
-
+import scrollTo from '../helper/scrollTo';
+// Component that receives the audio file and plays it
 class AudioPlayer extends Component {
     constructor() {
         super();
-        this.progressBar = React.createRef();
         this.state = {
             isAudioPlaying: false,
             toggleButton: "▶️",
@@ -14,18 +14,21 @@ class AudioPlayer extends Component {
             audioFile: "",
             callNumber:0
         };
+        this.progressBar = React.createRef();
         this.audioPlayerRef = React.createRef();    
     }
     // thank you Salvatore @ stackoverflow.com (https://stackoverflow.com/questions/39779527/toggle-play-pause-in-react-with-audio)
+    // Declare global audio file
     audio = new Audio();
-    // here first check if there is any difference in state and props received
+    // On update update the audio file and scroll to player
+    // @params: prevProps - previous Props, prevState - Previous State
     componentDidUpdate(prevProps, prevState) {
         if (this.props.audioToPlay.audio !== prevState.audioFile) {
             this.setAudio();
-            this.scroll(this.audioPlayerRef);
+            scrollTo(this.audioPlayerRef);
         }
     }
-    
+    // Set initial state on component mounting
     componentDidMount() {
         this.setState({
             isAudioPlaying: false,
@@ -34,8 +37,10 @@ class AudioPlayer extends Component {
         this.audio.src = this.props.audioToPlay.audio;
         this.audio.ontimeupdate = this.handleProgress;
         setTimeout(this.playAudio, 1000);
-        this.scroll(this.audioPlayerRef);
+        scrollTo(this.audioPlayerRef);
     }
+    // Helper method to return the time in 00:00:00 format from seconds
+    // @params: timeLeft - time in seconds
     getFormattedTime = (timeLeft) => {
         const hour = Math.floor(timeLeft / (60 * 60));
         let mins = Math.floor(timeLeft / 60) % 60;
@@ -45,6 +50,8 @@ class AudioPlayer extends Component {
         timeLeft = hour ? `${hour}:${mins}:${seconds}` : `${mins}:${seconds}`;
         return timeLeft;
     };
+    // Set the audio to new audio on component update or initial
+    // @params: no-params
     setAudio = () => {
         const newAudio = this.props.audioToPlay;
         this.setState({
@@ -58,6 +65,8 @@ class AudioPlayer extends Component {
         this.audio.currentTime = 0;
         setTimeout(this.playAudio,1000);
     }
+    // Message to show on wrong audio file
+    // @params: no-params
     showAlert = ()=>{
         Swal.fire({
             title: "Uh-oh!",
@@ -66,6 +75,8 @@ class AudioPlayer extends Component {
             padding: "2rem",
         });
     }
+    // Play the audio file if exists
+    // @params: no-params, uses global audio variable
     playAudio = () => {
         let flag = false;
         if(!this.audio.duration){
@@ -87,7 +98,8 @@ class AudioPlayer extends Component {
         }
         if(flag)this.showAlert();
     };
-
+    // Pause the audio file if playing
+    // @params: no-params, uses global audio variable
     pauseAudio = () => {
         this.setState({
             isAudioPlaying: false,
@@ -95,16 +107,21 @@ class AudioPlayer extends Component {
         });
         this.audio.pause();
     };
+    // Play file if paused or vice-versa
+    // @params: no-params
     togglePlay = () => {
         if (this.state.isAudioPlaying) { this.pauseAudio() }
         else { this.playAudio(); }
     }
+    // Scrub audio file to go to where user click on audio progress
+    // @params: event - mouse move event on progress bar
     scrubAudio = (event) => {
         event.persist();
         const scrubTime = (event.nativeEvent.offsetX / this.progressBar.current.offsetWidth) * this.audio.duration;
         this.audio.currentTime = scrubTime;
     }
-
+    // Handles the progress bar while audio is playing
+    // @params: no-params
     handleProgress = () => {
         const percent = (this.audio.currentTime / this.audio.duration) * 100;
         let timeLeft = Math.floor(this.audio.duration - this.audio.currentTime);
@@ -116,9 +133,7 @@ class AudioPlayer extends Component {
             })
         }
     }
-    scroll(ref) {
-        ref.current.scrollIntoView({ behavior: 'smooth' })
-    }
+    // Method to render the component on page
     render() {
         const selectedAudio = this.props.audioToPlay;
         return (

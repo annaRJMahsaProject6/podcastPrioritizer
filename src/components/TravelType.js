@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+// Component to ask user to select travel type
 class TravelType extends Component {
   constructor() {
     super();
@@ -8,7 +9,8 @@ class TravelType extends Component {
       travelType: "walk",
     };
   }
-  
+  // Handle when user click on different option
+  // @params: event - onClick
   handleClick = (event) => {
     event.persist();
     const id =
@@ -20,7 +22,7 @@ class TravelType extends Component {
     });
     this.props.chooseTravelType(id);
   };
-
+  // Render the component on page
   render() {
     return (
       <section className="travelTypeSection">
