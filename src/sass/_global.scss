@@ -49,3 +49,15 @@ button {
 .swal2-styled {
   padding: 0.55rem 3rem !important;
 }
+.App{
+  position:relative;
+}
+.toTop{
+  position:absolute;
+  bottom:70px;
+  right:20px;
+  background:black;
+  border-radius:50%;
+  width:30px;
+  height:50px;
+}

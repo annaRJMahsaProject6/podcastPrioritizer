@@ -11,8 +11,9 @@ import Footer from "./components/Footer";
 import Swal from "sweetalert2";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faWalking, faBiking } from "@fortawesome/free-solid-svg-icons";
-library.add(fab, faWalking, faBiking);
+import { faWalking, faBiking, faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+library.add(fab, faWalking, faBiking, faArrowCircleUp);
 
 class App extends Component {
   constructor() {
@@ -31,6 +32,7 @@ class App extends Component {
     };
     this.staticMapRef = React.createRef();
     this.inputAddressRef = React.createRef();
+    this.toTopRef = React.createRef();
   }
   scrollTo(ref) {
     ref.current.scrollIntoView({ behavior: "smooth" });
@@ -230,7 +232,9 @@ class App extends Component {
     
     return (
       <div className="App">
-        <Header goToInput={this.goToScroll}/>
+        <header ref={this.toTopRef}>
+          <Header goToInput={this.goToScroll}/>
+        </header>
         <section ref={this.inputAddressRef}>
           <Map 
             submitForm={this.handleAddressSubmit}
@@ -295,6 +299,14 @@ class App extends Component {
             )}
           </section>
         ) : null}
+        <button className="toTop"
+          onClick={()=>this.scrollTo(this.toTopRef)}
+          >
+          <FontAwesomeIcon
+            icon="faArrowCircleUp"
+            className="icon"
+          ></FontAwesomeIcon>
+        </button>
         <Footer />
       </div>
     );

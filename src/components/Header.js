@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Header extends Component {
   render() {
     return (
-      <header>
         <section className="hero wrapper">
           <div className="whiteBlock">
             <h1>Podcast Prioritizer</h1>
@@ -29,7 +28,6 @@ class Header extends Component {
             </div>
           </div>
         </section>
-      </header>
     );
   }
 }
