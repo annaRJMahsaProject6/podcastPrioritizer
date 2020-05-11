@@ -166,9 +166,9 @@
 }
 
 @media(max-width:750px){
-    input.address-search.from-input, 
-    input.address-search.to-input, 
-    input.podcast-search{
+    input.address-search.fromInput, 
+    input.address-search.toInput, 
+    input.podcastSearch{
         font-size: 0.75rem;
     }
 }
@@ -215,12 +215,12 @@
         height: 52rem;
     }
 
-    .search-form{
+    .searchForm{
         flex-wrap: wrap;
         .addressSearchInput{
             width: 100%;
             margin: 20px 0;
-            .from-input,.to-input{
+            .fromInput,.toInput{
                 margin: 0;
             }
         }
@@ -229,9 +229,9 @@
             width: 100%;
         }
     }
-    .search-form{
+    .searchForm{
         .podcastSearchInput{
-            .podcast-search{
+            .podcastSearch{
                 width:100%;
                 margin-bottom: 20px;
             }

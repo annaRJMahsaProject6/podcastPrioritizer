@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faWalking, faBiking } from "@fortawesome/free-solid-svg-icons";
-library.add(fab, faWalking, faBiking);
+library.add(fab, faWalking, faBiking, faArrowCircleUp);
 
 class App extends Component {
   constructor() {
