@@ -310,7 +310,7 @@ class App extends Component {
           onClick={()=>scrollTo(this.toTopRef)}
           >
           <FontAwesomeIcon
-            icon="faArrowCircleUp"
+            icon="arrow-circle-up"
             className="icon"
           ></FontAwesomeIcon>
         </button>

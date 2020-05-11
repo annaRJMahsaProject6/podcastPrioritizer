@@ -20,7 +20,7 @@
     }
 }
 
-.search-form {
+.searchForm {
     display: flex;
     max-width: 100%;
     margin: 0 auto;
@@ -40,15 +40,15 @@ label {
     font-weight: bold;
 }
 
-input.address-search.from-input,
-input.address-search.to-input,
-input.podcast-search{
+input.addressSearch.fromInput,
+input.addressSearch.toInput,
+input.podcastSearch{
     font-size: 1rem;
     padding: 0 11px;
 }
 
-input.address-search.to-input,
-input.podcast-search {
+input.addressSearch.toInput,
+input.podcastSearch {
     margin-right: 1rem;
 }
 
@@ -62,7 +62,14 @@ input.podcast-search {
         margin-right: 1.5rem;
     }
 }
-
+.podcastSearch,
+.addressSearch {
+    height: 3rem;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 0;
+    font-size: 2rem;
+}
 // address autocomplete styling
 .suggestions{
     li {
@@ -74,14 +81,14 @@ input.podcast-search {
 
     img {
         padding-right:10px;
-        width:28px;
+        width:35px;
         height:32px;
     }
 
     li:hover,
     li:focus,
     li:active {
-        background:lightgrey;
+        background: lightgray;
 
         img {
             transform:scale(1.1);
@@ -90,9 +97,9 @@ input.podcast-search {
 }
 
 .suggestions li button{
-    color: black;
+    color: inherit;
     font-family: $fontSecondary;
-    padding:10px;
+    padding:5px;
     padding-left:0.5rem;
     font-weight: normal;
     text-transform: none;
@@ -106,7 +113,7 @@ input.podcast-search {
     &:hover,
     &:focus,
     &:active{
-        background:lightgrey;
+        background: lightgray;
     }
 }
 
@@ -138,8 +145,8 @@ input.podcast-search {
 }
 
 // podcast search input styling
-.podcast-search,
-.address-search {
+.podcastSearch,
+.addressSearch {
     height: 3rem;
     border: none;
     border-radius: 5px;
@@ -154,8 +161,7 @@ input.podcast-search {
 
     .podcastSearchInput{
         width: 100%;
-
-        .podcast-search{
+        .podcastSearch{
             width: 50%;
         }
     }
