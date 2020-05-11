@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // function component to render header on page
 function Header(props) {  
   return (
@@ -15,14 +15,13 @@ function Header(props) {
             Simply enter your starting location, desired destination and
             topic of interest and we will suggest a lists of podcasts based
             on the length of your journey.{" "}
-            <a
-              href="#"
+            <button
               className="startLink"
               aria-label="Click here to proceed to the next section"
               onClick={props.goToInput}
             >
               &nbsp;Let's Start!
-            </a>
+            </button>
           </p>
         </div>
       </div>
