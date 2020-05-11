@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6d5a58d19df112f4e07d1f3371431529",
+    "revision": "d78758366c0cc069a34bf5b0d5e4bf1b",
     "url": "/podcastPrioritizer/index.html"
   },
   {
-    "revision": "e916842f34806581e93a",
-    "url": "/podcastPrioritizer/static/css/main.c1246c91.chunk.css"
+    "revision": "537f335572e84ba5515b",
+    "url": "/podcastPrioritizer/static/css/main.99b50a43.chunk.css"
   },
   {
     "revision": "f27789147e91b8291684",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/podcastPrioritizer/static/js/2.c1127a8c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e916842f34806581e93a",
+    "revision": "537f335572e84ba5515b",
     "url": "/podcastPrioritizer/static/js/main.7c84e2bb.chunk.js"
   },
   {
