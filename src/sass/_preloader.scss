@@ -1,8 +1,10 @@
+// how the preloading icon should be positioned on the whereTo section
 .preloaderWhereTo {
     position: absolute;
     bottom: 1rem;
 }
 
+// how the preloading icon should be positioned on the podcastDisplay section
 .preloaderPodcastDisplay {
     position: relative;
     top: 4rem;
@@ -15,6 +17,7 @@
     animation-iteration-count: infinite;
 }
 
+// animation for preloading icon
 @keyframes spinning {
     0% {
         transform: rotate(0deg);

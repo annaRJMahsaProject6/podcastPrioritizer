@@ -1,43 +1,4 @@
-.suggestions{
-    li{
-        display:flex;
-        align-items: center;
-        padding:0;
-        cursor: pointer;
-    }
-    img{
-        padding-right:10px;
-        width:28px;
-        height:32px;
-    }
-    li:hover,
-    li:focus,
-    li:active{
-        background:lightgrey;
-        img{
-            transform:scale(1.1);
-        }
-    }
-}
-.suggestions li button{
-    color: black;
-    font-family: $fontSecondary;
-    padding:10px;
-    padding-left:0.5rem;
-    font-weight: normal;
-    text-transform: none;
-    background:none;
-    display:flex;
-    justify-content: flex-start;
-    text-align: left;
-    align-items: center;
-    height:fit-content;
-    &:hover,
-    &:focus,
-    &:active{
-        background:lightgrey;
-    }
-}
+// mapquest's static map styling
 .routeMap {
     height: 45rem;
     display: flex;
