@@ -44,9 +44,9 @@
 }
 
 button.active{
-    border: solid $colorBlue 3px;
-    .icon{
-        color: $colorBlue;
+    border: solid $colorYellow 3px;
+    .icon, p {
+        color: $colorYellow;
     }
 }
 
