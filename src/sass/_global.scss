@@ -46,6 +46,14 @@ button {
 //overriding default swal styling
 .swal2-title {
     font-size: 3rem !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 60%, $brandColorYellow 20%);
+    mix-blend-mode: multiply;
+    display: inline;
+}
+
+h2#swal2-title.swal2-title:after {
+    height: 0;
+    width: 0;
 }
 
 .swal2-styled.swal2-confirm {
