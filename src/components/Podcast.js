@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-
+import scrollTo from '../helper/scrollTo';
+// Component to search for podcast
 class Podcast extends Component {
   constructor() {
     super();
@@ -9,22 +9,25 @@ class Podcast extends Component {
     }
     this.podcastRef = React.createRef();
   }
+  // On mounting scroll to Podcast list returned
+  // @params: no-params
   componentDidMount(){
-    this.scroll(this.podcastRef);
+    scrollTo(this.podcastRef);
   }
+  // On Updating component scroll to Podcast list returned
+  // @params: no-params
   componentDidUpdate(){
-    this.scroll(this.podcastRef);
+    scrollTo(this.podcastRef);
   }
-
+  // When user enter a new item
+  // @params: event - onChange 
   handleChange=(event)=>{
     this.setState({
       podcastInput:event.target.value
     })
   }
-  scroll(ref) {
-    ref.current.scrollIntoView({ behavior: 'smooth' })
-  }
-  
+
+  // Render the component on page
   render() {
       // user podcast selection form
       return (

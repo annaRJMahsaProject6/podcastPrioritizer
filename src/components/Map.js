@@ -3,14 +3,10 @@ import axios from 'axios';
 import ReactHtmlParser from 'react-html-parser';
 import Preloader from "./Preloader";
 
-
+// Get the user value for starting address and destination with search ahead
 class Map extends Component {
   constructor() {
     super();
-
-    this.setULRef = this.setULRef.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-
     this.state = {
       userInputFrom: "",
       userInputTo: "",
@@ -20,20 +16,28 @@ class Map extends Component {
       isFromListExpanded: false,
       isToListExpanded: false,
     };
+    this.setULRef = this.setULRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
+  // To add event listener to listen UL outside click
+  // @params: no-params
   componentDidMount() {
     document.addEventListener("mousedown", this.handleClickOutside);
   }
+  // To remove event listener added in DidMount
+  // @params: no-params
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
 
-  // set reference of UL node
+  // Set reference of UL node
+  // @params: node - node to which reference is given
   setULRef(node) {
     this.ULRef = node;
   }
 
-  // if clicked on outside of li then address disappear
+  // If clicked on outside of UL then address list disappears
+  // @params: event - ul outside click event
   handleClickOutside(event) {
     if (this.ULRef && !this.ULRef.contains(event.target)) {
       this.setState({
@@ -42,6 +46,8 @@ class Map extends Component {
       });
     }
   }
+  // Promise to search ahead for the user input to generate a list of addresses
+  // @params: query - for which to return suggestions
   getAddressFromApi = (query)=>{
       return axios({
           url:'https://www.mapquestapi.com/search/v3/prediction',
@@ -57,18 +63,24 @@ class Map extends Component {
           }
       })
   }
+  // Set the value of starting address
+  // @params: text - starting address
   setFromState=(text)=>{
     this.setState({
       userInputFrom: text,
       htmlFrom: ``,
     });
   }
+  // Set the value of ending address
+  // @params: text - ending address
   setToState=(text)=>{
     this.setState({
       userInputTo: text,
       htmlTo: ``,
     });
   }
+  // Get value from suggestions list on click
+  // @params: event - UL click event or space-bar or enter if user using keyboard
   handleUlClick = (event) => {
     event.preventDefault();
     this.handleClickOutside(event);
@@ -93,7 +105,8 @@ class Map extends Component {
         this.setToState(text);
     }
   };
-  
+  // Return List from result returned by api
+  // @params: result - returned by search ahead api
   extractList = (result) => {
     let list = "";
     if (result && result.data.results) {
@@ -107,8 +120,10 @@ class Map extends Component {
     }
     return list;
   };
-
+  // Get the value from user input and make api calls
+  // @params: event - onChange or onKeyUp
   handleUserInput = (event) => {
+    // For starting address
     if (event.target.classList.contains("from-input")) {
       if (event.target.value) {
         this.setState({
@@ -128,7 +143,7 @@ class Map extends Component {
         });
       }
     }
-
+    // For destination or ending address
     if (event.target.classList.contains("to-input")) {
       if (event.target.value) {
         this.setState({
@@ -149,7 +164,7 @@ class Map extends Component {
       }
     }
   };
-
+  // Render the component on page
   render() {
     return (
       <div className="whereTo" id="whereTo">
