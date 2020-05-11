@@ -11,8 +11,9 @@ import Footer from "./components/Footer";
 import Swal from "sweetalert2";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faWalking, faBiking } from "@fortawesome/free-solid-svg-icons";
-library.add(fab, faWalking, faBiking);
+import { faWalking, faBiking, faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+library.add(fab, faWalking, faBiking, faArrowCircleUp);
 
 class App extends Component {
   constructor() {
@@ -30,11 +31,16 @@ class App extends Component {
       isLoadingPodcast: false,
     };
     this.staticMapRef = React.createRef();
+    this.inputAddressRef = React.createRef();
+    this.toTopRef = React.createRef();
   }
   scrollTo(ref) {
     ref.current.scrollIntoView({ behavior: "smooth" });
   }
-
+  goToScroll=(event)=>{
+    event.preventDefault();
+    this.scrollTo(this.inputAddressRef);
+  }
   handleAddressSubmit = (event, fromInput, toInput) => {
     // getting travel time and static map from map quest API
     event.preventDefault();
@@ -77,8 +83,6 @@ class App extends Component {
           key: "TpZYQMsUgBgXUKt2b3xmQCxKpHB7JWoS",
           from: fromInput,
           to: toInput,
-          // from:"312 horsham ave, northyork, ontario",
-          // to:"9205 yonge st, richmonhill, ontario",
           countryCode: "CA",
           routeType: "pedestrian",
           unit: "k",
@@ -223,16 +227,21 @@ class App extends Component {
       audio: selectedAudio,
     });
   };
-
+  
   render() {
+    
     return (
       <div className="App">
-        <Header />
-        <Map
-          submitForm={this.handleAddressSubmit}
-          isLoadingMap={this.state.isLoadingMap}
-          loadMapUrl={this.loadMapUrl}
-        />
+        <header ref={this.toTopRef}>
+          <Header goToInput={this.goToScroll}/>
+        </header>
+        <section ref={this.inputAddressRef}>
+          <Map 
+            submitForm={this.handleAddressSubmit}
+            isLoadingMap={this.state.isLoadingMap}
+            loadMapUrl={this.loadMapUrl}
+          />
+        </section>
         {this.state.staticMapUrl &&
         this.state.formatedWalkTime !== "" &&
         !this.state.isLoadingMap ? (
@@ -290,6 +299,14 @@ class App extends Component {
             )}
           </section>
         ) : null}
+        <button className="toTop"
+          onClick={()=>this.scrollTo(this.toTopRef)}
+          >
+          <FontAwesomeIcon
+            icon="faArrowCircleUp"
+            className="icon"
+          ></FontAwesomeIcon>
+        </button>
         <Footer />
       </div>
     );
