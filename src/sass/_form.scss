@@ -81,14 +81,14 @@ input.podcastSearch {
 
     img {
         padding-right:10px;
-        width:28px;
+        width:35px;
         height:32px;
     }
 
     li:hover,
     li:focus,
     li:active {
-        background:lightgrey;
+        background: lightgray;
 
         img {
             transform:scale(1.1);
@@ -97,9 +97,9 @@ input.podcastSearch {
 }
 
 .suggestions li button{
-    color: black;
+    color: inherit;
     font-family: $fontSecondary;
-    padding:10px;
+    padding:5px;
     padding-left:0.5rem;
     font-weight: normal;
     text-transform: none;
@@ -113,7 +113,7 @@ input.podcastSearch {
     &:hover,
     &:focus,
     &:active{
-        background:lightgrey;
+        background: lightgray;
     }
 }
 
