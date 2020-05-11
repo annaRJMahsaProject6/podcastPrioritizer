@@ -1,5 +1,5 @@
 .travelTypeSection {
-    background-color: #FDF592;
+    background-color: $colorYellow;
     text-align: center;
     height: 40rem;
     display: flex;
@@ -11,7 +11,7 @@
         font-weight: 700;
 
         &:nth-child(2) {
-            margin: 2rem 0 0.5rem;
+            margin: 0.5rem 0;
             font-style: normal;
             font-weight: 400;
         }
@@ -19,7 +19,7 @@
 }
 
 .travelHeading {
-    @include underlineEffect(#83DEE1);
+    @include underlineEffect($colorBlue);
 }
 
 .travelTypeButtonContainer {
@@ -38,15 +38,15 @@
     height: 100%;
     padding: 20px;
     width: 20rem;
-    background-color: #F97068;
+    background-color: $brandColorRed;
     border-radius: 0.5rem;
-    outline: solid #F97068 3px;
+    outline: solid $brandColorRed 3px;
 }
 
 button.active{
-    border: solid #83dee1 3px;
+    border: solid $colorBlue 3px;
     .icon{
-        color:#83dee1;
+        color: $colorBlue;
        
     }
 }

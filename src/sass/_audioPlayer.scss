@@ -1,5 +1,5 @@
 .audioPlayer {
-    background: #EDF2EF;
+    background: $brandColorWhite;
     padding-top: 30px;
     padding-bottom: 30px;
     text-align: center;
@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 3px solid #E8EB5E;
+    border: 3px solid $brandColorYellow;
     text-align: center;
 }
 
@@ -59,7 +59,7 @@
 
 .progressFilled {
     height: 20px;
-    background: #F97068; //#FDF592;
+    background: $brandColorRed; 
     flex-basis: 0%;
 }
 

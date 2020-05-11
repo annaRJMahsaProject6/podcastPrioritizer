@@ -7,9 +7,6 @@ class Header extends Component {
         <section className="hero wrapper">
           <div className="whiteBlock">
             <h1>Podcast Prioritizer</h1>
-            {/* <div className="getStarted">
-                  <button className="startIcon">Start</button>
-                </div> */}
             <div className="heroTextContainer">
               <p className="heroTextTagline">
                 Say goodbye to dull and boring commutes!

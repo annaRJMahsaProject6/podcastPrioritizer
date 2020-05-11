@@ -1,20 +1,19 @@
 body{
   font-size: 62.5%;
   color: #545454;
-  font-family: 'Lato', sans-serif;
+  font-family: $fontSecondary;
   font-size: 1rem;
 }
 
 h2 {
-  font-family: 'Judson', serif;
+  font-family: $fontPrimary;
   font-size: 4rem;
-  @include underlineEffect(#E8EB5E);
-  display: inline-block;
+  @include underlineEffect($brandColorYellow);
   margin-bottom: 2rem;
 }
 
 h3 {
-  font-family: 'Judson', serif;
+  font-family: $fontPrimary;
   font-size: 2rem;
 }
 
@@ -23,7 +22,7 @@ p {
 }
 
 button {
-    background-color: #F97068;
+    background-color: $brandColorRed;
     color: #fff;
     height: 3rem;
     padding: 0 2rem;
@@ -43,7 +42,7 @@ button {
 }
 
 .swal2-styled.swal2-confirm {
-    background-color: #F97068 !important;
+    background-color: $brandColorRed !important;
     font-weight: bold;
 }
 

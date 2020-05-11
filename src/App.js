@@ -242,6 +242,10 @@ class App extends Component {
                 Your Travel Route
               </h2>
               <p>Map overview of your commute.</p>
+              <p>
+                Please scroll to the next section to pick your travel
+                preference.
+              </p>
               <img
                 src={this.state.staticMapUrl}
                 className="routeMapImg"
